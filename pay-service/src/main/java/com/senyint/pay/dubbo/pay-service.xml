@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="
+           http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <dubbo:service interface="com.senyint.pay.rpc.api.TradeRpcService" ref="tradeRpcServiceImpl">
+        <dubbo:method name="createTrade" retries="0" timeout="10000"/>
+        <dubbo:method name="queryTrade"/>
+    </dubbo:service>
+</beans>

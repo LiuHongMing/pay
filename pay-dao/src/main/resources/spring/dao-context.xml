@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- JDBC配置文件 -->
+    <context:property-placeholder
+            location="classpath:jdbc.properties"
+            ignore-unresolvable="true"/>
+
+    <!-- 数据源配置 -->
+    <bean id="parentDateSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driverClass}"/>
+        <property name="initialSize" value="10"/>
+        <property name="maxActive" value="200"/>
+        <property name="minIdle" value="0"/>
+        <property name="maxWait" value="60000"/>
+        <property name="validationQuery" value="SELECT 1"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+        <property name="minEvictableIdleTimeMillis" value="300000"/>
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="1800"/>
+        <property name="logAbandoned" value="true"/>
+        <property name="filters" value="mergeStat"/>
+    </bean>
+
+    <!-- master -->
+    <bean parent="parentDateSource" id="master">
+        <property name="url" value="${jdbc.master.connectionURL}"/>
+        <property name="username" value="${jdbc.master.username}"/>
+        <property name="password" value="${jdbc.master.password}"/>
+    </bean>
+
+    <!-- slave -->
+    <bean parent="parentDateSource" id="slave">
+        <property name="url" value="${jdbc.slave.connectionURL}"/>
+        <property name="username" value="${jdbc.slave.username}"/>
+        <property name="password" value="${jdbc.slave.password}"/>
+    </bean>
+
+    <!-- 配置多数据源映射关系 -->
+    <bean id="dataSource" class="com.senyint.common.dao.datasource.DynamicDataSource">
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <entry key="master" value-ref="master"/>
+                <entry key="slave" value-ref="slave"/>
+            </map>
+        </property>
+        <!-- 默认目标数据源为你主库数据源 -->
+        <property name="defaultTargetDataSource" ref="master"/>
+    </bean>
+
+    <!-- mybatis -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation"  value="classpath:mybatis/mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath:mybatis/mapper/**/*.xml"/>
+    </bean>
+    <bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="basePackage" value="com.senyint.**.dao"/>
+    </bean>
+
+    <!-- transaction -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="add*" propagation="REQUIRED"/>
+            <tx:method name="save*" propagation="REQUIRED"/>
+            <tx:method name="insert*" propagation="REQUIRED"/>
+            <tx:method name="update*" propagation="REQUIRED"/>
+            <tx:method name="get*" read-only="true"/>
+            <tx:method name="find*" read-only="true"/>
+            <tx:method name="search*" read-only="true"/>
+            <tx:method name="query*" read-only="true"/>
+            <tx:method name="select*" read-only="true"/>
+            <tx:method name="count*" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- 事务AOP配置 -->
+    <bean id="dataSourceInterceptor" class="com.senyint.common.dao.datasource.DataSourceInterceptor"/>
+    <aop:config>
+        <aop:pointcut id="service" expression="execution(* com.senyint.*.service.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="service" order="500"/>
+        <aop:advisor advice-ref="dataSourceInterceptor" pointcut-ref="service" order="200"/>
+    </aop:config>
+</beans>

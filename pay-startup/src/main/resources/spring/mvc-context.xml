@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 扫描组件 -->
+    <context:component-scan base-package="com.senyint.**.web"/>
+    <context:component-scan base-package="com.senyint.**.controller"/>
+
+    <!-- 内容配置 -->
+    <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="favorPathExtension" value="false"/>
+        <property name="favorParameter" value="false"/>
+    </bean>
+
+    <!-- 相当于注册了DefaultAnnotationHandlerMapping和AnnotationMethodHandlerAdapter两个bean -->
+    <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager">
+        <mvc:message-converters register-defaults="true">
+            <bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg index="0" value="UTF-8"/>
+            </bean>
+            <bean id="byteArrayHttpMessageConverter" class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+            <bean id="jackson2HttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="prefixJson" value="false"/>
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                        <value>text/json;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+</beans>

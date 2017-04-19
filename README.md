@@ -1,1 +1,1 @@
-pay-root
+pay

@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.senyint.pay.dao.PayTradeRecordDAO" >
+  <resultMap id="BaseResultMap" type="com.senyint.pay.dao.model.PayTradeRecordDO" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="merchant_order_no" property="merchantOrderNo" jdbcType="VARCHAR" />
+    <result column="trade_no" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="merchant_name" property="merchantName" jdbcType="VARCHAR" />
+    <result column="merchant_no" property="merchantNo" jdbcType="VARCHAR" />
+    <result column="payer_no" property="payerNo" jdbcType="VARCHAR" />
+    <result column="payer_name" property="payerName" jdbcType="VARCHAR" />
+    <result column="payer_pay_amount" property="payerPayAmount" jdbcType="DECIMAL" />
+    <result column="payer_fee" property="payerFee" jdbcType="DECIMAL" />
+    <result column="payer_account_type" property="payerAccountType" jdbcType="VARCHAR" />
+    <result column="receiver_no" property="receiverNo" jdbcType="VARCHAR" />
+    <result column="receiver_name" property="receiverName" jdbcType="VARCHAR" />
+    <result column="receiver_pay_amount" property="receiverPayAmount" jdbcType="DECIMAL" />
+    <result column="receiver_fee" property="receiverFee" jdbcType="DECIMAL" />
+    <result column="receiver_account_type" property="receiverAccountType" jdbcType="VARCHAR" />
+    <result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+    <result column="pay_way_code" property="payWayCode" jdbcType="VARCHAR" />
+    <result column="pay_way_name" property="payWayName" jdbcType="VARCHAR" />
+    <result column="pay_success_time" property="paySuccessTime" jdbcType="TIMESTAMP" />
+    <result column="complete_time" property="completeTime" jdbcType="TIMESTAMP" />
+    <result column="trade_type" property="tradeType" jdbcType="VARCHAR" />
+    <result column="order_from" property="orderFrom" jdbcType="VARCHAR" />
+    <result column="pay_type_code" property="payTypeCode" jdbcType="VARCHAR" />
+    <result column="pay_type_name" property="payTypeName" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, gmt_create, gmt_modified, version, product_name, merchant_order_no, trade_no, 
+    merchant_name, merchant_no, payer_no, payer_name, payer_pay_amount, payer_fee, payer_account_type, 
+    receiver_no, receiver_name, receiver_pay_amount, receiver_fee, receiver_account_type, 
+    total_amount, pay_way_code, pay_way_name, pay_success_time, complete_time, trade_type, 
+    order_from, pay_type_code, pay_type_name, remark
+  </sql>
+
+  <select id="getPayTradeRecord" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from pay_trade_record
+    <where>
+      <if test="id != null">
+        id = #{id}
+      </if>
+      <if test="tradeNo != null">
+        and trade_no = #{trade_no}
+      </if>
+    </where>
+  </select>
+
+  <select id="listByMerchantNo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from pay_trade_record
+    <where>
+      <if test="merchantNo != null">
+        merchant_no = #{merchant_no}
+      </if>
+    </where>
+  </select>
+
+  <insert id="save" parameterType="com.senyint.pay.dao.model.PayTradeRecordDO" >
+    insert into pay_trade_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="merchantOrderNo != null" >
+        merchant_order_no,
+      </if>
+      <if test="tradeNo != null" >
+        trade_no,
+      </if>
+      <if test="merchantName != null" >
+        merchant_name,
+      </if>
+      <if test="merchantNo != null" >
+        merchant_no,
+      </if>
+      <if test="payerNo != null" >
+        payer_no,
+      </if>
+      <if test="payerName != null" >
+        payer_name,
+      </if>
+      <if test="payerPayAmount != null" >
+        payer_pay_amount,
+      </if>
+      <if test="payerFee != null" >
+        payer_fee,
+      </if>
+      <if test="payerAccountType != null" >
+        payer_account_type,
+      </if>
+      <if test="receiverNo != null" >
+        receiver_no,
+      </if>
+      <if test="receiverName != null" >
+        receiver_name,
+      </if>
+      <if test="receiverPayAmount != null" >
+        receiver_pay_amount,
+      </if>
+      <if test="receiverFee != null" >
+        receiver_fee,
+      </if>
+      <if test="receiverAccountType != null" >
+        receiver_account_type,
+      </if>
+      <if test="totalAmount != null" >
+        total_amount,
+      </if>
+      <if test="payWayCode != null" >
+        pay_way_code,
+      </if>
+      <if test="payWayName != null" >
+        pay_way_name,
+      </if>
+      <if test="paySuccessTime != null" >
+        pay_success_time,
+      </if>
+      <if test="completeTime != null" >
+        complete_time,
+      </if>
+      <if test="tradeType != null" >
+        trade_type,
+      </if>
+      <if test="orderFrom != null" >
+        order_from,
+      </if>
+      <if test="payTypeCode != null" >
+        pay_type_code,
+      </if>
+      <if test="payTypeName != null" >
+        pay_type_name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantOrderNo != null" >
+        #{merchantOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantName != null" >
+        #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantNo != null" >
+        #{merchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payerNo != null" >
+        #{payerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payerName != null" >
+        #{payerName,jdbcType=VARCHAR},
+      </if>
+      <if test="payerPayAmount != null" >
+        #{payerPayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payerFee != null" >
+        #{payerFee,jdbcType=DECIMAL},
+      </if>
+      <if test="payerAccountType != null" >
+        #{payerAccountType,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverNo != null" >
+        #{receiverNo,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverName != null" >
+        #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverPayAmount != null" >
+        #{receiverPayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="receiverFee != null" >
+        #{receiverFee,jdbcType=DECIMAL},
+      </if>
+      <if test="receiverAccountType != null" >
+        #{receiverAccountType,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null" >
+        #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payWayCode != null" >
+        #{payWayCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payWayName != null" >
+        #{payWayName,jdbcType=VARCHAR},
+      </if>
+      <if test="paySuccessTime != null" >
+        #{paySuccessTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="completeTime != null" >
+        #{completeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeType != null" >
+        #{tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderFrom != null" >
+        #{orderFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="payTypeCode != null" >
+        #{payTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payTypeName != null" >
+        #{payTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByIdOrTradeNo" parameterType="com.senyint.pay.dao.model.PayTradeRecordDO" >
+    update pay_trade_record
+    <set >
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantOrderNo != null" >
+        merchant_order_no = #{merchantOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantName != null" >
+        merchant_name = #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantNo != null" >
+        merchant_no = #{merchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payerNo != null" >
+        payer_no = #{payerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payerName != null" >
+        payer_name = #{payerName,jdbcType=VARCHAR},
+      </if>
+      <if test="payerPayAmount != null" >
+        payer_pay_amount = #{payerPayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payerFee != null" >
+        payer_fee = #{payerFee,jdbcType=DECIMAL},
+      </if>
+      <if test="payerAccountType != null" >
+        payer_account_type = #{payerAccountType,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverNo != null" >
+        receiver_no = #{receiverNo,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverName != null" >
+        receiver_name = #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverPayAmount != null" >
+        receiver_pay_amount = #{receiverPayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="receiverFee != null" >
+        receiver_fee = #{receiverFee,jdbcType=DECIMAL},
+      </if>
+      <if test="receiverAccountType != null" >
+        receiver_account_type = #{receiverAccountType,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null" >
+        total_amount = #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payWayCode != null" >
+        pay_way_code = #{payWayCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payWayName != null" >
+        pay_way_name = #{payWayName,jdbcType=VARCHAR},
+      </if>
+      <if test="paySuccessTime != null" >
+        pay_success_time = #{paySuccessTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="completeTime != null" >
+        complete_time = #{completeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeType != null" >
+        trade_type = #{tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderFrom != null" >
+        order_from = #{orderFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="payTypeCode != null" >
+        pay_type_code = #{payTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payTypeName != null" >
+        pay_type_name = #{payTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <where>
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="tradeNo != null">
+        and trade_no = #{tradeNo}
+      </if>
+    </where>
+  </update>
+</mapper>

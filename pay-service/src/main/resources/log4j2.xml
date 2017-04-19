@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    status          : 这个用于设置log4j2自身内部的信息输出。
+                      可以不设置, 当设置成trace时, 会看到log4j2内部各种详细输出。
+    monitorInterval : log4j2能够自动检测修改配置文件和重新配置本身, 设置间隔秒数。
+-->
+<Configuration status="WARN" monitorInterval="600">
+    <Properties>
+        <property name="APP_NAME" value="pay"/>
+        <property name="COMPANY_NAME"  value="senyint"/>
+        <Property name="LOG_HOME" value="/data/webserver/logs/${APP_NAME}.${COMPANY_NAME}.local"/>
+        <Property name="PATTERN"  value="%d [%t] [%-5level] %logger{64} -> %m%n%ex"/>
+    </Properties>
+
+    <Appenders>
+        <!-- 标准日志输出 -->
+        <Console name="stdout">
+            <PatternLayout pattern="${PATTERN}"/>
+        </Console>
+        <!-- 监控日志 -->
+        <RollingRandomAccessFile name="${APP_NAME}_monitor_all" fileName="${LOG_HOME}/${APP_NAME}_monitor_all.log"
+                                 filePattern="${LOG_HOME}/${APP_NAME}_monitor_all-%d{yyyy-MM-dd}-%i.log">
+            <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+        </RollingRandomAccessFile>
+        <!-- web访问日志 -->
+        <RollingRandomAccessFile name="${APP_NAME}_visit_web" fileName="${LOG_HOME}/${APP_NAME}_visit_web.log"
+                                 filePattern="${LOG_HOME}/${APP_NAME}_visit_web-%d{yyyy-MM-dd}-%i.log">
+            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+        </RollingRandomAccessFile>
+        <!-- rpc访问日志 -->
+        <RollingRandomAccessFile name="${APP_NAME}_visit_rpc" fileName="${LOG_HOME}/${APP_NAME}_visit_rpc.log"
+                                 filePattern="${LOG_HOME}/${APP_NAME}_visit_rpc-%d{yyyy-MM-dd}-%i.log">
+            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+        </RollingRandomAccessFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- 根logger -->
+        <Root level="INFO">
+            <AppenderRef ref="stdout"/>
+            <AppenderRef ref="${APP_NAME}_monitor_all"/>
+        </Root>
+        <!-- 应用logger -->
+        <logger name="com.senyint" level="WARN"/>
+        <logger name="com.senyint.pay.web" level="INFO" additivity="false">
+            <AppenderRef ref="${APP_NAME}_visit_web"/>
+        </logger>
+        <logger name="com.senyint.pay.rpc" level="INFO" additivity="false">
+            <AppenderRef ref="${APP_NAME}_visit_rpc"/>
+        </logger>
+        <!-- 框架logger -->
+        <logger name="io.netty" level="INFO"/>
+        <logger name="org.springframework" level="INFO"/>
+        <logger name="com.alibaba.dubbo" level="INFO"/>
+        <logger name="org.apache.http" level="WARN"/>
+        <Logger name="org.apache.kafka" level="WARN"/>
+    </Loggers>
+</Configuration>

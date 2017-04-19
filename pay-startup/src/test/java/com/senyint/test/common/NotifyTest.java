@@ -1,0 +1,23 @@
+package com.senyint.test.common;
+
+import com.senyint.common.notify.NotifyManager;
+import com.senyint.common.util.MapBuilder;
+import org.junit.Test;
+
+import java.util.Map;
+
+public class NotifyTest {
+
+    @Test
+    public void testMerchantNotify() throws Exception {
+        String url = "http://172.16.208.42:8080/weixin/wechat/wap/payNotify";
+        Map<String, Object> params = MapBuilder.newMap("out_trade_no", "909809618381664_2017031775706013");
+        NotifyManager manager = new NotifyManager();
+        manager.notify(url, params);
+
+        while(true) {
+
+        }
+    }
+
+}
