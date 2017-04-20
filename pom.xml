@@ -22,6 +22,8 @@
         <jdk.version>1.8</jdk.version>
 
         <!-- ********************* dependencies ********************* -->
+        <!-- jmh -->
+        <jmh.version>1.18</jmh.version>
         <!-- junit -->
         <junit.version>4.12</junit.version>
         <!-- slf4j -->
@@ -282,6 +284,12 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- jmh -->
+            <dependency>
+                <groupId>org.openjdk.jmh</groupId>
+                <artifactId>jmh-core</artifactId>
+                <version>${jmh.version}</version>
+            </dependency>
             <!-- junit -->
             <dependency>
                 <groupId>junit</groupId>
@@ -617,6 +625,11 @@
     </dependencyManagement>
 
     <dependencies>
+        <!-- jmh -->
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-core</artifactId>
+        </dependency>
         <!-- junit -->
         <dependency>
             <groupId>junit</groupId>
