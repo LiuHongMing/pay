@@ -1,5 +1,6 @@
 package com.senyint.pay.web;
 
+import com.senyint.pay.web.config.AppConfig;
 import com.senyint.server.NettyServer;
 import com.senyint.server.channel.DefaultChannelInitializer;
 import io.netty.channel.ChannelInitializer;

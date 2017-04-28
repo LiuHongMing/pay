@@ -18,7 +18,6 @@ import java.util.TreeMap;
  * 功能：验证微信签名
  *
  * @author liuhongming
- * @version 1.0
  */
 public class WxUtil {
 

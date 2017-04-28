@@ -1,4 +1,7 @@
 
+# APP ID
 wxc1ea6808615f50db:
+  # 支付秘钥
   partner_key: XYGJSZYLXTDLYXGS20170324PPTGXYGJ
+  # APP秘钥
   app_secret: 9ef60c8716f8a0a97f889cbc0d9f6eb1

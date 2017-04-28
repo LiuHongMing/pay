@@ -39,7 +39,6 @@ public class TradeController extends PlatoController {
 
     private static final Logger logger = LoggerFactory.getLogger(TradeController.class);
 
-
     @Autowired
     @Qualifier("yamlProperties")
     private Properties yamlProperties;
