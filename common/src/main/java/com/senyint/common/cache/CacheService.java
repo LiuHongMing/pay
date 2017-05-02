@@ -6,6 +6,11 @@ import com.senyint.common.core.BaseService;
 
 import java.util.Map;
 
+/**
+ * 缓存服务基类
+ *
+ * @author liuhongming
+ */
 public class CacheService extends BaseService {
 
     public Map<String, Cache> caches = Maps.newHashMap();
@@ -17,6 +22,4 @@ public class CacheService extends BaseService {
         caches.put(key, cache);
     }
 
-    public void set(final String key, final Object value, int remoteCacheExpireInSeconds) {
-    }
 }

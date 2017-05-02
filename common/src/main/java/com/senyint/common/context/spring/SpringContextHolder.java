@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; 2012-2014 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.senyint.common.context;
+package com.senyint.common.context.spring;
 
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
