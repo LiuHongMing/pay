@@ -53,4 +53,14 @@ public class RedisTest {
         redisClient.get("lhm");
     }
 
+    @Benchmark
+    public void testKeys() throws Exception {
+        redisClient.keys("mr:*");
+    }
+
+    @Benchmark
+    public void testDel() throws Exception {
+        redisClient.del("mr:id:NA5Xq-29", "mr:id:V9DBL-37");
+    }
+
 }

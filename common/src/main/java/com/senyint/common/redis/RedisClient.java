@@ -2,12 +2,14 @@ package com.senyint.common.redis;
 
 import redis.clients.jedis.Jedis;
 
+import java.util.Set;
+
 /**
  * Redis客户端工具类
  *
  * @author liuhongming
- *
- * TODO 待完善，需补充剩余操作
+ *         <p>
+ *         TODO 待完善，需补充剩余操作
  */
 public class RedisClient {
 
@@ -35,12 +37,30 @@ public class RedisClient {
 
     /**
      * 删除指定的多个 key, 如果删除的key不存在，则直接忽略
+     *
+     * TODO codis不支持该方法
      */
     public Long del(String... keys) {
         Jedis jedis = jedisTemplate.getJedis();
         Long ret;
         try {
             ret = jedis.del(keys);
+        } finally {
+            jedis.close();
+        }
+        return ret;
+    }
+
+    /**
+     * 删除指定的多个 key, 如果删除的key不存在，则直接忽略
+     *
+     * TODO codis不支持该方法
+     */
+    public Set<String> keys(String pattern) {
+        Jedis jedis = jedisTemplate.getJedis();
+        Set<String> ret;
+        try {
+            ret = jedis.keys(pattern);
         } finally {
             jedis.close();
         }
