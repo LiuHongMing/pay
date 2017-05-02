@@ -3,6 +3,7 @@ package com.senyint.common.cache;
 import com.google.common.cache.Cache;
 import com.google.common.collect.Maps;
 import com.senyint.common.core.BaseService;
+import org.springframework.cache.interceptor.CacheOperation;
 
 import java.util.List;
 import java.util.Map;
@@ -12,11 +13,8 @@ import java.util.Map;
  *
  * @author liuhongming
  */
-public interface CacheService {
+public interface CacheService extends CacheOperations {
 
     void addCache(String key, Cache<?, ?> cache);
 
-    void set(final String key, final Object value, int remoteCacheExpireInSeconds);
-
-    Map mget(List<?> keys, List<?> types);
 }

@@ -25,7 +25,7 @@ public class LocalCacheService extends BaseService {
     }
 
     @Override
-    public Map mget(List<?> keys, List<?> types) {
+    public Map mget(List<String> keys, List<Class> types) {
         return null;
     }
 

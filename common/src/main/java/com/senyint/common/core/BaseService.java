@@ -2,6 +2,7 @@ package com.senyint.common.core;
 
 import com.google.common.cache.Cache;
 import com.google.common.collect.Maps;
+import com.senyint.common.cache.CacheOperations;
 import com.senyint.common.cache.CacheService;
 import org.springframework.beans.factory.InitializingBean;
 
@@ -31,13 +32,11 @@ public class BaseService implements InitializingBean, CacheService {
 
     @Override
     public void set(String key, Object value, int remoteCacheExpireInSeconds) {
-
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public Map mget(List<?> keys, List<?> types) {
-        return null;
+    public Map mget(List<String> keys, List<Class> types) {
+        throw new UnsupportedOperationException();
     }
-
-
 }
