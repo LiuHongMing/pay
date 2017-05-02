@@ -4,22 +4,19 @@ import com.google.common.cache.Cache;
 import com.google.common.collect.Maps;
 import com.senyint.common.core.BaseService;
 
+import java.util.List;
 import java.util.Map;
 
 /**
- * 缓存服务基类
+ * 缓存服务接口
  *
  * @author liuhongming
  */
-public class CacheService extends BaseService {
+public interface CacheService {
 
-    public Map<String, Cache> caches = Maps.newHashMap();
+    void addCache(String key, Cache<?, ?> cache);
 
-    public void addCache(String key, Cache<?, ?> cache) {
-        if (cache == null) {
-            throw new IllegalArgumentException("cache参数不能为NULL");
-        }
-        caches.put(key, cache);
-    }
+    void set(final String key, final Object value, int remoteCacheExpireInSeconds);
 
+    Map mget(List<?> keys, List<?> types);
 }

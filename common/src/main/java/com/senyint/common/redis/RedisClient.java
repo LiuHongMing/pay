@@ -2,6 +2,7 @@ package com.senyint.common.redis;
 
 import redis.clients.jedis.Jedis;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -342,4 +343,31 @@ public class RedisClient {
         return ret;
     }
 
+    /**
+     * 对应给定的 keys 到他们相应的 values 上
+     */
+    public String mset(final String... keysvalues) {
+        Jedis jedis = jedisTemplate.getJedis();
+        String ret;
+        try {
+            ret = jedis.mset(keysvalues);
+        } finally {
+            jedis.close();
+        }
+        return ret;
+    }
+
+    /**
+     * 返回所有指定的 key 的 value
+     */
+    public List<String> mget(final String... keys) {
+        Jedis jedis = jedisTemplate.getJedis();
+        List<String> ret;
+        try {
+            ret = jedis.mget(keys);
+        } finally {
+            jedis.close();
+        }
+        return ret;
+    }
 }

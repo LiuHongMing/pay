@@ -19,7 +19,7 @@ public class LocalCacheInitService extends BaseService {
                 .expireAfterWrite(Switches.GLOBAL.getExpireInSeconds() / 2, TimeUnit.SECONDS)
                 .build();
 
-        addLocalCache(CacheKeysConstants.GLOBAL_KEY, globalCache);
+        addLocalCache(CacheKeyConstants.GLOBAL_KEY, globalCache);
     }
 
     private void addLocalCache(String key, Cache<?, ?> cache) {
