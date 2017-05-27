@@ -82,7 +82,7 @@
         <!-- netty -->
         <netty.version>4.1.9.Final</netty.version>
         <!-- jctools -->
-        <jctools.version>1.2.1</jctools.version>
+        <jctools.version>2.0</jctools.version>
         <!-- zookeeper -->
         <zookeeper.version>3.4.6</zookeeper.version>
         <!-- zookeeper client -->
@@ -650,7 +650,7 @@
             <dependency>
                 <groupId>org.mongodb</groupId>
                 <artifactId>mongo-java-driver</artifactId>
-                <version>${mongo-java-driver}</version>
+                <version>${mongo-java-driver.version}</version>
             </dependency>
             <!-- spring-data-mongodb -->
             <dependency>
@@ -1039,6 +1039,11 @@
         <dependency>
             <groupId>org.glassfish.web</groupId>
             <artifactId>el-impl</artifactId>
+        </dependency>
+        <!-- mongo-java-driver -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
         </dependency>
 
         <!-- ********************* 后续要废弃依赖 ********************* -->

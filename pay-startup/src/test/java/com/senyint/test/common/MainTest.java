@@ -12,6 +12,15 @@ import java.util.Date;
 public class MainTest {
 
     @Test
+    public void testBit() {
+        long millions = System.currentTimeMillis();
+        System.out.println(Long.toBinaryString(millions));
+        System.out.println(Long.toHexString(millions));
+        long negative = -1L ^ (-1L << 5);
+        System.out.println(Long.toBinaryString(negative));
+    }
+
+    @Test
     public void testEnums() {
         System.out.println(PayWayEnum.WEIXIN);
     }
