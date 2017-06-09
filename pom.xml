@@ -111,6 +111,9 @@
         <hibernate-validator.version>5.1.3.Final</hibernate-validator.version>
         <!-- el-impl -->
         <el-impl.version>2.2</el-impl.version>
+        <!-- hystrix -->
+        <hystrix.version>1.5.12</hystrix.version>
+        <hystrix-metrics-event-stream.version>1.5.12</hystrix-metrics-event-stream.version>
 
         <!-- ********************* 后续要废弃依赖 ********************* -->
 
@@ -309,6 +312,17 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- hystrix -->
+            <dependency>
+                <groupId>com.netflix.hystrix</groupId>
+                <artifactId>hystrix-core</artifactId>
+                <version>${hystrix.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.netflix.hystrix</groupId>
+                <artifactId>hystrix-metrics-event-stream</artifactId>
+                <version>${hystrix-metrics-event-stream.version}</version>
+            </dependency>
             <!-- jsr305 -->
             <dependency>
                 <groupId>com.google.code.findbugs</groupId>
@@ -701,6 +715,15 @@
     </dependencyManagement>
 
     <dependencies>
+        <!-- hystrix -->
+        <dependency>
+            <groupId>com.netflix.hystrix</groupId>
+            <artifactId>hystrix-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.netflix.hystrix</groupId>
+            <artifactId>hystrix-metrics-event-stream</artifactId>
+        </dependency>
         <!-- jsr305 -->
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
