@@ -1,7 +1,7 @@
 package com.senyint.pay.rpc.api;
 
 import com.senyint.pay.query.TradeQUERY;
-import com.senyint.pay.rpc.RpcResult;
+import com.senyint.pay.rpc.Result;
 import com.senyint.pay.vo.TradeVO;
 
 /**
@@ -14,17 +14,16 @@ public interface TradeRpcService {
     /**
      * 创建交易
      */
-    RpcResult<TradeVO> createTrade(TradeVO tradeVO) throws Exception;
+    Result<TradeVO> createTrade(TradeVO tradeVO) throws Exception;
 
     /**
      * 查询交易
      */
-    RpcResult<TradeVO> queryTrade(TradeQUERY tradeQUERY) throws Exception;
+    Result<TradeVO> queryTrade(TradeQUERY tradeQUERY) throws Exception;
 
     /**
      * 更新交易
      */
-    RpcResult<String> updateTrade(TradeVO tradeVO) throws Exception;
+    Result<String> updateTrade(TradeVO tradeVO) throws Exception;
 
-    RpcResult<String> getResult(String inStr);
 }

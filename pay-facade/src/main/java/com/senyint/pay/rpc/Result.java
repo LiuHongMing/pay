@@ -7,7 +7,7 @@ import java.io.Serializable;
  *
  * @param <T>
  */
-public class RpcResult<T> implements Serializable {
+public class Result<T> implements Serializable {
 
     /**
      * 是否成功
@@ -39,7 +39,7 @@ public class RpcResult<T> implements Serializable {
      *
      * @param value
      */
-    public RpcResult(T value) {
+    public Result(T value) {
         this(true, value, null, null, null);
     }
 
@@ -49,7 +49,7 @@ public class RpcResult<T> implements Serializable {
      * @param code
      * @param message
      */
-    public RpcResult(String code, String message) {
+    public Result(String code, String message) {
         this(false, null, code, message, null);
     }
 
@@ -62,7 +62,7 @@ public class RpcResult<T> implements Serializable {
      * @param message
      * @param throwable
      */
-    public RpcResult(boolean isSuccess, T value, String code, String message, Throwable throwable) {
+    public Result(boolean isSuccess, T value, String code, String message, Throwable throwable) {
         this.isSuccess = isSuccess;
         this.value = value;
         this.code = code;

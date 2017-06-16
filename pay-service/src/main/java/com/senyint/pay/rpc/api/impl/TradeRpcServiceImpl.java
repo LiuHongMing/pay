@@ -10,7 +10,7 @@ import com.senyint.pay.dto.TradeRecordDTO;
 import com.senyint.pay.exception.TradeErrorCode;
 import com.senyint.pay.exception.TradeException;
 import com.senyint.pay.query.TradeQUERY;
-import com.senyint.pay.rpc.RpcResult;
+import com.senyint.pay.rpc.Result;
 import com.senyint.pay.rpc.RpcResultBuilder;
 import com.senyint.pay.rpc.api.TradeRpcService;
 import com.senyint.pay.service.TradeService;
@@ -33,7 +33,7 @@ public class TradeRpcServiceImpl implements TradeRpcService {
     private TradeService tradeService;
 
     @Override
-    public RpcResult<TradeVO> createTrade(TradeVO tradeVO) throws Exception {
+    public Result<TradeVO> createTrade(TradeVO tradeVO) throws Exception {
         logger.info("创建交易: {}", tradeVO.toString());
 
         // 复制交易订单信息
@@ -48,7 +48,7 @@ public class TradeRpcServiceImpl implements TradeRpcService {
         // 交易类型
         tradeRecordDTO.setTradeType(TradeTypeEnum.EXPENSE.name());
 
-        RpcResult<TradeVO> rpcResult;
+        Result<TradeVO> rpcResult;
         try {
             OutTradeNoDTO outTradeNoDTO = tradeService.saveTrade(tradeOrderDTO, tradeRecordDTO);
             TradeVO resultVO = new TradeVO();
@@ -62,13 +62,13 @@ public class TradeRpcServiceImpl implements TradeRpcService {
     }
 
     @Override
-    public RpcResult<TradeVO> queryTrade(TradeQUERY tradeQUERY) throws Exception {
+    public Result<TradeVO> queryTrade(TradeQUERY tradeQUERY) throws Exception {
         logger.info("查询交易: {}", tradeQUERY.toString());
 
         String merchantOrderNo = tradeQUERY.getMerchantOrderNO();
         String tradeNo = tradeQUERY.getTradeNo();
 
-        RpcResult<TradeVO> rpcResult;
+        Result<TradeVO> rpcResult;
         try {
             TradeOrderDTO tradeOrderDTO = tradeService.getTradeOrder(merchantOrderNo, tradeNo);
             if (tradeOrderDTO == null) {
@@ -85,13 +85,13 @@ public class TradeRpcServiceImpl implements TradeRpcService {
     }
 
     @Override
-    public RpcResult<String> updateTrade(TradeVO tradeVO) throws Exception {
+    public Result<String> updateTrade(TradeVO tradeVO) throws Exception {
         logger.info("更新交易: {}", tradeVO.toString());
 
         TradeOrderDTO tradeOrderDTO = BeanFactoryUtil.copyProperties(tradeVO, TradeOrderDTO.class);
         TradeRecordDTO tradeRecordDTO = BeanFactoryUtil.copyProperties(tradeVO, TradeRecordDTO.class);
 
-        RpcResult<String> rpcResult;
+        Result<String> rpcResult;
         try {
             tradeService.updateTradeToComplete(tradeOrderDTO, tradeRecordDTO);
             rpcResult = RpcResultBuilder.instance().success("");
@@ -100,16 +100,6 @@ public class TradeRpcServiceImpl implements TradeRpcService {
         }
 
         return rpcResult;
-    }
-
-    @Override
-    public RpcResult<String> getResult(String inStr) {
-        try {
-            String value = inStr.toString() + "<sign>";
-            return RpcResultBuilder.instance().success(value);
-        } catch (Exception e) {
-            return RpcResultBuilder.instance().failure("10001", "空指针异常");
-        }
     }
 
     private boolean checkVO(TradeVO tradeVO) {
