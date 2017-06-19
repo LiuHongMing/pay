@@ -53,9 +53,9 @@ public class TradeRpcServiceImpl implements TradeRpcService {
             OutTradeNoDTO outTradeNoDTO = tradeService.saveTrade(tradeOrderDTO, tradeRecordDTO);
             TradeVO resultVO = new TradeVO();
             resultVO.setOutTradeNo(outTradeNoDTO.toString());
-            rpcResult = RpcResultBuilder.instance().success(resultVO);
+            rpcResult = RpcResultBuilder.instance().ok(resultVO);
         } catch (Exception e) {
-            rpcResult = RpcResultBuilder.instance().failure("", "创建交易失败：" + e.getMessage());
+            rpcResult = RpcResultBuilder.instance().error("", "创建交易失败：" + e.getMessage());
         }
 
         return rpcResult;
@@ -75,9 +75,9 @@ public class TradeRpcServiceImpl implements TradeRpcService {
                 throw new TradeException(TradeErrorCode.TRADE_NOT_EXIST);
             }
             TradeVO resultVO = BeanFactoryUtil.copyProperties(tradeOrderDTO, TradeVO.class);
-            rpcResult = RpcResultBuilder.success(resultVO);
+            rpcResult = RpcResultBuilder.ok(resultVO);
         } catch (TradeException ex) {
-            rpcResult = RpcResultBuilder.failure(ex.getErrorCode().getCode(),
+            rpcResult = RpcResultBuilder.error(ex.getErrorCode().getCode(),
                     ex.getErrorCode().getMessage());
         }
 
@@ -94,9 +94,9 @@ public class TradeRpcServiceImpl implements TradeRpcService {
         Result<String> rpcResult;
         try {
             tradeService.updateTradeToComplete(tradeOrderDTO, tradeRecordDTO);
-            rpcResult = RpcResultBuilder.instance().success("");
+            rpcResult = RpcResultBuilder.instance().ok("");
         } catch (Exception e) {
-            rpcResult = RpcResultBuilder.instance().failure("", "更新交易：" + e.getMessage());
+            rpcResult = RpcResultBuilder.instance().error("", "更新交易：" + e.getMessage());
         }
 
         return rpcResult;
