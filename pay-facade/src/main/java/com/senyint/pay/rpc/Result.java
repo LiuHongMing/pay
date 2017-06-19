@@ -112,7 +112,7 @@ public class Result<T> implements Serializable {
 
     @Override
     public String toString() {
-        return "RpcResult{" +
+        return "Result{" +
                 "isSuccess=" + isSuccess +
                 ", value=" + value +
                 ", code='" + code + '\'' +

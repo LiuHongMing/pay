@@ -43,7 +43,7 @@ public class RpcResultBuilder {
      * @param <T>
      * @return
      */
-    public static <T> Result success(T value) {
+    public static <T> Result ok(T value) {
         return build(true, value, null, null, null);
     }
 
@@ -54,7 +54,7 @@ public class RpcResultBuilder {
      * @param message
      * @return
      */
-    public static Result failure(String code, String message) {
+    public static Result error(String code, String message) {
         return build(false, null, code, message, null);
     }
 
@@ -65,12 +65,12 @@ public class RpcResultBuilder {
      * @param message
      * @return
      */
-    public static Result failure(String code, String message, Throwable throwable) {
+    public static Result error(String code, String message, Throwable throwable) {
         return build(false, null, code, message, throwable);
     }
 
     public static void main(String[] args) {
-        Result rpcResult = RpcResultBuilder.success(new TradeVO());
+        Result rpcResult = RpcResultBuilder.ok(new TradeVO());
         System.out.println(rpcResult);
     }
 }
