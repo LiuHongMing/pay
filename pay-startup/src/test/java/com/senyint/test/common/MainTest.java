@@ -5,8 +5,15 @@ import com.senyint.common.util.RandomStringUtil;
 import com.senyint.pay.dto.factory.OutTradeNoFactory;
 import com.senyint.pay.constant.PayWayEnum;
 import io.netty.util.internal.MacAddressUtil;
+import org.apache.commons.lang.time.DateFormatUtils;
+import org.apache.commons.lang.time.DateUtils;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 import org.junit.Test;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class MainTest {
@@ -62,7 +69,7 @@ public class MainTest {
     @Test
     public void testMacAddress() {
         byte[] bestAvailableMac = MacAddressUtil.bestAvailableMac();
-        String macAddress  = MacAddressUtil.formatAddress(bestAvailableMac);
+        String macAddress = MacAddressUtil.formatAddress(bestAvailableMac);
         System.out.println(macAddress);
     }
 
