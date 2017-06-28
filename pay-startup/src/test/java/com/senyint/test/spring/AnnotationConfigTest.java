@@ -1,6 +1,6 @@
 package com.senyint.test.spring;
 
-import com.senyint.pay.web.config.CommonConfig;
+import com.senyint.pay.web.config.DefaultConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.Properties;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {CommonConfig.class})
+@ContextConfiguration(classes = {DefaultConfig.class})
 public class AnnotationConfigTest {
 
     @Autowired

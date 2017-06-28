@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 
 @Configuration
-@Import(CommonConfig.class)
+@Import(DefaultConfig.class)
 @ImportResource({"classpath:/applicationContext.xml"})
 public class AppConfig {
 
