@@ -54,15 +54,12 @@ public class NotifyManager {
     }
 
     public void nextNotify(final String notifyUrl, final Map<String, Object> params) {
-        schedules.schedule(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    logger.warn("延时通知：notifyUrl: {}, params: {}", notifyUrl, params);
-                    NotifyManager.this.notify(notifyUrl, params);
-                } catch (Exception e) {
-                    logger.error("延时通知失败：" + e.getMessage(), e);
-                }
+        schedules.schedule(() -> {
+            try {
+                logger.warn("延时通知：notifyUrl: {}, params: {}", notifyUrl, params);
+                NotifyManager.this.notify(notifyUrl, params);
+            } catch (Exception e) {
+                logger.error("延时通知失败：" + e.getMessage(), e);
             }
         }, PERIOD, MINUTES);
     }
