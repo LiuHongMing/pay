@@ -2,9 +2,6 @@ package com.senyint.common.util;
 
 import com.google.common.collect.Maps;
 import org.dom4j.*;
-import org.dom4j.Document;
-import org.dom4j.Element;
-import org.w3c.dom.*;
 
 import java.util.Map;
 

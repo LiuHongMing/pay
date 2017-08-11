@@ -6,11 +6,24 @@ import org.junit.Test;
 
 public class ByteBufAllocatorTest {
 
+    final int maxOrder = 11;
+    final int pageSize = 8192;
+    final PooledByteBufAllocator pooled = new PooledByteBufAllocator(false);
+
     @Test
     public void testPooled() throws Exception {
-        PooledByteBufAllocator pooled = new PooledByteBufAllocator(false);
-        ByteBuf buf = pooled.heapBuffer(9000);
+        ByteBuf buf = pooled.heapBuffer(4096);
         System.out.println(buf);
+    }
+
+    @Test
+    public void testPoolChunk() throws Exception {
+        int chunkSize = (1 << maxOrder) * pageSize;
+        System.out.println(chunkSize);
+    }
+
+    @Test
+    public void testPoolSubpage() throws Exception {
     }
 
 }

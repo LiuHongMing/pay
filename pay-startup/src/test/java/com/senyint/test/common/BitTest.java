@@ -4,8 +4,12 @@ import org.junit.Test;
 
 public class BitTest {
 
+    /**
+     * 位移
+     * @throws Exception
+     */
     @Test
-    public void testOpt() throws Exception {
+    public void testShift() throws Exception {
         int id = 2, depth = 1;
         int shift = id ^ 1 << depth;
         System.out.println(shift);
@@ -18,8 +22,13 @@ public class BitTest {
             System.out.println(id);
         }
 
+        System.out.println(0x40000000);
     }
 
+    /**
+     * 双倍增长
+     * @throws Exception
+     */
     @Test
     public void testDouble() throws Exception {
         int reqCapacity = 9000;
@@ -33,7 +42,10 @@ public class BitTest {
         normalizedCapacity++;
     }
 
-    // 掩码
+    /**
+     * 掩码
+     * @throws Exception
+     */
     @Test
     public void testMask() throws Exception {
         // 8192

@@ -11,20 +11,38 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.junit.Test;
 
+import java.lang.ref.WeakReference;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Vector;
+import java.util.concurrent.TimeUnit;
 
 public class MainTest {
 
+    /**
+     * 内存泄露
+     */
     @Test
-    public void testBit() {
-        long millions = System.currentTimeMillis();
-        System.out.println(Long.toBinaryString(millions));
-        System.out.println(Long.toHexString(millions));
-        long negative = -1L ^ (-1L << 5);
-        System.out.println(Long.toBinaryString(negative));
+    public void testMemoryLeak() throws InterruptedException {
+        leakMethod();
+        while (true) {
+            Object o1 = v1.get(0);
+            System.out.println(o1);
+            System.out.println(objs[0]);
+        }
+    }
+
+    Vector v1 = new Vector();
+    Object[] objs = new Object[1];
+
+    public void leakMethod() {
+        Object o1 = new Object();
+        v1.add(o1);
+        // 改变o1引用的对象，之前引用的对象仍被v1所引用
+        o1 = null;
+        objs[0] = o1;
     }
 
     @Test
