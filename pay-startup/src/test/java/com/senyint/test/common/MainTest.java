@@ -21,6 +21,11 @@ import java.util.concurrent.TimeUnit;
 
 public class MainTest {
 
+    public static void main(String[] args) {
+        // JDK1.7
+        int one_million = 1_000_000;
+    }
+
     /**
      * 内存泄露
      */

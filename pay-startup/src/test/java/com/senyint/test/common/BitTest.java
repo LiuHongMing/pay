@@ -5,6 +5,26 @@ import org.junit.Test;
 public class BitTest {
 
     /**
+     * 二进制、八进制、十六进制
+     * @throws Exception
+     */
+    @Test
+    public void testIiterals() throws Exception {
+        // 0b前缀
+        int binary = 0b10; // 2
+        System.out.println(binary);
+
+        // 0前缀
+        int octal = 010; // 8
+        System.out.println(octal);
+
+        // 0x前缀
+        int hex = 0x10; // 16
+        System.out.println(hex);
+
+    }
+
+    /**
      * 位移
      * @throws Exception
      */
