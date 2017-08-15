@@ -25,6 +25,27 @@ public class BitTest {
     }
 
     /**
+     * next
+     * @throws Exception
+     */
+    @Test
+    public void testNext() throws Exception {
+        int children = 10;
+        int length = 64;
+        if (isPowerOfTwo(length)) {
+            // 2^n-1，低位都是1，例如 8-1=7(0111)
+            int next = ++children & length - 1;
+            System.out.println(next);
+        }
+    }
+
+    public boolean isPowerOfTwo(int val) {
+        return (val & -val) == val;
+    }
+
+
+
+    /**
      * 位移
      * @throws Exception
      */

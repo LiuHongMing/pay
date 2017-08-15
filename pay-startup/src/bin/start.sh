@@ -32,7 +32,7 @@ JMX_PORT="18888"
 JMX_OPTS="-Djava.rmi.server.hostname=192.168.20.132 -Dcom.sun.management.jmxremote.port=${JMX_PORT} -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false"
 export JAVA_OPTS="-server $FLAG_OPTS $MEMORY_OPTS $PERFORMANCE_OPTS $CMS_GC_OPTS $GC_OPTS $ERROR_OPTS $JMX_OPTS"
 # 启动类
-export MAIN_CLASS=com.senyint.startup.Bootstrap
+export MAIN_CLASS="com.senyint.startup.Bootstrap"
 
 nohup $_EXECJAVA $JAVA_OPTS -classpath $CLASSPATH $MAIN_CLASS >/dev/null 2>&1 &
 #tail -f $LOG_PATH/stdout.log
