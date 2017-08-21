@@ -6,6 +6,7 @@ public class BitTest {
 
     /**
      * 二进制、八进制、十六进制
+     *
      * @throws Exception
      */
     @Test
@@ -26,6 +27,7 @@ public class BitTest {
 
     /**
      * next
+     *
      * @throws Exception
      */
     @Test
@@ -44,13 +46,19 @@ public class BitTest {
     }
 
 
-
     /**
      * 位移
+     *
      * @throws Exception
      */
     @Test
     public void testShift() throws Exception {
+        System.out.println(Long.MIN_VALUE);
+        System.out.println(Long.MAX_VALUE);
+        System.out.println(1L << 63 == Long.MIN_VALUE);
+        System.out.println((1L << 63) - 1 == Long.MAX_VALUE);
+        System.out.println(1L << 105 == 1L << 41);
+
         int id = 2, depth = 1;
         int shift = id ^ 1 << depth;
         System.out.println(shift);
@@ -68,6 +76,7 @@ public class BitTest {
 
     /**
      * 双倍增长
+     *
      * @throws Exception
      */
     @Test
@@ -85,6 +94,7 @@ public class BitTest {
 
     /**
      * 掩码
+     *
      * @throws Exception
      */
     @Test
