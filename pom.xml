@@ -142,7 +142,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <env>development</env>
+                <envs>development</envs>
                 <!-- windows -->
                 <bootclasspath>${env.JAVA_HOME}\jre\lib\rt.jar;${env.JAVA_HOME}\jre\lib\jce.jar</bootclasspath>
             </properties>
@@ -153,7 +153,7 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <env>test</env>
+                <envs>test</envs>
                 <!-- linux -->
                 <bootclasspath>${env.JAVA_HOME}\jre\lib\rt.jar:${env.JAVA_HOME}\jre\lib\jce.jar</bootclasspath>
             </properties>
@@ -164,7 +164,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <env>product</env>
+                <envs>product</envs>
                 <!-- linux -->
                 <bootclasspath>${env.JAVA_HOME}\jre\lib\rt.jar:${env.JAVA_HOME}\jre\lib\jce.jar</bootclasspath>
             </properties>
@@ -193,7 +193,7 @@
         </resources>
 
         <filters>
-            <filter>../build_maven/profile/${env}.yaml</filter>
+            <filter>../build_maven/profile/${envs}.yaml</filter>
         </filters>
 
         <pluginManagement>
@@ -212,8 +212,12 @@
                             <arg>-Xlint:unchecked,deprecation,-path</arg>
                         </compilerArgs>
                         <compilerArguments>
+                            <!-- 根据编译环境设置maven参数
+                            windows -P development
+                            linux   -P test or product
+                            -->
                             <!-- 覆盖引导类文件的位置 -->
-                            <bootclasspath>${bootclasspath}</bootclasspath>
+                            <!--<bootclasspath>${bootclasspath}</bootclasspath>-->
                         </compilerArguments>
                     </configuration>
                 </plugin>
