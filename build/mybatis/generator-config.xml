@@ -6,7 +6,7 @@
 
     <!--需要将文件放入resource目录中-->
     <!--<properties resource="generator.properties"/>-->
-    <properties url="file:///~/Documents/iCoding/workspace@java/pay/build/mybatis/generator.properties"/>
+    <properties url="file:///Users/liuhongming/Documents/iCoding/workspace@java/pay/build/mybatis/generator.properties"/>
 
     <!-- Class Driver Path -->
     <classPathEntry location="${jdbc.driverLocation}"/>
