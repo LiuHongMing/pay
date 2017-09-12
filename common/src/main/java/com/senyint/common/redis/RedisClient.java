@@ -225,32 +225,28 @@ public class RedisClient {
     }
 
     /**
-     * 将 key 设定为指定的字符串值
-     * <p>
-     * 可根据 key 值是否存在设置为指定的字符串值
-     * 可设置过期时长
+     * 将 key 设为指定的值，并设置过期时间
      */
-    public String set(String key, String value, String nxxx, String expx, long time) {
+    public String setex(String key, int seconds, String value) {
         Jedis jedis = jedisTemplate.getJedis();
         String ret;
         try {
-            ret = jedis.set(key, value, nxxx, expx, time);
+            ret = jedis.setex(key, seconds, value);
         } finally {
             jedis.close();
         }
         return ret;
     }
 
+
     /**
-     * 将 key 设定为指定的字符串值
-     * <p>
-     * 可根据 key 是否存在设置为指定的字符串值
+     * 当 key 不存在时设为指定的值
      */
-    public String set(String key, String value, String nxxx) {
+    public Long setnx(String key, String value) {
         Jedis jedis = jedisTemplate.getJedis();
-        String ret;
+        Long ret;
         try {
-            ret = jedis.set(key, value, nxxx);
+            ret = jedis.setnx(key, value);
         } finally {
             jedis.close();
         }
