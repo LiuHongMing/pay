@@ -6,7 +6,11 @@ import com.senyint.Server;
 import com.senyint.server.channel.DefaultChannelInitializer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
-import io.netty.channel.*;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.EventLoopGroup;
+import io.netty.channel.ServerChannel;
+import io.netty.channel.ChannelOption;
 import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.epoll.EpollServerSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -90,7 +94,7 @@ public class NettyServer extends ServerConfig implements Server {
         try {
             channelFuture = serverBootstrap.bind(port).addListeners(new FutureListener<Void>() {
                 @Override
-                public void operationComplete(Future<Void> future) throws Exception {
+                public void operationComplete(final Future<Void> future) throws Exception {
                     if (future.isSuccess()) {
                         if (logger.isInfoEnabled()) {
                             logger.info("Start succeed in host:port => {}:{}", host, port);
