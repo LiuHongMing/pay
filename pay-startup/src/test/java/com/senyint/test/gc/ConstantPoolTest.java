@@ -1,4 +1,4 @@
-package com.senyint.test.common;
+package com.senyint.test.gc;
 
 import java.util.ArrayList;
 import java.util.List;
