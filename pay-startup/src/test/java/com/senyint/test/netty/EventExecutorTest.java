@@ -5,15 +5,15 @@ import io.netty.util.concurrent.Future;
 
 import java.util.concurrent.ExecutionException;
 
-public class NioEventLoopTest {
+public class EventExecutorTest {
 
     public static void main(String[] args) throws InterruptedException {
+
         DefaultEventExecutorGroup eventExecutors = new DefaultEventExecutorGroup(1);
         eventExecutors.execute(new Runnable() {
             @Override
             public void run() {
                 System.out.println("a point");
-                throw new RuntimeException("runtime err");
             }
         });
 
