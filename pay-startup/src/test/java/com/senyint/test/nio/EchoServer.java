@@ -76,13 +76,15 @@ public class EchoServer {
         if (numRead > 0) {
             byte[] newBytes = new byte[oldBytes.length + numRead];
             System.arraycopy(oldBytes, 0, newBytes, 0, oldBytes.length);
-            System.arraycopy(readBuffer.array(), 0, newBytes, 0, numRead);
+            System.arraycopy(readBuffer.array(), 0, newBytes, oldBytes.length - 1, numRead);
             clientMessage.put(client, newBytes);
             System.out.println(new String(newBytes));
         } else {
             String message = new String(oldBytes);
             System.out.println(message);
         }
+
+        client.write(ByteBuffer.wrap("12345".getBytes()));
     }
 
     public static void main(String[] args) throws IOException {

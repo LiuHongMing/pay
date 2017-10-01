@@ -21,7 +21,7 @@ public class EchoClient {
         sc.register(selector, SelectionKey.OP_CONNECT);
 
         Scanner scanner = new Scanner(System.in);
-        while(true) {
+        while (true) {
             int selectKeys = selector.select();
             if (selectKeys > 0) {
                 Iterator<SelectionKey> it = selector.selectedKeys().iterator();
@@ -38,6 +38,16 @@ public class EchoClient {
                         String message = scanner.nextLine();
                         ByteBuffer byteBuffer = ByteBuffer.wrap(message.getBytes());
                         sc.write(byteBuffer);
+                        sc.register(selector, SelectionKey.OP_READ);
+                    } else if (key.isReadable()) {
+                        ByteBuffer buffer = ByteBuffer.allocate(1024);
+                        int numRead = sc.read(buffer);
+                        if (numRead > 0) {
+                            byte[] bytes = new byte[numRead];
+                            System.arraycopy(buffer.array(), 0, bytes, 0, bytes.length);
+                            System.out.println(new String(bytes, "utf-8"));
+                        }
+                        sc.register(selector, SelectionKey.OP_WRITE);
                     }
                 }
             }
