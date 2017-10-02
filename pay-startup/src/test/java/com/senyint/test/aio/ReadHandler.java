@@ -46,9 +46,12 @@ public class ReadHandler implements CompletionHandler<Integer, ByteBuffer> {
 
     public void doWrite(String message) {
 
-        ByteBuffer buffer = ByteBuffer.wrap(message.getBytes());
+        byte[] bytes = message.getBytes();
+        ByteBuffer writeBuffer = ByteBuffer.allocate(bytes.length);
+        writeBuffer.put(bytes);
+        writeBuffer.flip();
 
-        channel.write(buffer, buffer, new CompletionHandler<Integer, ByteBuffer>() {
+        channel.write(writeBuffer, writeBuffer, new CompletionHandler<Integer, ByteBuffer>() {
 
             @Override
             public void completed(Integer result, ByteBuffer buffer) {

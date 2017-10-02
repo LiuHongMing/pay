@@ -75,8 +75,9 @@ public class EchoServer {
 
         if (numRead > 0) {
             byte[] newBytes = new byte[oldBytes.length + numRead];
-            System.arraycopy(oldBytes, 0, newBytes, 0, oldBytes.length);
-            System.arraycopy(readBuffer.array(), 0, newBytes, oldBytes.length - 1, numRead);
+            if (oldBytes.length > 0)
+                System.arraycopy(oldBytes, 0, newBytes, 0, oldBytes.length);
+            System.arraycopy(readBuffer.array(), 0, newBytes, oldBytes.length, numRead);
             clientMessage.put(client, newBytes);
             System.out.println(new String(newBytes));
         } else {
