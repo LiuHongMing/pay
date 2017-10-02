@@ -3,7 +3,7 @@ package com.senyint.test.aio;
 /**
  * 服务器类
  */
-public class EchoServer {
+public class Server {
 
     public static final int DEFAULT_PORT = 12345;
 
@@ -11,7 +11,7 @@ public class EchoServer {
 
     static volatile int clientCount = 0;
 
-    public EchoServer(int port) {
+    public Server(int port) {
         this.port = port;
     }
 
@@ -25,6 +25,6 @@ public class EchoServer {
     }
 
     public static void main(String[] args) {
-        EchoServer.start();
+        Server.start();
     }
 }

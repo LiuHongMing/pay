@@ -12,10 +12,10 @@ public class AcceptHandler implements CompletionHandler<AsynchronousSocketChanne
     @Override
     public void completed(AsynchronousSocketChannel channel, AsyncServerHandler attachment) {
 
-        int count = EchoServer.clientCount;
+        int count = Server.clientCount;
         count++;
 
-        EchoServer.clientCount = count;
+        Server.clientCount = count;
         System.out.println("客户端连接数：" + count);
 
         ByteBuffer buffer = ByteBuffer.allocate(1024);
