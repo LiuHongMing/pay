@@ -1,4 +1,4 @@
-package com.senyint.test.common;
+package com.senyint.test.concurrent;
 
 public class ThreadTest {
 

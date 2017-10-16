@@ -29,15 +29,11 @@ public class AsyncServerHandler implements Runnable {
     @Override
     public void run() {
         latch = new CountDownLatch(1);
-        doAccept();
+        channel.accept(this, new AcceptHandler());
         try {
             latch.await();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    public void doAccept() {
-        channel.accept(this, new AcceptHandler());
     }
 }
