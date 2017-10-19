@@ -1,8 +1,5 @@
-package com.senyint.test.common;
+package com.senyint.test.concurrent;
 
-/**
- *
- */
 public class ThreadTest {
 
     private static class MyExecutor implements Runnable {
@@ -33,9 +30,20 @@ public class ThreadTest {
         }
     }
 
+    public static class MyThread extends Thread {
+        @Override
+        public void run() {
+            System.out.println("pong");
+        }
+    }
+
     public static void main(String[] args) {
-        MyExecutor myExecutor = new MyExecutor();
-        myExecutor.execute();
+//        MyExecutor myExecutor = new MyExecutor();
+//        myExecutor.execute();
+
+        MyThread t = new MyThread();
+        t.run();
+        System.out.println("ping");
     }
 
 }

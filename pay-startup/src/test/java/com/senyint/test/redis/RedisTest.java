@@ -3,29 +3,11 @@ package com.senyint.test.redis;
 import com.senyint.common.redis.JedisTemplate;
 import com.senyint.common.redis.RedisClient;
 import com.senyint.common.util.RandomStringUtil;
-import com.senyint.pay.dto.OutTradeNoDTO;
-import com.senyint.pay.dto.TradeOrderDTO;
-import com.senyint.pay.dto.TradeRecordDTO;
-import com.senyint.pay.service.TradeService;
-import com.senyint.test.ServiceJunitTest;
-import com.senyint.test.jmh.FirstBenchmarkTest;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.openjdk.jmh.annotations.*;
-import org.openjdk.jmh.runner.Runner;
-import org.openjdk.jmh.runner.RunnerException;
-import org.openjdk.jmh.runner.options.Options;
-import org.openjdk.jmh.runner.options.OptionsBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import redis.clients.jedis.JedisPoolConfig;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.Throughput)
@@ -38,10 +20,13 @@ public class RedisTest {
 
     RedisClient redisClient;
 
+    String host = "192.168.20.159";
+    int port = 6379;
+
     @Setup
     public void setup() {
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-        JedisTemplate jedisTemplate = new JedisTemplate(jedisPoolConfig, "redis-server", 19000);
+        JedisTemplate jedisTemplate = new JedisTemplate(jedisPoolConfig, host, port);
         redisClient = new RedisClient(jedisTemplate);
     }
 
@@ -65,6 +50,25 @@ public class RedisTest {
         redisClient.del("mr:id:NA5Xq-29", "mr:id:V9DBL-37");
     }
 
+    @Test
+    public void testSETNX() throws Exception {
+        setup();
+
+        long now = System.currentTimeMillis();
+        long timeout = 10 * 1000;
+        long lockTimeout = now + timeout + 1;
+        long resultCode = redisClient.setnx("lock.foo", "" + lockTimeout);
+
+        System.out.println(resultCode);
+    }
+
+    @Test
+    public void testSETEX() throws Exception {
+        setup();
+        String resultCode = redisClient.setex("lhm", 20, "i see you");
+        System.out.println(resultCode);
+    }
+
     @Benchmark
     public void testMget() throws Exception {
         List<String> values = redisClient.mget("mr:id:V9DBL-28", "mr:id:V9DBL-47");
@@ -86,5 +90,6 @@ public class RedisTest {
         }
         redisClient.mset(keyvalues);
     }
+
 
 }

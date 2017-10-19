@@ -22,6 +22,11 @@ public class StringTest {
         String s2 = "abc";
         System.out.println(s2);
 
+        String h1 = "hello";
+        String h2 = "he" + new String("llo");
+        System.out.println(h1 == h2);
+
+
         CyclicBarrier cyclicBarrier = new CyclicBarrier(2);
         cyclicBarrier.await();
     }

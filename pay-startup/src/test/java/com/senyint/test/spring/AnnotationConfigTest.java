@@ -8,14 +8,16 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.annotation.Resource;
 import java.util.Properties;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {DefaultConfig.class})
 public class AnnotationConfigTest {
 
-    @Autowired
-    @Qualifier("systemProperties")
+    @Resource
+//    @Autowired
+//    @Qualifier("systemProperties")
     public Properties systemProperties;
 
     @Test

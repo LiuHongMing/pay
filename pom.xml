@@ -144,7 +144,7 @@
             <properties>
                 <envs>development</envs>
                 <!-- windows -->
-                <bootclasspath>${env.JAVA_HOME}\jre\lib\rt.jar;${env.JAVA_HOME}\jre\lib\jce.jar</bootclasspath>
+                <!--<bootclasspath>${env.JAVA_HOME}\jre\lib\rt.jar:${env.JAVA_HOME}\jre\lib\jce.jar</bootclasspath>-->
             </properties>
         </profile>
         <profile>
@@ -155,7 +155,7 @@
             <properties>
                 <envs>test</envs>
                 <!-- linux -->
-                <bootclasspath>${env.JAVA_HOME}\jre\lib\rt.jar:${env.JAVA_HOME}\jre\lib\jce.jar</bootclasspath>
+                <!--<bootclasspath>${env.JAVA_HOME}\jre\lib\rt.jar:${env.JAVA_HOME}\jre\lib\jce.jar</bootclasspath>-->
             </properties>
         </profile>
         <profile>
@@ -166,7 +166,7 @@
             <properties>
                 <envs>product</envs>
                 <!-- linux -->
-                <bootclasspath>${env.JAVA_HOME}\jre\lib\rt.jar:${env.JAVA_HOME}\jre\lib\jce.jar</bootclasspath>
+                <!--<bootclasspath>${env.JAVA_HOME}\jre\lib\rt.jar:${env.JAVA_HOME}\jre\lib\jce.jar</bootclasspath>-->
             </properties>
         </profile>
     </profiles>

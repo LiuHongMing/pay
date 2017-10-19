@@ -4,7 +4,9 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration>
 
-    <properties url="file:///F:/Workspace@2016/pay-parent/build/mybatis/generator.properties"/>
+    <!--需要将文件放入resource目录中-->
+    <!--<properties resource="generator.properties"/>-->
+    <properties url="file:///Users/liuhongming/Documents/iCoding/workspace@java/pay/build/mybatis/generator.properties"/>
 
     <!-- Class Driver Path -->
     <classPathEntry location="${jdbc.driverLocation}"/>

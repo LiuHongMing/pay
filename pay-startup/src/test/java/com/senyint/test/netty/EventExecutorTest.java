@@ -5,28 +5,25 @@ import io.netty.util.concurrent.Future;
 
 import java.util.concurrent.ExecutionException;
 
-public class NioEventLoopTest {
+public class EventExecutorTest {
 
     public static void main(String[] args) throws InterruptedException {
-        DefaultEventExecutorGroup eventExecutors = new DefaultEventExecutorGroup(1);
+
+        DefaultEventExecutorGroup eventExecutors = new DefaultEventExecutorGroup(2);
         eventExecutors.execute(new Runnable() {
             @Override
             public void run() {
                 System.out.println("a point");
-                throw new RuntimeException("runtime err");
             }
         });
 
-        Thread.sleep(100);
         eventExecutors.execute(new Runnable() {
             @Override
             public void run() {
                 System.out.println("b point");
-                throw new RuntimeException("runtime err");
             }
         });
 
-        Thread.sleep(10000);
         Future future = eventExecutors.shutdownGracefully();
         if (future.isSuccess()) {
             try {
