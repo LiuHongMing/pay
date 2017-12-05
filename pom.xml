@@ -114,6 +114,8 @@
         <!-- hystrix -->
         <hystrix.version>1.5.12</hystrix.version>
         <hystrix-metrics-event-stream.version>1.5.12</hystrix-metrics-event-stream.version>
+        <!-- disruptor -->
+        <disruptor.version>3.3.7</disruptor.version>
 
         <!-- ********************* 后续要废弃依赖 ********************* -->
 
@@ -316,6 +318,12 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- disruptor -->
+            <dependency>
+                <groupId>com.lmax</groupId>
+                <artifactId>disruptor</artifactId>
+                <version>${disruptor.version}</version>
+            </dependency>
             <!-- hystrix -->
             <dependency>
                 <groupId>com.netflix.hystrix</groupId>
@@ -719,6 +727,11 @@
     </dependencyManagement>
 
     <dependencies>
+        <!-- disruptor -->
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+        </dependency>
         <!-- hystrix -->
         <dependency>
             <groupId>com.netflix.hystrix</groupId>
