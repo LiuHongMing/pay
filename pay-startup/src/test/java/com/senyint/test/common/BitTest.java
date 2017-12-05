@@ -23,9 +23,6 @@ public class BitTest {
         int hex = 0x10; // 16
         System.out.println(hex);
 
-        hex = 0x61c88647;
-        System.out.println(hex);
-
     }
 
     /**
