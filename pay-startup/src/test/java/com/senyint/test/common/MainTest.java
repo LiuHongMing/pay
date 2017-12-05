@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 public class MainTest {
@@ -24,6 +25,8 @@ public class MainTest {
     public static void main(String[] args) {
         // JDK1.7
         int one_million = 1_000_000;
+
+        ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap(10);
     }
 
     /**

@@ -76,7 +76,7 @@ public class NettyServer extends ServerConfig implements Server {
             serverBootstrap.channel(channelClass);
         }
 
-        serverBootstrap.handler(new LoggingHandler(LogLevel.INFO));
+//        serverBootstrap.handler(new LoggingHandler(LogLevel.INFO));
         // parent options
         serverBootstrap.option(ChannelOption.SO_BACKLOG, 128);
         serverBootstrap.option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);

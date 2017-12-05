@@ -4,6 +4,9 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.net.URLStreamHandlerFactory;
 
+/**
+ * @author liuhongming
+ */
 public class JarClassLoader extends URLClassLoader {
 
     public JarClassLoader(URL[] urls, ClassLoader parent) {

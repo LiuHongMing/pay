@@ -12,7 +12,7 @@ public class SayHelloCommand extends HystrixCommand<String> {
 
     protected SayHelloCommand(String name) {
         super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("HelloServiceGroup"))
-                .andCommandPropertiesDefaults(HystrixCommandProperties.Setter().withExecutionTimeoutInMilliseconds(500)));
+                .andCommandPropertiesDefaults(HystrixCommandProperties.Setter().withExecutionTimeoutInMilliseconds(1000)));
         this.name = name;
     }
 
@@ -24,6 +24,6 @@ public class SayHelloCommand extends HystrixCommand<String> {
     @Override
     protected String run() throws Exception {
         TimeUnit.MILLISECONDS.sleep(600);
-        return String.format("Hello $s!", name);
+        return String.format("Hello %s!", name);
     }
 }

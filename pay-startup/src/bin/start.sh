@@ -22,6 +22,7 @@ MEMORY_OPTS="-Xms2048m -Xmx2048m -Xmn1024m -XX:MaxDirectMemorySize=2048m -XX:Per
 # -XX:+PerfDisableSharedMem: 解决: JVM statistics cause garbage collection pauses, 导致: jps, jstat不可用
 PERFORMANCE_OPTS="-XX:-UseBiasedLocking -XX:-UseCounterDecay -XX:+AlwaysPreTouch -XX:AutoBoxCacheMax=20000 -XX:ReservedCodeCacheSize=240m"
 # GC CMS参数
+# -XX:+UseConcMarkSweepGC，默认开启 -XX:+UseParNewGC -XX:+CMSConcurrentMTEnabled
 CMS_GC_OPTS="-XX:+UseConcMarkSweepGC -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=75 -XX:MaxTenuringThreshold=6 -XX:+ExplicitGCInvokesConcurrent -XX:+ParallelRefProcEnabled"
 # GC 日志参数
 GC_OPTS="-Xloggc:/dev/shm/pay-gc.log -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCDateStamps -XX:+PrintGCDetails"

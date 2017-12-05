@@ -2,6 +2,7 @@ package com.senyint.server.channel;
 
 import com.senyint.server.NettyServer;
 import com.senyint.server.handler.HttpServletHandler;
+import com.senyint.server.handler.IdleStateAwareHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
@@ -12,6 +13,7 @@ import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.ssl.SslHandler;
 import io.netty.handler.stream.ChunkedWriteHandler;
+import io.netty.handler.timeout.IdleStateHandler;
 import org.springframework.mock.web.MockServletConfig;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -62,12 +64,16 @@ public class DefaultChannelInitializer extends ChannelInitializer<SocketChannel>
         // -------------------
         // 传输层 outbound
         // -------------------
-        pipeline.addLast("logger", new LoggingHandler(LogLevel.INFO));
+//        pipeline.addLast("logger", new LoggingHandler(LogLevel.INFO));
         // ssl
         SslHandler sslHandler = server.sslHandler(ch.alloc());
         if (sslHandler != null) {
             pipeline.addLast("ssl", sslHandler);
         }
+        // idle, 空闲超时10分钟
+        pipeline.addLast("idleState", new IdleStateHandler(60,
+                30, 0))
+                .addLast("idleStateAware", new IdleStateAwareHandler());
         // http
         pipeline.addLast("decoder",    new HttpRequestDecoder())
                 .addLast("aggregator", new HttpObjectAggregator(MAX_CONTENT_LENGTH))

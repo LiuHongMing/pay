@@ -18,6 +18,7 @@ public class ByteBufAllocatorTest {
 
     @Test
     public void testPoolChunk() throws Exception {
+        System.out.println(1 << maxOrder);
         int chunkSize = (1 << maxOrder) * pageSize;
         System.out.println(chunkSize);
     }

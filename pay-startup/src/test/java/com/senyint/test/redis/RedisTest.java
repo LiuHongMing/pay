@@ -20,8 +20,8 @@ public class RedisTest {
 
     RedisClient redisClient;
 
-    String host = "192.168.20.159";
-    int port = 6379;
+    String host = "192.168.20.66";
+    int port = 19000;
 
     @Setup
     public void setup() {
@@ -30,14 +30,16 @@ public class RedisTest {
         redisClient = new RedisClient(jedisTemplate);
     }
 
-    @Benchmark
+    @Test
     public void testSet() throws Exception {
-        redisClient.set("lhm", "hello world");
+        setup();
+        System.out.println(redisClient.set("lhm1", "hello world"));
     }
 
-    @Benchmark
+    @Test
     public void testGet() throws Exception {
-        redisClient.get("lhm");
+        setup();
+        System.out.println(redisClient.get("lhm1"));
     }
 
     @Benchmark

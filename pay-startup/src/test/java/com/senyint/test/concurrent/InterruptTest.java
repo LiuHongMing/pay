@@ -8,10 +8,10 @@ import java.util.concurrent.locks.LockSupport;
  *
  * 线程中断并不会停止线程的运行，而是通过设置中断标志位表示中断。
  */
-public class ThreadInterruptTest extends Thread {
+public class InterruptTest extends Thread {
 
     public static void main(String[] args) throws InterruptedException {
-        ThreadInterruptTest task = new ThreadInterruptTest();
+        InterruptTest task = new InterruptTest();
         task.start();
         System.out.println("start task ...");
         TimeUnit.SECONDS.sleep(1);
@@ -24,6 +24,7 @@ public class ThreadInterruptTest extends Thread {
     public void run() {
         int count = 0;
         for(;;) {
+            // 中断后调用，第一次会返回true，并清除中断标志位。再次调用会返回false
             if (interrupted()) {
                 break;
             }

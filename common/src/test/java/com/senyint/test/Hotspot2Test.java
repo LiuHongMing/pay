@@ -1,6 +1,6 @@
 package com.senyint.test;
 
-import com.senyint.common.context.ExternalClassLoader;
+import com.senyint.common.context.PlainClassLoader;
 import com.senyint.common.vfs.Foo;
 import com.senyint.common.vfs.FooImpl;
 import org.apache.commons.io.IOUtils;
@@ -18,14 +18,14 @@ public class Hotspot2Test {
         Foo foo = new FooImpl();
         foo.sayHello();
 
-        ExternalClassLoader cc = new ExternalClassLoader();
+        PlainClassLoader cc = new PlainClassLoader();
 
         String name = FooImpl.class.getName();
         String file = "F:\\vfs\\FooImpl.class";
         byte[] data = IOUtils.toByteArray(new FileInputStream(file));
-        Class<?> cls = cc.defineClass(name, data);
-        Foo foo2 = (Foo) cls.newInstance();
-        foo2.sayHello();
+//        Class<?> cls = cc.defineClass(name, data);
+//        Foo foo2 = (Foo) cls.newInstance();
+//        foo2.sayHello();
     }
 
 }

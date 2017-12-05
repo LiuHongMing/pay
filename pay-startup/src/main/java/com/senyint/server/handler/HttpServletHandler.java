@@ -65,11 +65,11 @@ public class HttpServletHandler extends SimpleChannelInboundHandler<FullHttpRequ
         long startTime = System.currentTimeMillis();
         servlet.service(httpServletRequest, httpServletResponse);
         long elapsedTime = System.currentTimeMillis() - startTime;
-        if (this.logger.isInfoEnabled()) {
-            String requestURI = HttpRequestUtil.getUriString(httpServletRequest);
-            logger.info("{} - RequestURI {}: completed in {} ms",
-                    remoteAddress, requestURI, elapsedTime);
-        }
+//        if (logger.isInfoEnabled()) {
+//            String requestURI = HttpRequestUtil.getUriString(httpServletRequest);
+//            logger.info("{} - RequestURI {}: completed in {} ms",
+//                    remoteAddress, requestURI, elapsedTime);
+//        }
 
         HttpResponseStatus responseStatus = HttpResponseStatus.valueOf(httpServletResponse.getStatus());
         DefaultHttpResponse response = new DefaultHttpResponse(HttpVersion.HTTP_1_1, responseStatus);

@@ -10,7 +10,7 @@ public class BitTest {
      * @throws Exception
      */
     @Test
-    public void testIiterals() throws Exception {
+    public void testLiterals() throws Exception {
         // 0b前缀
         int binary = 0b10; // 2
         System.out.println(binary);
@@ -121,6 +121,14 @@ public class BitTest {
 
         // capacity & overflowMask == 0 : capacity < pageSize
         System.out.println("capacity & overflowMask == " + (capacity & overflowMask));
+
+        int SHIFT = 16;
+        System.out.println(Integer.toHexString((1 << SHIFT) - 1));
+        System.out.println(Integer.toBinaryString((1 << SHIFT) - 1));
+
+        System.out.println(Integer.toBinaryString(-1 << 29));
+        System.out.println(Integer.toBinaryString((1 << 29) - 1));
+        System.out.println(Integer.toBinaryString(((1 << 29) - 1) & (-1 << 29)));
 
     }
 

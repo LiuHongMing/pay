@@ -33,8 +33,8 @@ import java.util.Properties;
  *
  * @author liuhongming
  */
-@RestController
-@RequestMapping("/trades")
+//@RestController
+//@RequestMapping("/trades")
 public class TradeController extends PlatoController {
 
     private static final Logger logger = LoggerFactory.getLogger(TradeController.class);

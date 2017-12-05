@@ -5,12 +5,19 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.Properties;
 
+/**
+ * 默认常用配置
+ *
+ * @author liuhongming
+ */
 @Configuration
 public class DefaultConfig {
 
     @Bean("systemProperties")
     public Properties systemProperties() {
-        return System.getProperties();
+        Properties props = System.getProperties();
+        props.setProperty("maxCon", "10");
+        return props;
     }
 
 }

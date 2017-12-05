@@ -15,7 +15,7 @@
 
     <!-- consumer -->
     <dubbo:application name="pay_consumer" logger="slf4j"/>
-    <dubbo:registry protocol="zookeeper" address="zookeeper1:2181,zookeeper2:2181,zookeeper3:2181"/>
+    <dubbo:registry protocol="zookeeper" address="192.168.66.11:2181,192.168.66.12:2181,192.168.66.13:2181"/>
     <dubbo:protocol name="dubbo" port="20880" client="netty"/>
 
     <!-- reference -->

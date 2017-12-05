@@ -1,5 +1,6 @@
 package com.senyint.test.hystrix;
 
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 public class HelloService {
@@ -12,7 +13,8 @@ public class HelloService {
         return new SayHelloCommand(name).queue();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
         System.out.println(HelloService.sayHello("World"));
+        System.out.println(HelloService.sayHelloAsync("World Async").get());
     }
 }
