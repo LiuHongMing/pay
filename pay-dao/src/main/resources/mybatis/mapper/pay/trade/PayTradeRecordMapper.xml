@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.senyint.pay.dao.PayTradeRecordDAO" >
-  <resultMap id="BaseResultMap" type="com.senyint.pay.dao.model.PayTradeRecordDO" >
+<mapper namespace="com.github.tiger.pay.dao.PayTradeRecordDAO" >
+  <resultMap id="BaseResultMap" type="com.github.tiger.pay.dao.model.PayTradeRecordDO" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
     <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
@@ -65,7 +65,7 @@
     </where>
   </select>
 
-  <insert id="save" parameterType="com.senyint.pay.dao.model.PayTradeRecordDO" >
+  <insert id="save" parameterType="com.github.tiger.pay.dao.model.PayTradeRecordDO" >
     insert into pay_trade_record
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -247,7 +247,7 @@
     </trim>
   </insert>
 
-  <update id="updateByIdOrTradeNo" parameterType="com.senyint.pay.dao.model.PayTradeRecordDO" >
+  <update id="updateByIdOrTradeNo" parameterType="com.github.tiger.pay.dao.model.PayTradeRecordDO" >
     update pay_trade_record
     <set >
       <if test="gmtCreate != null" >

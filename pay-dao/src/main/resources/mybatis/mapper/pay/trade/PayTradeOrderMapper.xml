@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.senyint.pay.dao.PayTradeOrderDAO" >
-  <resultMap id="BaseResultMap" type="com.senyint.pay.dao.model.PayTradeOrderDO" >
+<mapper namespace="com.github.tiger.pay.dao.PayTradeOrderDAO" >
+  <resultMap id="BaseResultMap" type="com.github.tiger.pay.dao.model.PayTradeOrderDO" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
     <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
@@ -64,7 +64,7 @@
     </where>
   </select>
 
-  <insert id="save" parameterType="com.senyint.pay.dao.model.PayTradeOrderDO" >
+  <insert id="save" parameterType="com.github.tiger.pay.dao.model.PayTradeOrderDO" >
     insert into pay_trade_order
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -204,7 +204,7 @@
     </trim>
   </insert>
 
-  <update id="updateById" parameterType="com.senyint.pay.dao.model.PayTradeOrderDO" >
+  <update id="updateById" parameterType="com.github.tiger.pay.dao.model.PayTradeOrderDO" >
     update pay_trade_order
     <set >
       <if test="gmtCreate != null" >
@@ -271,7 +271,7 @@
 
   </update>
 
-  <update id="updateByIdOrMerchantOrderNo" parameterType="com.senyint.pay.dao.model.PayTradeOrderDO" >
+  <update id="updateByIdOrMerchantOrderNo" parameterType="com.github.tiger.pay.dao.model.PayTradeOrderDO" >
     update pay_trade_order
     <set >
       <if test="gmtCreate != null" >

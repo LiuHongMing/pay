@@ -28,6 +28,6 @@
     <!-- 加载数据访问配置 -->
     <import resource="classpath:spring/dao-context.xml"/>
     <!-- RPC -->
-    <import resource="classpath:com/senyint/pay/dubbo/pay-provider.xml"/>
+    <import resource="classpath:com/github/tiger/pay/dubbo/pay-provider.xml"/>
 
 </beans>

@@ -48,7 +48,7 @@
     </bean>
 
     <!-- 配置多数据源映射关系 -->
-    <bean id="dataSource" class="com.senyint.common.dao.datasource.DynamicDataSource">
+    <bean id="dataSource" class="com.github.tiger.pay.common.dao.datasource.DynamicDataSource">
         <property name="targetDataSources">
             <map key-type="java.lang.String">
                 <entry key="master" value-ref="master"/>
@@ -91,7 +91,7 @@
     </tx:advice>
 
     <!-- 事务AOP配置 -->
-    <bean id="dataSourceInterceptor" class="com.senyint.common.dao.datasource.DataSourceInterceptor"/>
+    <bean id="dataSourceInterceptor" class="com.github.tiger.pay.common.dao.datasource.DataSourceInterceptor"/>
     <aop:config>
         <aop:pointcut id="service" expression="execution(* com.senyint.*.service.*.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="service" order="500"/>

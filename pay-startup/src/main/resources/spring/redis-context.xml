@@ -8,12 +8,12 @@
             location="classpath:config/redis.properties" ignore-unresolvable="true"/>
 
     <!-- redisClient -->
-    <bean id="redisClient" class="com.senyint.common.redis.RedisClient">
+    <bean id="redisClient" class="com.github.tiger.pay.common.redis.RedisClient">
         <constructor-arg index="0" ref="jedisTemplate"/>
     </bean>
 
     <!-- jedisTemplate -->
-    <bean id="jedisTemplate" class="com.senyint.common.redis.JedisTemplate">
+    <bean id="jedisTemplate" class="com.github.tiger.pay.common.redis.JedisTemplate">
         <constructor-arg index="0" ref="jedisPoolConfig"/>
         <constructor-arg index="1" value="${redis.codis.host}"/>
         <constructor-arg index="2" value="${redis.codis.port}"/>
