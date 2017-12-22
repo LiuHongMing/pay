@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.senyint</groupId>
+        <groupId>com.github.tiger</groupId>
         <artifactId>pay</artifactId>
         <version>1.0.0</version>
     </parent>
@@ -24,17 +24,17 @@
     <dependencies>
         <!-- senyint -->
         <dependency>
-            <groupId>com.senyint</groupId>
+            <groupId>com.github.tiger</groupId>
             <artifactId>common</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
-            <groupId>com.senyint</groupId>
+            <groupId>com.github.tiger</groupId>
             <artifactId>pay-dao</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
-            <groupId>com.senyint</groupId>
+            <groupId>com.github.tiger</groupId>
             <artifactId>pay-facade</artifactId>
             <version>1.0.0</version>
         </dependency>
@@ -44,11 +44,11 @@
             <artifactId>pagehelper</artifactId>
         </dependency>
         <!-- zookeeper client -->
-        <dependency>
-            <groupId>com.101tec</groupId>
-            <artifactId>zkclient</artifactId>
-            <version>${zkclient.version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.101tec</groupId>-->
+            <!--<artifactId>zkclient</artifactId>-->
+            <!--<version>${zkclient.version}</version>-->
+        <!--</dependency>-->
         <!-- dubbo -->
         <dependency>
             <groupId>com.alibaba</groupId>

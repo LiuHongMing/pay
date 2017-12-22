@@ -56,11 +56,11 @@
             <AppenderRef ref="${APP_NAME}_monitor_all"/>
         </Root>
         <!-- 应用logger -->
-        <logger name="com.senyint" level="WARN"/>
-        <logger name="com.senyint.pay.web" level="INFO" additivity="false">
+        <logger name="com.github" level="WARN"/>
+        <logger name="com.github.tiger.pay.web" level="INFO" additivity="false">
             <AppenderRef ref="${APP_NAME}_visit_web"/>
         </logger>
-        <logger name="com.senyint.pay.rpc" level="INFO" additivity="false">
+        <logger name="com.github.tiger.pay.rpc" level="INFO" additivity="false">
             <AppenderRef ref="${APP_NAME}_visit_rpc"/>
         </logger>
         <!-- 框架logger -->

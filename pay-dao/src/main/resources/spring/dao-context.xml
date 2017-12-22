@@ -93,7 +93,7 @@
     <!-- 事务AOP配置 -->
     <bean id="dataSourceInterceptor" class="com.github.tiger.pay.common.dao.datasource.DataSourceInterceptor"/>
     <aop:config>
-        <aop:pointcut id="service" expression="execution(* com.senyint.*.service.*.*(..))"/>
+        <aop:pointcut id="service" expression="execution(* com.github.tiger.*.service.*.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="service" order="500"/>
         <aop:advisor advice-ref="dataSourceInterceptor" pointcut-ref="service" order="200"/>
     </aop:config>

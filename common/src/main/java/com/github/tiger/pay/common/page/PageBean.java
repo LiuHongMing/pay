@@ -22,12 +22,20 @@ import java.util.Map;
 
 /**
  * 分页组件
+ *
+ * @author liuhongming
  */
 public class PageBean<T> implements Serializable {
 
     // 指定的或是页面参数
-    private int currentPage; // 当前页
-    private int numPerPage; // 每页显示多少条
+    /**
+     * 当前页
+     */
+    private int currentPage;
+    /**
+     * 每页显示多少条
+     */
+    private int numPerPage;
 
     // 查询数据库
     private int totalCount; // 总记录数

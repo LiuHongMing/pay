@@ -10,10 +10,10 @@
 
     <!-- 加载配置文件 -->
     <context:property-placeholder
-            location="classpath:com/senyint/pay/dubbo/dubbo.properties"
+            location="classpath:com/github/tiger/pay/dubbo/dubbo.properties"
             ignore-unresolvable="true"/>
 
-    <context:component-scan base-package="com.senyint.pay.rpc.api.impl"/>
+    <context:component-scan base-package="com.github.tiger.pay.rpc.api.impl"/>
 
     <!-- provider -->
     <dubbo:application name="pay_provider" logger="slf4j"/>
