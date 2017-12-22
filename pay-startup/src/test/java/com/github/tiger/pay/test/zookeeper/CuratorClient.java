@@ -23,8 +23,8 @@ public class CuratorClient {
         curator.start();
 
         List<String> childNodes = curator.getChildren().forPath("/dubbo");
-        for (String child : childNodes) {
-            System.out.println("child=" + child);
+        for (String childNode : childNodes) {
+            System.out.println("childNode=" + childNode);
         }
 
         Stat stat = curator.checkExists().forPath("/jason");
