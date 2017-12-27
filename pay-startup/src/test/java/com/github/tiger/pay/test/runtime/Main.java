@@ -15,7 +15,8 @@ public class Main {
         String cp = Thread.currentThread().getContextClassLoader().getResource("").getPath();
         // 配置进程属性: -Dfile.encoding=UTF-8
         final Process p = Runtime.getRuntime()
-                .exec(new String[]{"java", "-Dfile.encoding=UTF-8", "-cp", cp, "com.senyint.test.runtime.SubMain"});
+                .exec(new String[]{"java", "-Dfile.encoding=UTF-8", "-cp", cp,
+                        "com.github.tiger.pay.test.runtime.SubMain"});
 
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override

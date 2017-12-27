@@ -39,7 +39,7 @@
         <dependencySet>
             <outputDirectory>lib</outputDirectory>
             <excludes>
-                <exclude>com.senyint:pay-startup</exclude>
+                <exclude>com.github:pay-startup</exclude>
             </excludes>
         </dependencySet>
     </dependencySets>

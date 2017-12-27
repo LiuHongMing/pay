@@ -1,9 +1,9 @@
 package com.github.tiger.pay.common.util;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.POITextExtractor;
 import org.apache.poi.hwpf.extractor.WordExtractor;
+import org.apache.poi.poifs.filesystem.FileMagic;
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.slf4j.Logger;
@@ -14,7 +14,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
- * 功能：Office文件操作
+ * 功能：MS-Office文件操作
  * <p>
  * 描述：涵盖Word文档内容提取
  *
@@ -24,6 +24,8 @@ public class PoiUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(PoiUtil.class);
 
+    private static final String EMPTY = "";
+
     /**
      * 获取word文本内容
      *
@@ -31,22 +33,32 @@ public class PoiUtil {
      * @return
      */
     public static String getWordText(String path) {
-        String body = null;
+        WordTemplate wordTemplate = null;
         try {
-            body = WordTemplate.build(path).getText();
+            wordTemplate = WordTemplate.create(path);
+            return wordTemplate.getText();
         } catch (IOException e) {
             logger.error(
                     String.format("An exception occured " +
-                            "while extract text from the word: %s", path), e);
+                            "while extract text: %s", path), e);
+        } finally {
+            if (wordTemplate != null) {
+                try {
+                    wordTemplate.close();
+                } catch (IOException e) {
+                    logger.error(
+                            String.format("An exception occured " +
+                                    "while closed: %s", path), e);
+                }
+            }
         }
-        return body;
+        return EMPTY;
     }
 
+    /**
+     * word模板类，封装word操作方法
+     */
     static class WordTemplate {
-
-        static final String DOC = "doc";
-
-        static final String DOCX = "docx";
 
         private POITextExtractor textExtractor;
 
@@ -54,29 +66,29 @@ public class PoiUtil {
             this.textExtractor = textExtractor;
         }
 
-        String getText() {
+        String getText() throws IOException {
             return textExtractor.getText();
         }
 
-        public static WordTemplate build(String path) throws IOException {
-            WordTemplate template;
+        void close() throws IOException {
+            textExtractor.close();
+        }
+
+        public static WordTemplate create(String path) throws IOException {
+            WordTemplate template = null;
 
             File file = new File(path);
             FileInputStream fis = FileUtils.openInputStream(file);
-            String extension = FilenameUtils.getExtension(path);
 
-            switch (extension.toLowerCase()) {
-                case DOC:
-                    template = new WordTemplate(new WordExtractor(fis));
-                    break;
-                case DOCX:
-                default:
-                    XWPFDocument xwpfDocument = new XWPFDocument(fis);
-                    template = new WordTemplate(new XWPFWordExtractor(xwpfDocument));
+            POITextExtractor extractor;
+            if (FileMagic.valueOf(fis) == FileMagic.OLE2) {
+                template = new WordTemplate(new WordExtractor(fis));
+            } else if (FileMagic.valueOf(fis) == FileMagic.OOXML) {
+                extractor = new XWPFWordExtractor(new XWPFDocument(fis));
+                template = new WordTemplate(extractor);
             }
 
             return template;
         }
-
     }
 }

@@ -46,7 +46,6 @@
     </build>
 
     <dependencies>
-        <!-- senyint -->
         <dependency>
             <groupId>com.github.tiger</groupId>
             <artifactId>common</artifactId>

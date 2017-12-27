@@ -9,8 +9,8 @@
            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- 扫描组件 -->
-    <context:component-scan base-package="com.senyint.**.web"/>
-    <context:component-scan base-package="com.senyint.**.controller"/>
+    <context:component-scan base-package="com.github.**.web"/>
+    <context:component-scan base-package="com.github.**.controller"/>
 
     <!-- 内容配置 -->
     <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">

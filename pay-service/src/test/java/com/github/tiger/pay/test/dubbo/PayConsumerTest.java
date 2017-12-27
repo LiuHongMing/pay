@@ -14,7 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:com/senyint/pay/dubbo/pay-consumer.xml"})
+@ContextConfiguration(locations = {"classpath:com/github/tiger/pay/dubbo/pay-consumer.xml"})
 public class PayConsumerTest {
 
     @Autowired

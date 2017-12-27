@@ -75,18 +75,18 @@ public class FileUtil {
      * @param path
      */
     public static boolean mkdirs(String path) {
-        boolean ok = false;
+        boolean isOk = false;
         File file = new File(path);
         if (!file.exists()) {
             try {
-                ok = file.mkdirs();
+                isOk = file.mkdirs();
             } catch (Exception e) {
                 logger.error(
                         String.format("An exception occured " +
                                 "while creating the directry: %s", path), e);
             }
         }
-        return ok;
+        return isOk;
     }
 
 }
