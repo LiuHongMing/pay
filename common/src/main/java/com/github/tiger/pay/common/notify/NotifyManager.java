@@ -12,6 +12,9 @@ import java.util.Map;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author liuhongming
+ */
 public class NotifyManager {
 
     private static final Logger logger = LoggerFactory.getLogger(NotifyManager.class);
