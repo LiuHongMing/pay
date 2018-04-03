@@ -19,16 +19,22 @@ public class ImageIoTest {
 
     static class Coordinator {
 
-        private int pos;
+        /**
+         * 表示x坐标位置
+         */
+        private int xAxis;
 
-        private int offset;
+        /**
+         * 表示x坐标上的偏移量
+         */
+        private int xOffset;
 
-        public Coordinator(int pos) {
-            this.pos = pos;
+        public Coordinator(int x) {
+            this.xAxis = x;
         }
 
-        public void shift() {
-            offset += 1;
+        public void shiftX() {
+            xOffset += 1;
         }
     }
 
@@ -49,13 +55,22 @@ public class ImageIoTest {
         /**
          * 划分区域
          */
+        Coordinator coor = null;
+        List<Coordinator> blocks = new ArrayList<>();
         int pos = 0, offset = 0;
-        Coordinator coordinator = null;
-        List<Coordinator> dots = new ArrayList<>();
+        /**
+         * 列
+         */
         for (int col = 0; col < width; col++) {
+            /**
+             * 行
+             */
             for (int row = 0; row < height; row++) {
-                int dot = binaryMatrix[row][col];
-                if (dot == 1) {
+                int spot = binaryMatrix[row][col];
+                /**
+                 * 遇阈值时，标记区域
+                 */
+                if (spot == 1) {
                     pos = col;
                     offset += 1;
                     break;
@@ -63,44 +78,49 @@ public class ImageIoTest {
             }
             if (pos == col) {
                 if (offset == 1) {
-                    coordinator = new Coordinator(pos);
-                    dots.add(coordinator);
+                    coor = new Coordinator(pos);
+                    blocks.add(coor);
                 } else if (offset > 1) {
-                    coordinator.shift();
+                    coor.shiftX();
                 }
             } else {
                 offset = 0;
             }
         }
 
-        for (int i = 0; i < dots.size(); i++) {
-            Coordinator cdr = dots.get(i);
-            int x = cdr.pos;
+        for (int i = 0; i < blocks.size(); i++) {
+            Coordinator block = blocks.get(i);
+            int x = block.xAxis;
             int y = 0;
-            int w = cdr.offset + 1;
+            int w = block.xOffset + 1;
             int h = height;
-            cut(bi, i + ".png", x, y, w, h);
+            cut(bi, i + ".png", "png", x, y, w, h);
         }
     }
 
     /**
      * 图片切割
      *
-     * @param bi - 原图片：BufferedImage
-     * @param dest - 输出图片文件
-     * @param x - 指定矩形区域左上角的 X 坐标
-     * @param y - 指定矩形区域左上角的 Y 坐标
-     * @param w - 指定矩形区域的宽度
-     * @param h - 指定矩形区域的高度
+     * @param bi     - 原图片：BufferedImage
+     * @param dest   - 输出图片文件
+     * @param format - 输出图片格式
+     * @param x      - 指定矩形区域左上角的 X 坐标
+     * @param y      - 指定矩形区域左上角的 Y 坐标
+     * @param w      - 指定矩形区域的宽度
+     * @param h      - 指定矩形区域的高度
      */
-    public void cut(BufferedImage bi, String dest,
+    public void cut(BufferedImage bi, String dest, String format,
                     int x, int y, int w, int h) {
         BufferedImage image = bi.getSubimage(x, y, w, h);
         try {
-            ImageIO.write(image, "PNG", new File(dest));
+            ImageIO.write(image, format, new File(dest));
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void cut2() {
+
     }
 
     /**

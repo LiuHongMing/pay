@@ -20,6 +20,9 @@ FLAG_OPTS="-XX:+PrintCommandLineFlags"
 MEMORY_OPTS="-Xms2048m -Xmx2048m -Xmn1024m -XX:MaxDirectMemorySize=2048m -XX:PermSize=256m -XX:MaxPermSize=512m"
 # 性能参数
 # -XX:+PerfDisableSharedMem: 解决: JVM statistics cause garbage collection pauses, 导致: jps, jstat不可用
+# -XX:-UseBiasedLocking 关闭偏向锁
+# -XX:-UseCounterDecay  关闭热度衰减
+# -XX:+AlwaysPreTouch   启动应用时访问并置零所有的内存页面
 PERFORMANCE_OPTS="-XX:-UseBiasedLocking -XX:-UseCounterDecay -XX:+AlwaysPreTouch -XX:AutoBoxCacheMax=20000 -XX:ReservedCodeCacheSize=240m"
 # GC CMS参数
 # -XX:+UseConcMarkSweepGC，默认开启 -XX:+UseParNewGC -XX:+CMSConcurrentMTEnabled
