@@ -103,18 +103,14 @@ public class HtmlMining {
         return dataRegions;
     }
 
-    // TODO 未实现
-
     /**
-     * 树深度
+     * 树深度（深度=层数）
+     *
+     * TODO 树深度
      */
     public static int getDepth(Element el) {
-        int depth = 0;
-        List<Element> children = el.children();
-        if (children.size() > 0) {
-            depth = getDepth(children.get(0)) + 1;
-        }
-        return depth;
+        HtmlTree tree = new HtmlTree(el);
+        return tree.depth();
     }
 
     /**
