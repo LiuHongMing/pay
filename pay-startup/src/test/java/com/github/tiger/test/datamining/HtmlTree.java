@@ -8,6 +8,7 @@ import java.util.List;
  * @author liuhongming
  */
 public class HtmlTree {
+
     private Node node;
 
     private int depth;
@@ -33,7 +34,4 @@ public class HtmlTree {
         return depth;
     }
 
-    public void setDepth(int depth) {
-        this.depth = depth;
-    }
 }
