@@ -1,5 +1,7 @@
 package com.github.tiger.test.java;
 
+import org.junit.Test;
+
 import java.util.BitSet;
 
 /**
@@ -10,9 +12,13 @@ import java.util.BitSet;
  */
 public class BitSetTest {
 
+	@Test
 	public void testNumeric() {
 		BitSet xnbs = new BitSet();
 		xnbs.set(6);
+		System.out.printf("xnBs:length()=%d,size()=%d\n", xnbs.length(),
+				xnbs.size());
+		xnbs.set(100);
 		System.out.printf("xnBs:length()=%d,size()=%d\n", xnbs.length(),
 				xnbs.size());
 

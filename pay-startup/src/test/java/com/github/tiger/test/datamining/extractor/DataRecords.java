@@ -22,7 +22,7 @@ public class DataRecords {
     }
 
     public void add(DataRecord record) {
-        maxTextCount = Math.max(maxTextCount, 
+        maxTextCount = Math.max(maxTextCount,
                 record.getTextCount());
         dataRecords.add(record);
     }
@@ -31,34 +31,26 @@ public class DataRecords {
         dataRecords.clear();
     }
 
-    public static Map<Element, List<String>> range(List<Element> elements) {
-        Map<Element, List<String>> ret = new LinkedHashMap<>();
-        return ret;
-    }
-
     public List<String> toJsonList() {
         List<String> jsonData = new ArrayList<>();
 
         for (DataRecord dr : this.dataRecords) {
             Map<String, String> jsonMap = new LinkedHashMap<>(16);
             List<Element> tr = dr.getTextRecords();
-            int size = maxTextCount;
-            for (int i = 1, j = 0; j < size; i++, j++) {
-                if (j < tr.size()) {
-                    Element el = tr.get(j);
-                    String tagName = el.tagName();
-                    if (tagName.equals("a")) {
-                        boolean hasHref = el.hasAttr("href");
-                        String hrefValue = el.attr("href");
-                        if (hasHref && !hrefValue.contains("javascript")) {
-                            jsonMap.put(String.valueOf(i),
-                                    String.format("%s(%s)", el.ownText(), hrefValue));
-                        }
-                    } else {
-                        jsonMap.put(String.valueOf(i), el.ownText());
+            int size = tr.size();
+            for (int j = 0; j < size; j++) {
+                Element el = tr.get(j);
+                String tagName = el.tagName();
+                String absPath = dr.getAbsPath(el);
+                if (tagName.equals("a")) {
+                    boolean hasHref = el.hasAttr("href");
+                    String hrefValue = el.attr("href");
+                    if (hasHref && !hrefValue.contains("javascript")) {
+                        jsonMap.put(absPath,
+                                String.format("%s(%s)", el.ownText(), hrefValue));
                     }
                 } else {
-                    jsonMap.put(String.valueOf(i), "");
+                    jsonMap.put(absPath, el.ownText());
                 }
             }
             jsonData.add(JSON.toJSONString(jsonMap));

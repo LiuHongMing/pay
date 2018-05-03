@@ -52,6 +52,7 @@ public class HtmlMining {
                     || "select".equals(nodeName)
                     || "option".equals(nodeName)
                     || "img".equals(nodeName)
+                    || "i".equals(nodeName)
                     ) {
                 deleteNodes.add(node);
                 continue;
@@ -104,16 +105,6 @@ public class HtmlMining {
     }
 
     /**
-     * 树深度（深度=层数）
-     *
-     * TODO 树深度
-     */
-    public static int getDepth(Element el) {
-        HtmlTree tree = new HtmlTree(el);
-        return tree.depth();
-    }
-
-    /**
      * 获取节点文本
      */
     public static String getText(Element child, StringBuffer sb) {
@@ -145,12 +136,15 @@ public class HtmlMining {
                     getText(el, ret);
                 }
             }
-        } else {
-            if (main.hasText()) {
+        }
+
+        if (main.hasText()) {
+            String ownText = main.ownText().replaceAll("[ ,:]", "");
+            if (StringUtils.isNoneEmpty(ownText)) {
                 ret.add(main);
             }
-
         }
+
         return ret;
     }
 

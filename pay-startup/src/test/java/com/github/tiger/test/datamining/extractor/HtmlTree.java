@@ -20,7 +20,6 @@ public class HtmlTree {
     private void computeDepth(Node target, int accum) {
         List<Node> nodeList = target.childNodes();
         if (nodeList.size() == 0) {
-            System.out.println(target.nodeName());
             depth = Math.max(depth, accum);
         } else {
             for (Node node : nodeList) {
