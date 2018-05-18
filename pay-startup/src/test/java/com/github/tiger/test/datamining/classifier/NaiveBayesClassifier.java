@@ -1,4 +1,4 @@
-package com.github.tiger.test.datamining;
+package com.github.tiger.test.datamining.classifier;
 
 /**
  * 朴素贝叶斯分类器

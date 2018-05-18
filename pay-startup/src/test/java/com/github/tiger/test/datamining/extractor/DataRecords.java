@@ -1,4 +1,4 @@
-package com.github.tiger.test.datamining;
+package com.github.tiger.test.datamining.extractor;
 
 import com.alibaba.fastjson.JSON;
 import org.jsoup.nodes.Element;
@@ -40,19 +40,21 @@ public class DataRecords {
             int size = tr.size();
             for (int j = 0; j < size; j++) {
                 Element el = tr.get(j);
-                String tagName = el.tagName();
                 String absPath = dr.getAbsPath(el);
-                if (tagName.equals("a")) {
+                jsonMap.put(absPath, el.ownText());
+            }
+            for (Element el : dr.getLinkRecords()) {
+            	String tagName = el.tagName();
+            	String absPath = dr.getAbsPath(el);
+            	if (tagName.equals("a")) {
                     boolean hasHref = el.hasAttr("href");
                     String hrefValue = el.attr("href");
                     if (hasHref && !hrefValue.contains("javascript")) {
-                        jsonMap.put(absPath,
-                                String.format("%s(%s)", el.ownText(), hrefValue));
+                        jsonMap.put(absPath + ".href", hrefValue);
                     }
-                } else {
-                    jsonMap.put(absPath, el.ownText());
                 }
             }
+            
             jsonData.add(JSON.toJSONString(jsonMap));
         }
 

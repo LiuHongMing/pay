@@ -1,4 +1,4 @@
-package com.github.tiger.test.datamining;
+package com.github.tiger.test.datamining.extractor;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Element;

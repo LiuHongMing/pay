@@ -18,9 +18,13 @@ public class AnnotationConfigTest {
 //    @Qualifier("systemProperties")
     public Properties systemProperties;
 
+    public AnnotationConfigTest() {
+        System.out.println("未初始化 systemProperties=" + systemProperties);
+    }
+
     @Test
     public void testSystemProperties() {
-        System.out.println(systemProperties);
+        System.out.println("已初始化 systemProperties=" + systemProperties);
     }
 
 }

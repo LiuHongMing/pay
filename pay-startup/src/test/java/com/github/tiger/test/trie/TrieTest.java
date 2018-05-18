@@ -1,4 +1,4 @@
-package com.github.tiger.test.lexicon;
+package com.github.tiger.test.trie;
 
 /**
  * Trie 单词查找树

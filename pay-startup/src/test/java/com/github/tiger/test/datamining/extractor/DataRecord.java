@@ -1,13 +1,10 @@
-package com.github.tiger.test.datamining;
+package com.github.tiger.test.datamining.extractor;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author liuhongming
@@ -18,11 +15,14 @@ public class DataRecord {
 
     private List<Element> textRecords;
 
-    private Map<Element, String> absPathMap = new LinkedHashMap<>();
+    private List<Element> linkRecords;
+
+	private Map<Element, String> absPathMap = new LinkedHashMap<>();
 
     public DataRecord(Element root, List<Element> textRecords) {
         this.root = root;
         this.textRecords = textRecords;
+        this.linkRecords = new ArrayList<Element>();
         editAbsPath(this.root);
     }
 
@@ -33,15 +33,21 @@ public class DataRecord {
     public List<Element> getTextRecords() {
         return textRecords;
     }
+    
+    public List<Element> getLinkRecords() {
+		return linkRecords;
+	}
 
-    public void editAbsPath(Element target) {
+	public void editAbsPath(Element target) {
         if (HtmlMining.hasChildren(target)) {
             Elements children = target.children();
             int size = children.size();
             if (children != null && size > 0) {
                 for (int i = 0, j = 1; i < size; i++, j++) {
                     Element child = children.get(i);
-
+                    if (child.tagName().equals("a")) {
+                    	linkRecords.add(child);
+                    }
                     Element parent = child.parent();
                     String absPath = absPathMap.get(parent);
                     StringBuilder sb = new StringBuilder();

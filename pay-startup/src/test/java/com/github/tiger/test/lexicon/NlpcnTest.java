@@ -1,7 +1,11 @@
-package distributed.crawler.extraction;
+package com.github.tiger.test.lexicon;
 
+import org.ansj.splitWord.GetWords;
 import org.junit.Test;
+import org.nlpcn.commons.lang.finger.FingerprintService;
+import org.nlpcn.commons.lang.finger.SimHashService;
 import org.nlpcn.commons.lang.pinyin.Pinyin;
+import org.nlpcn.commons.lang.tire.GetWord;
 import org.nlpcn.commons.lang.tire.domain.Forest;
 import org.nlpcn.commons.lang.tire.library.Library;
 
@@ -9,7 +13,7 @@ import java.io.BufferedReader;
 import java.io.StringReader;
 import java.util.List;
 
-public class NlpCnTest {
+public class NlpcnTest {
 
     @Test
     public void testPinyin() {
@@ -38,6 +42,32 @@ public class NlpCnTest {
         String content = "中国人名识别是中国人民的一个骄傲." +
                 "孙健人民在CSDN中学到了很多最早iteye是java学习笔记叫javaeye" +
                 "但是java123只是一部分";
+
+        GetWord gw = new GetWord(forest, content);
+        for (String param : gw.getParams()) {
+            System.out.println(param);
+        }
+    }
+
+    /**
+     * 计算文章的指纹
+     */
+    @Test
+    public void testFinger() {
+        String content = "我就想测试下指纹是咋生成的";
+        FingerprintService finger = new FingerprintService();
+        System.out.println(finger.fingerprint(content));
+    }
+
+    /**
+     * SimHash指纹
+     */
+    @Test
+    public void testSimHash() {
+        String content = "我就想测试下simhash指纹是咋生成的";
+        SimHashService simhash = new SimHashService();
+        System.out.println(simhash.fingerprint(content));
+
     }
 
 }

@@ -1,4 +1,4 @@
-package com.github.tiger.test.datamining.similarity;
+package com.github.tiger.test.datamining.similarity.cosine;
 
 /**
  * 余弦距离
@@ -8,15 +8,15 @@ public interface CosineDistance {
     /**
      * 分子
      */
-    double numerinator();
+    double numerator();
 
     /**
      * 分母
      */
-    double demonator();
+    double denominator();
 
     /**
-     * 分值
+     * 评估
      */
-    double rating();
+    double rating(double numerator, double denominator);
 }
