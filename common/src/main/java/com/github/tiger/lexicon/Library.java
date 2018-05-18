@@ -1,11 +1,14 @@
-package com.github.tiger.pay.common.lexicon.analysis;
+package com.github.tiger.lexicon;
 
+import org.ansj.domain.Term;
+import org.ansj.domain.TermNature;
+import org.ansj.domain.TermNatures;
 import org.ansj.library.DicLibrary;
+import org.ansj.util.TermUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.nlpcn.commons.lang.util.IOUtil;
 
-import java.io.FileNotFoundException;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.List;
@@ -17,15 +20,21 @@ public class Library {
 
     public static final String DIC;
 
+    public static final String EXTRA;
+
     static {
-        URL dicUrl = Thread.currentThread()
-                .getContextClassLoader().getResource("library/default.dic");
-        DIC = dicUrl.getFile();
+        URL library = Thread.currentThread()
+                .getContextClassLoader().getResource("library");
+
+        DIC = library.getFile() + "/default.dic";
+
+        EXTRA = library.getFile() + "/extra.dic";
     }
 
     public static void loadDicLibrary() {
         try {
             loadDicLibrary(DIC);
+            loadDicLibrary(EXTRA);
         } catch (UnsupportedEncodingException
                 | FileNotFoundException e) {
             e.printStackTrace();
@@ -39,15 +48,60 @@ public class Library {
             file = DIC;
         }
 
-        List<String> datas = IOUtil.readFile2List(file, Charset.defaultCharset().name());
-        for (String data : datas) {
-            String[] arrs = data.split("\t");
-            String term = arrs[0];
-            String nature = arrs[1];
-            String freq = arrs[2];
-            DicLibrary.insert(DicLibrary.DEFAULT, term,
-                    nature, freq == null ? 0 : Integer.valueOf(freq));
+        List<String> content = IOUtil.readFile2List(file, Charset.defaultCharset().name());
+        for (String data : content) {
+            String[] items = data.split("\t");
+            String term = items[0];
+            String nature = items[1];
+            String freq = items[2];
+            insertTerm(false, term, nature, freq);
         }
+    }
+
+    public static void insertTerm(boolean isNew,
+                                  String term, String nature, String freq) {
+        DicLibrary.insert(DicLibrary.DEFAULT, term,
+                nature, freq == null ? 0 : Integer.valueOf(freq));
+        if (isNew) {
+            saveNewTerm(term, nature, freq);
+        }
+    }
+
+    public static void saveNewTerm(String term, String nature, String freq) {
+        String content = String.format("%s\t%s\t%s", term, nature, freq);
+        File extra = new File(EXTRA);
+        if (extra.isDirectory()
+                && !extra.exists()) {
+            extra.mkdirs();
+        } else {
+            try {
+                extra.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter(extra);
+            writer.append(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (writer != null) {
+                try {
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public Term makeTerm(Term from, Term to, String termNature, int frequency) {
+        Term newTerm = TermUtil.makeNewTermNum(
+                from, to, new TermNatures(
+                        new TermNature(termNature, frequency)));
+        return newTerm;
     }
 
 }

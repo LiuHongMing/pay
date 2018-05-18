@@ -1,15 +1,19 @@
-package com.github.tiger.pay.common.lexicon.analysis;
+package com.github.tiger.lexicon;
 
 import org.ansj.domain.Result;
 import org.ansj.domain.Term;
 import org.ansj.domain.TermNature;
 import org.ansj.domain.TermNatures;
+import org.ansj.recognition.Recognition;
 import org.ansj.recognition.impl.DicRecognition;
 import org.ansj.splitWord.analysis.DicAnalysis;
 import org.ansj.util.TermUtil;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author liuhongming
@@ -27,7 +31,7 @@ public class Analysis {
      * @return
      */
     public static List<String> doDicAnalysis(String content) {
-        Result result = DicAnalysis.parse(content).recognition(new NewTermRecognition());
+        Result result = DicAnalysis.parse(content);
         List<Term> terms = result.getTerms();
         List<String> ret = new ArrayList<>();
         for (Term term : terms) {
@@ -40,41 +44,89 @@ public class Analysis {
         return ret;
     }
 
-    static class NewTermRecognition extends DicRecognition {
+    /**
+     * 过滤词性
+     */
+    public static Result filter(final String content, final String regex) {
+        Result result = DicAnalysis.parse(content);
 
-        @Override
-        public void recognition(Result result) {
-            List<Term> terms = new ArrayList<>();
+        result.recognition(new Recognition() {
+            @Override
+            public void recognition(Result result) {
+                char delimiter = '#';
 
-            List<Term> newTerms = new ArrayList<>();
-            List<Term> oldTerms = result.getTerms();
-            for (Term term : oldTerms) {
-                String natureStr = term.getNatureStr();
-                if ("ind".equals(natureStr)) {
-                    newTerms.add(term);
-                } else {
-                    terms.add(term);
+                StringBuilder natureBuilder = new StringBuilder();
+                for (int i = 0; i < result.size(); i++) {
+                    Term term = result.get(i);
+                    String natureStr = term.getNatureStr();
+                    if (i > 0) {
+                        natureBuilder.append(delimiter).append(natureStr);
+                    } else {
+                        natureBuilder.append(natureStr);
+                    }
+                }
+
+                String natureTarget = natureBuilder.toString();
+                String natureRegex = regex;
+
+                List<Term> terms = new ArrayList<>();
+
+                Pattern pattern = Pattern.compile(natureRegex);
+                Matcher matcher = pattern.matcher(natureTarget);
+                if (matcher.find()) {
+                    int start = matcher.start();
+                    int end = matcher.end();
+
+                    boolean startDelimiter = start > 0
+                            && natureTarget.charAt(start - 1) == delimiter;
+                    boolean endDelimiter = (end > 0 && end < natureTarget.length())
+                            && natureTarget.charAt(end) == delimiter;
+
+                    boolean check = (start == 0 && endDelimiter)
+                            || (startDelimiter && endDelimiter)
+                            || (startDelimiter && end == natureTarget.length());
+                    if (!check) {
+                        return;
+                    }
+
+                    String headStr = natureTarget.substring(0, start);
+                    String midStr = natureTarget.substring(start, end);
+                    String tailStr = natureTarget.substring(end);
+
+                    int head = 0, mid = 0, tail = 0;
+
+                    if (StringUtils.isNoneEmpty(headStr)) {
+                        for (char ch : headStr.toCharArray()) {
+                            if (ch == delimiter) {
+                                head++;
+                            }
+                        }
+                    }
+
+                    if (StringUtils.isNoneEmpty(tailStr)) {
+                        for (char ch : tailStr.toCharArray()) {
+                            if (ch == delimiter) {
+                                tail++;
+                            }
+                        }
+                    }
+
+                    mid = result.size() - (head + tail);
+
+                    for (int i = 0; i < head; i++) {
+                        terms.add(result.get(i));
+                    }
+
+                    for (int i = head + mid; i < result.size(); i++) {
+                        terms.add(result.get(i));
+                    }
+
+                    result.setTerms(terms);
                 }
             }
+        });
 
-            int pair = 2;
-
-            for (int i = 1, size = newTerms.size();
-                 i <= size; i++) {
-                if (i % pair == 0) {
-                    Term term = TermUtil.makeNewTermNum(
-                            newTerms.get(i - 2),
-                            newTerms.get(i - 1),
-                            new TermNatures(
-                                    new TermNature(
-                                            "com-ind",
-                                            1000)));
-                    terms.add(term);
-                }
-            }
-
-            result.setTerms(terms);
-        }
+        return result;
     }
 
     public static void main(String[] args) {
