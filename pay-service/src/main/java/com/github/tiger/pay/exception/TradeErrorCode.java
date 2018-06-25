@@ -1,6 +1,6 @@
 package com.github.tiger.pay.exception;
 
-import com.github.tiger.pay.common.code.ErrorCode;
+import com.github.tiger.common.code.ErrorCode;
 
 /**
  * 交易错误码类

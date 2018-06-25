@@ -11,12 +11,16 @@ public class SocketServer {
         try {
             SocketAddress address = new InetSocketAddress(
                     "localhost", 9001);
+
             // 启动监听端口 9001
             ServerSocket ss = new ServerSocket();
             ss.bind(address);
+
             // 接收请求
             Socket s = ss.accept();
 
+            while(true) {
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

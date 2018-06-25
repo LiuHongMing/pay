@@ -1,7 +1,7 @@
 package com.github.tiger.pay.exception;
 
-import com.github.tiger.pay.common.exception.ServiceException;
-import com.github.tiger.pay.common.code.ErrorCode;
+import com.github.tiger.common.code.ErrorCode;
+import com.github.tiger.common.exception.ServiceException;
 
 /**
  * 交易业务异常类

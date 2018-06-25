@@ -1,11 +1,9 @@
 package com.github.tiger.test.redis;
 
-import com.github.tiger.pay.common.redis.JedisTemplate;
-import com.github.tiger.pay.common.redis.RedisClient;
-import com.github.tiger.pay.common.util.RandomStringUtil;
+import com.github.tiger.common.redis.RedisClient;
+import com.github.tiger.common.util.RandomStringUtil;
 import org.junit.Test;
 import org.openjdk.jmh.annotations.*;
-import redis.clients.jedis.JedisPoolConfig;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -20,14 +18,12 @@ public class RedisTest {
 
     RedisClient redisClient;
 
-    String host = "192.168.20.66";
+    String host = "175.63.101.125";
     int port = 19000;
 
     @Setup
     public void setup() {
-        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-        JedisTemplate jedisTemplate = new JedisTemplate(jedisPoolConfig, host, port);
-        redisClient = new RedisClient(jedisTemplate);
+        redisClient = new RedisClient(host, port);
     }
 
     @Test

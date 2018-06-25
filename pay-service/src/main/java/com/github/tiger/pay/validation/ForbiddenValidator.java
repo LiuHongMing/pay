@@ -1,6 +1,6 @@
 package com.github.tiger.pay.validation;
 
-import com.github.tiger.pay.common.sensitive.SensitiveWordFilter;
+import com.github.tiger.common.sensitive.SensitiveWordFilter;
 import org.hibernate.validator.internal.engine.constraintvalidation.ConstraintValidatorContextImpl;
 import org.springframework.util.StringUtils;
 

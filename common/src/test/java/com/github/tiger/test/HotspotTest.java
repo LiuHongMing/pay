@@ -1,7 +1,7 @@
 package com.github.tiger.test;
 
-import com.github.tiger.pay.common.context.JarClassLoader;
-import com.github.tiger.pay.common.context.PatchContext;
+import com.github.tiger.common.context.JarClassLoader;
+import com.github.tiger.common.context.PatchContext;
 import org.apache.commons.vfs2.*;
 import org.apache.commons.vfs2.impl.DefaultFileMonitor;
 

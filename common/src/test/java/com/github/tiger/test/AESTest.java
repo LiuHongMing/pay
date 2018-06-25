@@ -1,6 +1,6 @@
 package com.github.tiger.test;
 
-import com.github.tiger.pay.common.util.AESUtil;
+import com.github.tiger.common.util.AESUtil;
 import org.apache.commons.codec.binary.Base64;
 import org.junit.Test;
 

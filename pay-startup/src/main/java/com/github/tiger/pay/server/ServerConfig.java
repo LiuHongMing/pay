@@ -1,6 +1,6 @@
 package com.github.tiger.pay.server;
 
-import com.github.tiger.pay.common.util.NettyUtil;
+import com.github.tiger.common.util.NettyUtil;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.SelfSignedCertificate;
 import org.slf4j.Logger;

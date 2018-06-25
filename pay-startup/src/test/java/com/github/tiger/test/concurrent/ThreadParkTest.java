@@ -14,7 +14,7 @@ public class ThreadParkTest {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(600 * 1000);
+                    Thread.sleep(6 * 1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

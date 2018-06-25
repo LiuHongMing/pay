@@ -1,7 +1,7 @@
 package com.github.tiger.pay.rpc.api.impl;
 
-import com.github.tiger.pay.common.annotation.RpcService;
-import com.github.tiger.pay.common.util.BeanFactoryUtil;
+import com.github.tiger.common.annotation.RpcService;
+import com.github.tiger.common.util.BeanFactoryUtil;
 import com.github.tiger.pay.constant.TradeStatusEnum;
 import com.github.tiger.pay.constant.TradeTypeEnum;
 import com.github.tiger.pay.dto.TradeOrderDTO;
@@ -94,9 +94,9 @@ public class TradeRpcServiceImpl implements TradeRpcService {
         Result<String> rpcResult;
         try {
             tradeService.updateTradeToComplete(tradeOrderDTO, tradeRecordDTO);
-            rpcResult = RpcResultBuilder.instance().ok("");
+            rpcResult = RpcResultBuilder.ok("");
         } catch (Exception e) {
-            rpcResult = RpcResultBuilder.instance().error("", "更新交易：" + e.getMessage());
+            rpcResult = RpcResultBuilder.error("", "更新交易：" + e.getMessage());
         }
 
         return rpcResult;

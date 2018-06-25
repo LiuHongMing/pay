@@ -1,7 +1,7 @@
 package com.github.tiger.pay.test.service;
 
+import com.github.tiger.common.util.RandomStringUtil;
 import com.github.tiger.pay.test.ServiceJunitTest;
-import com.github.tiger.pay.common.util.RandomStringUtil;
 import com.github.tiger.pay.constant.wxpay.WxTradeStatusEnum;
 import com.github.tiger.pay.dto.OutTradeNoDTO;
 import com.github.tiger.pay.dto.TradeOrderDTO;

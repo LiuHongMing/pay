@@ -1,6 +1,6 @@
 package com.github.tiger.pay.web.filter;
 
-import com.github.tiger.pay.common.util.StringUtil;
+import com.github.tiger.common.util.StringUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
@@ -24,6 +24,7 @@ public class HttpServletRequestParameterWrapper extends HttpServletRequestWrappe
         }
     }
 
+    @Override
     public String getParameter(String name) {
         String[] arr = (name != null ? this.parameters.get(name) : null);
         return (arr != null && arr.length > 0 ? arr[0] : null);

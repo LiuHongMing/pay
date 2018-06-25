@@ -1,7 +1,7 @@
 package com.github.tiger.test;
 
-import com.github.tiger.pay.common.util.RSASignature;
-import com.github.tiger.pay.common.util.RSAUtil;
+import com.github.tiger.common.util.RSASignature;
+import com.github.tiger.common.util.RSAUtil;
 import org.junit.Before;
 import org.junit.Test;
 

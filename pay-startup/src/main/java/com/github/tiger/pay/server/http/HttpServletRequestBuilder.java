@@ -1,6 +1,6 @@
 package com.github.tiger.pay.server.http;
 
-import com.github.tiger.pay.common.util.StringUtil;
+import com.github.tiger.common.util.StringUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.handler.codec.http.*;
 import io.netty.handler.codec.http.multipart.Attribute;

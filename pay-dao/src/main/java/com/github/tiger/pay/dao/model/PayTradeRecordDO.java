@@ -1,6 +1,6 @@
 package com.github.tiger.pay.dao.model;
 
-import com.github.tiger.pay.common.dao.model.BaseDO;
+import com.github.tiger.common.dao.model.BaseDO;
 
 import java.math.BigDecimal;
 import java.util.Date;

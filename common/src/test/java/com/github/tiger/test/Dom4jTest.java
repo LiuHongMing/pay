@@ -1,6 +1,6 @@
 package com.github.tiger.test;
 
-import com.github.tiger.pay.common.util.Dom4jUtil;
+import com.github.tiger.common.util.Dom4jUtil;
 import org.dom4j.*;
 import org.junit.Test;
 

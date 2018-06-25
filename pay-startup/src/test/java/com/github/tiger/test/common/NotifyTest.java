@@ -1,7 +1,7 @@
 package com.github.tiger.test.common;
 
-import com.github.tiger.pay.common.notify.NotifyManager;
-import com.github.tiger.pay.common.util.MapBuilder;
+import com.github.tiger.common.notify.NotifyManager;
+import com.github.tiger.common.util.MapBuilder;
 import org.junit.Test;
 
 import java.util.Map;

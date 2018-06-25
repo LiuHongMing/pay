@@ -1,11 +1,9 @@
 package com.github.tiger.test;
 
-import com.github.tiger.pay.common.util.FileUtil;
 
-import java.io.*;
-import java.util.Enumeration;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
+import com.github.tiger.common.util.FileUtil;
+
+import java.io.IOException;
 
 public class UnzipTest {
 

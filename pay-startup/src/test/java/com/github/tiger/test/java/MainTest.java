@@ -1,7 +1,7 @@
 package com.github.tiger.test.java;
 
-import com.github.tiger.pay.common.util.Dom4jUtil;
-import com.github.tiger.pay.common.util.RandomStringUtil;
+import com.github.tiger.common.util.Dom4jUtil;
+import com.github.tiger.common.util.RandomStringUtil;
 import com.github.tiger.pay.constant.PayWayEnum;
 import com.github.tiger.pay.dto.factory.OutTradeNoFactory;
 import io.netty.util.internal.MacAddressUtil;

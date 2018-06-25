@@ -1,6 +1,6 @@
 package com.github.tiger.pay.dao;
 
-import com.github.tiger.pay.common.dao.BaseDAO;
+import com.github.tiger.common.dao.BaseDAO;
 import com.github.tiger.pay.dao.model.PayTradeOrderDO;
 import org.apache.ibatis.annotations.Param;
 

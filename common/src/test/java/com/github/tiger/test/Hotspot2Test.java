@@ -1,19 +1,16 @@
 package com.github.tiger.test;
 
-import com.github.tiger.pay.common.context.PlainClassLoader;
-import com.github.tiger.pay.common.vfs.Foo;
-import com.github.tiger.pay.common.vfs.FooImpl;
+import com.github.tiger.common.context.PlainClassLoader;
+import com.github.tiger.common.vfs.Foo;
+import com.github.tiger.common.vfs.FooImpl;
 import org.apache.commons.io.IOUtils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 
 public class Hotspot2Test {
 
-    public static void main(String[] args) throws IOException,
-            ClassNotFoundException, IllegalAccessException, InstantiationException,
-            NoSuchMethodException, InvocationTargetException {
+    public static void main(String[] args) throws IOException {
 
         Foo foo = new FooImpl();
         foo.sayHello();

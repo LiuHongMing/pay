@@ -1,7 +1,7 @@
 package com.github.tiger.test;
 
-import com.github.tiger.pay.common.context.PlainClassLoader;
-import com.github.tiger.pay.common.vfs.Foo;
+import com.github.tiger.common.context.PlainClassLoader;
+import com.github.tiger.common.vfs.Foo;
 import org.junit.Test;
 
 public class ClassLoaderTest {

@@ -1,15 +1,15 @@
 package com.github.tiger.pay.web.controller;
 
-import com.github.tiger.pay.common.util.Dom4jUtil;
-import com.github.tiger.pay.common.util.MapBuilder;
-import com.github.tiger.pay.common.wx.WxConstants;
+import com.github.tiger.common.notify.NotifyManager;
+import com.github.tiger.common.util.Dom4jUtil;
+import com.github.tiger.common.util.MapBuilder;
+import com.github.tiger.common.wx.WxConstants;
+import com.github.tiger.common.wx.WxUtil;
 import com.github.tiger.pay.constant.wxpay.WxTradeStatusEnum;
 import com.github.tiger.pay.dto.TradeOrderDTO;
 import com.github.tiger.pay.dto.TradeRecordDTO;
 import com.github.tiger.pay.service.TradeService;
 import com.google.common.collect.Maps;
-import com.github.tiger.pay.common.notify.NotifyManager;
-import com.github.tiger.pay.common.wx.WxUtil;
 import org.apache.commons.io.IOUtils;
 import org.dom4j.DocumentException;
 import org.slf4j.Logger;
@@ -93,10 +93,12 @@ public class TradeController extends PlatoController {
                 if (!StringUtils.isEmpty(outTradeNo)) {
                     String[] ids = outTradeNo.split("_");
                     if (!ObjectUtils.isEmpty(ids)) {
-                        if (ids.length > 0)
+                        if (ids.length > 0) {
                             merchantOrderNo = ids[0];
-                        if (ids.length > 1)
+                        }
+                        if (ids.length > 1) {
                             tradeNo = ids[1];
+                        }
                     }
                     TradeOrderDTO tradeOrderDTO = new TradeOrderDTO();
                     tradeOrderDTO.setMerchantOrderNo(merchantOrderNo);

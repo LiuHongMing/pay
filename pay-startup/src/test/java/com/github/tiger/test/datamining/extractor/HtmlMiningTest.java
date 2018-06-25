@@ -1,5 +1,6 @@
 package com.github.tiger.test.datamining.extractor;
 
+import com.github.tiger.common.extractor.HtmlMiningApi;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
