@@ -82,4 +82,5 @@ export JAVA_OPTS="-server $FLAG_OPTS $MEMORY_OPTS $JIT_OPTS $PERFORMANCE_OPTS $C
 export MAIN_CLASS="com.senyint.startup.Bootstrap"
 
 nohup $_EXECJAVA $JAVA_OPTS -classpath $CLASSPATH $MAIN_CLASS >/dev/null 2>&1 &
-#tail -f $LOG_PATH/stdout.log
+
+# tail -f $LOG_PATH/stdout.log
