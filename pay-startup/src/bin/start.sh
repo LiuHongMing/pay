@@ -76,7 +76,7 @@ GC_OPTS="-Xloggc:/dev/shm/pay-gc.log -XX:+PrintGCApplicationStoppedTime -XX:+Pri
 ERROR_OPTS="-XX:-OmitStackTraceInFastThrow -XX:ErrorFile=${LOG_PATH}/hs_err_%p.log -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${LOG_PATH}/"
 # JMX 参数
 JMX_PORT="18888"
-JMX_OPTS="-Djava.rmi.server.hostname=192.168.20.132 -Dcom.sun.management.jmxremote.port=${JMX_PORT} -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false"
+JMX_OPTS="-Dcom.sun.management.jmxremote -Djava.rmi.server.hostname=192.168.20.132 -Dcom.sun.management.jmxremote.port=${JMX_PORT} -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false"
 export JAVA_OPTS="-server $FLAG_OPTS $MEMORY_OPTS $JIT_OPTS $PERFORMANCE_OPTS $CMS_GC_OPTS $GC_OPTS $ERROR_OPTS $JMX_OPTS"
 # 启动类
 export MAIN_CLASS="com.senyint.startup.Bootstrap"
