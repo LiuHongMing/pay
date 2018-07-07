@@ -20,7 +20,7 @@
     </settings>
 
     <plugins>
-        <plugin interceptor="com.github.tiger.pay.common.dao.interceptor.ExecutorInterceptor" />
+        <plugin interceptor="com.github.tiger.common.dao.interceptor.ExecutorInterceptor" />
         <!-- com.github.pagehelper为PageHelper类所在包名 -->
         <plugin interceptor="com.github.pagehelper.PageHelper">
             <!-- 4.0.0以后版本可以不设置该参数 -->

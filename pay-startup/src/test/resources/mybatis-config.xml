@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <settings>
+        <!-- Globally enables or disables any caches configured in any mapper under this configuration -->
+        <setting name="cacheEnabled" value="true"/>
+        <!-- Sets the number of seconds the driver will wait for a response from the database -->
+        <setting name="defaultStatementTimeout" value="3000"/>
+        <!-- Enables automatic mapping from classic database column
+        names A_COLUMN to camel case classic Java property names aColumn -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!-- Allows JDBC support for generated keys. A compatible driver is required.
+        This setting forces generated keys to be used if set to true,
+         as some drivers deny compatibility but still work -->
+        <setting name="useGeneratedKeys" value="true"/>
+        <!-- 配置默认的执行器。
+        SIMPLE 就是普通的执行器
+        REUSE 执行器会重用预处理语句（prepared statements）
+        BATCH 执行器将重用语句并执行批量更新。
+        -->
+        <setting name="defaultExecutorType" value="REUSE"/>
+
+        <setting name="logImpl" value="SLF4J"/>
+    </settings>
+
+    <environments default="dev">
+
+        <environment id="dev">
+            <transactionManager type="MANAGED"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://server1.navicat.com:4406/sakila?
+                allowMultiQueries=true&amp;useUnicode=true&amp;
+                characterEncoding=utf-8&amp;useSSL=false&amp;
+                autoReconnect=true&amp;failOverReadOnly=false"/>
+                <property name="username" value="navicat"/>
+                <property name="password" value="testnavicat"/>
+                <!-- 在任意时间存在的活动（也就是正在使用）连接的数量 -->
+                <property name="poolMaximumActiveConnections" value="40"/>
+                <!-- 任意时间存在的空闲连接数 -->
+                <property name="poolMaximumIdleConnections" value="0"/>
+                <!-- 在被强制返回之前，池中连接被检查的时间 -->
+                <property name="poolMaximumCheckoutTime" value="1500"/>
+                <!-- 这是给连接池一个打印日志状态机会的低层次设置，还有重新尝试获得连接，
+                这些情况下往往需要很长时间（为了避免连接池没有配置时静默失败） -->
+                <property name="poolTimeToWait" value="1500"/>
+                <!-- 发送到数据的侦测查询，用来验证连接是否正常工作，并且准备接受请求。 -->
+                <property name="poolPingQuery" value="NO PING QUERY SET"/>
+                <!-- 这是开启或禁用侦测查询。
+                如果开启，你必须用一个合法的SQL语句（最好是很快速的）设置poolPingQuery属性 -->
+                <property name="poolPingEnabled" value="false"/>
+                <!-- 这是用来配置poolPingQuery多次时间被用一次。
+                这可以被设置匹配标准的数据库连接超时时间，来避免不必要的侦测 -->
+                <property name="poolPingConnectionsNotUsedFor" value="0"/>
+            </dataSource>
+        </environment>
+
+    </environments>
+
+    <mappers>
+        <mapper resource="ActorMapper.xml"/>
+    </mappers>
+
+</configuration>
