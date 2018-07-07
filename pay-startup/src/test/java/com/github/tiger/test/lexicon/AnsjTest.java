@@ -77,6 +77,7 @@ public class AnsjTest {
     @Test
     public void testGraph() {
         Graph graph = new Graph("这是用户自定义词典互联网增加新词的例子");
+        graph.walkPath();
         graph.printGraph();
     }
 

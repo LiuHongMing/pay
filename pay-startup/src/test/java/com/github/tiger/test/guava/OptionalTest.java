@@ -1,4 +1,4 @@
-package com.github.tiger.test.java;
+package com.github.tiger.test.guava;
 
 import com.google.common.base.Optional;
 

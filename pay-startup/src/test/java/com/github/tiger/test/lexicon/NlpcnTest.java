@@ -1,6 +1,5 @@
 package com.github.tiger.test.lexicon;
 
-import org.ansj.splitWord.GetWords;
 import org.junit.Test;
 import org.nlpcn.commons.lang.finger.FingerprintService;
 import org.nlpcn.commons.lang.finger.SimHashService;

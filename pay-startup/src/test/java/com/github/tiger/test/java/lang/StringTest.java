@@ -1,4 +1,4 @@
-package com.github.tiger.test.java;
+package com.github.tiger.test.java.lang;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
