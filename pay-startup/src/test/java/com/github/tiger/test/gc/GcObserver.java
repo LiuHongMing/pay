@@ -2,11 +2,11 @@ package com.github.tiger.test.gc;
 
 import java.lang.management.ManagementFactory;
 
-public class PrintGC {
+public class GcObserver {
 
     private static void grow() {
         String name = ManagementFactory.getRuntimeMXBean().getName();
-        // get pid
+        // et pid
         String pid = name.split("@")[0];
         System.out.println("Pid is:" + pid);
 
@@ -16,7 +16,7 @@ public class PrintGC {
                 b = new byte[1 * 1024 * 1024];
             }
             try {
-                Thread.sleep(5000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

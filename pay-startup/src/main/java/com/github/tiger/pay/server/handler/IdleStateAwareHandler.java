@@ -23,7 +23,7 @@ public class IdleStateAwareHandler extends ChannelDuplexHandler {
     public IdleStateAwareHandler() {}
 
     @Override
-    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
+    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) {
         System.out.println("userEventTriggered evt=" + evt.toString());
         if (evt instanceof IdleStateEvent) {
             Channel channel = ctx.channel();

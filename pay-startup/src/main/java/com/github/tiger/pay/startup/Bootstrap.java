@@ -26,7 +26,7 @@ public class Bootstrap {
     private static final String DEFAULT_PORT = "9090";
 
     public static void main(String[] args) throws Exception {
-        // System.setProperty("dubbo.application.logger", "slf4j");
+//         System.setProperty("dubbo.application.logger", "slf4j");
 
         ClassPathResource evnResource = new ClassPathResource("env.yaml");
         YamlPropertiesFactoryBean yamlProperties = new YamlPropertiesFactoryBean();
