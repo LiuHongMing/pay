@@ -19,12 +19,14 @@ public interface TradeService {
      * <p>
      * 并返回商户订单号(out_trade_no)，由订单号 + "_" + 交易号组成
      */
-    OutTradeNoDTO saveTrade(@Valid TradeOrderDTO tradeOrderDTO, TradeRecordDTO tradeRecordDTO) throws Exception;
+    OutTradeNoDTO saveTrade(@Valid TradeOrderDTO tradeOrderDTO,
+                            TradeRecordDTO tradeRecordDTO) throws Exception;
 
     /**
      * 交易完成，更新交易数据
      */
-    int updateTradeToComplete(TradeOrderDTO tradeOrderDTO, TradeRecordDTO tradeRecordDTO) throws Exception;
+    int updateTradeToComplete(TradeOrderDTO tradeOrderDTO,
+                              TradeRecordDTO tradeRecordDTO) throws Exception;
 
     /**
      * 获取交易订单的基本信息
@@ -34,8 +36,9 @@ public interface TradeService {
      * @return
      * @throws Exception
      */
-    TradeOrderDTO getTradeOrder(@NotNull(message = "{trade.merchantorderno.null}") String merchantOrderNo,
-                                String tradeNo) throws Exception;
+    TradeOrderDTO getTradeOrder(
+            @NotNull(message = "{trade.merchantorderno.null}") String merchantOrderNo,
+            String tradeNo) throws Exception;
 
     /**
      * 订单支付完成，更新订单信息
