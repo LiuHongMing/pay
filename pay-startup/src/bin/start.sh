@@ -73,11 +73,15 @@ GC_OPTS="-Xloggc:/dev/shm/pay-gc.log -XX:+PrintGCApplicationStoppedTime -XX:+Pri
 # -XX:ErrorFile
 # -XX:+HeapDumpOnOutOfMemoryError
 # -XX:HeapDumpPath
-ERROR_OPTS="-XX:-OmitStackTraceInFastThrow -XX:ErrorFile=${LOG_PATH}/hs_err_%p.log -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${LOG_PATH}/"
+ERROR_OPTS="-XX:+HeapDumpOnOutOfMemoryError -XX:-OmitStackTraceInFastThrow -XX:ErrorFile=${LOG_PATH}/hs_err_%p.log -XX:HeapDumpPath=${LOG_PATH}/hs_err.hprof"
 # JMX 参数
 JMX_PORT="18888"
 JMX_OPTS="-Dcom.sun.management.jmxremote -Djava.rmi.server.hostname=192.168.20.132 -Dcom.sun.management.jmxremote.port=${JMX_PORT} -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false"
-export JAVA_OPTS="-server $FLAG_OPTS $MEMORY_OPTS $JIT_OPTS $PERFORMANCE_OPTS $CMS_GC_OPTS $GC_OPTS $ERROR_OPTS $JMX_OPTS"
+# 系统属性
+# -Djava.net.preferIPv4Stack=true
+#   优先使用IPV4，禁用IPV6
+SYS_OPTS="-Djava.net.preferIPv4Stack=true"
+export JAVA_OPTS="-server $SYS_OPTS $FLAG_OPTS $MEMORY_OPTS $JIT_OPTS $PERFORMANCE_OPTS $CMS_GC_OPTS $GC_OPTS $ERROR_OPTS $JMX_OPTS"
 # 启动类
 export MAIN_CLASS="com.senyint.startup.Bootstrap"
 

@@ -1,12 +1,12 @@
 package com.github.tiger.pay.test.service;
 
 import com.github.tiger.common.util.RandomStringUtil;
-import com.github.tiger.pay.test.ServiceJunitTest;
 import com.github.tiger.pay.constant.wxpay.WxTradeStatusEnum;
 import com.github.tiger.pay.dto.OutTradeNoDTO;
 import com.github.tiger.pay.dto.TradeOrderDTO;
 import com.github.tiger.pay.dto.TradeRecordDTO;
 import com.github.tiger.pay.service.TradeService;
+import com.github.tiger.pay.test.ServiceJunitTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,11 +17,10 @@ import java.util.Set;
 
 public class TradeServiceTest extends ServiceJunitTest {
 
-    @Autowired
-    private TradeService tradeService;
-
     String merchantOrderNo = "909809618381664";
     String tradeNo = "2017031775706013";
+    @Autowired
+    private TradeService tradeService;
 
     @Test
     public void testWxUpdateTradeToComplete() throws Exception {
@@ -37,7 +36,7 @@ public class TradeServiceTest extends ServiceJunitTest {
     }
 
     @Test
-    public void testGetTradeOrder() throws Exception {
+    public void testGetTradeOrder() {
         try {
             TradeOrderDTO tradeOrderDTO = tradeService.getTradeOrder(null, tradeNo);
             print(tradeOrderDTO);
@@ -52,7 +51,7 @@ public class TradeServiceTest extends ServiceJunitTest {
     }
 
     @Test
-    public void testSaveTrade() throws Exception {
+    public void testSaveTrade() {
         try {
             TradeOrderDTO tradeOrderDTO = new TradeOrderDTO();
             tradeOrderDTO.setTotalAmount(new BigDecimal(9999999.00));

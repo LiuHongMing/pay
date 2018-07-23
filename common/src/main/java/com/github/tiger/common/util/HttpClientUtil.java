@@ -23,6 +23,9 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Map;
 
+/**
+ * @author liuhongming
+ */
 public class HttpClientUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(HttpClientUtil.class);
@@ -34,8 +37,14 @@ public class HttpClientUtil {
     private static void init() {
         if (httpClientConnectionManager == null) {
             httpClientConnectionManager = new PoolingHttpClientConnectionManager();
-            httpClientConnectionManager.setMaxTotal(50); // 整个连接池最大连接数
-            httpClientConnectionManager.setDefaultMaxPerRoute(5); // 每路由最大连接数，默认值是2
+            /**
+             * 整个连接池最大连接数
+             */
+            httpClientConnectionManager.setMaxTotal(50);
+            /**
+             * 每路由最大连接数，默认值是2
+             */
+            httpClientConnectionManager.setDefaultMaxPerRoute(5);
         }
     }
 

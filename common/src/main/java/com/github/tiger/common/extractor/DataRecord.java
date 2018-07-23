@@ -17,13 +17,19 @@ public class DataRecord {
 
     private List<Element> linkRecords;
 
+    private List<Element> imageRecords;
+
 	private Map<Element, String> absPathMap = new LinkedHashMap<>();
+
+    private Map<String, Element> tempMap = new HashMap<>();
 
     public DataRecord(Element root, List<Element> textRecords) {
         this.root = root;
         this.textRecords = textRecords;
-        this.linkRecords = new ArrayList<Element>();
-        editAbsPath(this.root);
+        this.linkRecords = new ArrayList<>();
+        this.imageRecords = new ArrayList<>();
+//      editAbsPath(this.root);
+        editAbsPath(this.root, "");
     }
 
     public int getTextCount() {
@@ -38,7 +44,7 @@ public class DataRecord {
 		return linkRecords;
 	}
 
-	public void editAbsPath(Element target) {
+    public void editAbsPath(Element target) {
         if (HtmlMining.hasChildren(target)) {
             Elements children = target.children();
             int size = children.size();
@@ -46,7 +52,10 @@ public class DataRecord {
                 for (int i = 0, j = 1; i < size; i++, j++) {
                     Element child = children.get(i);
                     if (child.tagName().equals("a")) {
-                    	linkRecords.add(child);
+                        linkRecords.add(child);
+                    }
+                    if (child.tagName().equals("img")) {
+                        imageRecords.add(child);
                     }
                     Element parent = child.parent();
                     String absPath = absPathMap.get(parent);
@@ -59,6 +68,39 @@ public class DataRecord {
                     editAbsPath(child);
                 }
             }
+        }
+    }
+
+    public void editAbsPath(Element target, String xpath) {
+        if (HtmlMining.hasChildren(target)) {
+            absPathMap.put(target, xpath);
+            Elements children = target.children();
+            for (Element child : children) {
+                if (child.tagName().equals("a")) {
+                    linkRecords.add(child);
+                }
+                if (child.tagName().equals("img")) {
+                    imageRecords.add(child);
+                }
+                int i = 1;
+                String tempPath;
+                while (true) {
+                    if (StringUtils.isNotBlank(xpath)) {
+                        tempPath = xpath + DataRegion.SELECTOR_LT
+                                + getCssStyle(child, i, true, false);
+                    } else {
+                        tempPath = getCssStyle(child, i, true, false);
+                    }
+                    if (!tempMap.containsKey(tempPath)) {
+                        tempMap.put(tempPath, child);
+                        break;
+                    }
+                    i++;
+                }
+                editAbsPath(child, tempPath);
+            }
+        } else {
+            absPathMap.put(target, xpath);
         }
     }
 

@@ -7,7 +7,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 public class TradeControllerTest extends MvcJunit4Test {
 
-    // wxNotify
+    /**
+     * wxNotify
+     *
+     * @throws Exception
+     */
     @Test
     public void testWxNotify() throws Exception {
         String content =

@@ -89,7 +89,7 @@ public class ChatClient {
         }
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         System.setProperty("ssl", "true");
         Integer port = 8080;
         final ChatClient client = new ChatClient("127.0.0.1", port);
