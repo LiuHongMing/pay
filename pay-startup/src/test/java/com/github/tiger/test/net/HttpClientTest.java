@@ -63,7 +63,7 @@ public class HttpClientTest {
          */
         httpUrlConnection.setInstanceFollowRedirects(true);
 
-        // 设置请求头
+        // ----- 设置请求头
 
         /**
          * 传送的内容类型是二进制流
