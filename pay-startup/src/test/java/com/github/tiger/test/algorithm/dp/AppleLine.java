@@ -19,7 +19,7 @@ public class AppleLine {
 
     public static void main(String[] args) {
 
-        int[][] apples = {{7, 1, 9},{3, 0, 10},{1, 2, 5}};
+        int[][] apples = {{7, 1, 9}, {3, 0, 10}, {1, 2, 5}};
         int row = apples.length;
         int col = apples[0].length;
 
