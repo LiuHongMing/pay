@@ -1,7 +1,9 @@
 package com.github.tiger.test.algorithm.dp;
 
 /**
- * 动态规划：
+ * @author liuhongming
+ *
+ * 动态规划（入门）：
  *
  * 如果我们有面值为1元、3元和5元的硬币若干枚，如何用最少的硬币凑够11元？
  *
@@ -21,7 +23,6 @@ package com.github.tiger.test.algorithm.dp;
  *
  * d(3)=min{ d(3-1)+1, d(3-3)+1 }
  *
- * @author liuhongming
  */
 public class MinCoins {
 
@@ -45,6 +46,9 @@ public class MinCoins {
 
     public static int minCoins(int money, int[] values) {
 
+        /**
+         * 初始化
+         */
         int[] minCoin = new int[money + 1];
         for (int i = 0; i < minCoin.length; i++) {
             minCoin[i] = Integer.MAX_VALUE;
