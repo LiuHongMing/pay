@@ -1,7 +1,6 @@
 package com.github.tiger.test.algorithm.dp;
 
 /**
- * @author liuhongming
  *
  * 动态规划（初级）：最长递增子序列（LIS：longest increasing subsequence）
  *
@@ -14,6 +13,7 @@ package com.github.tiger.test.algorithm.dp;
  * 用大白话解释就是，想要求d(i)，就*把i前面的各个子序列*中，最后一个数不大于A[i]的序列长度加1，然后取出最大的长度即为d(i)。
  * 当然了，有可能i前面的各个子序列中最后一个数都大于A[i]，那么d(i)=1， 即它自身成为一个长度为1的子序列。
  *
+ * @author liuhongming
  */
 public class LIS {
 

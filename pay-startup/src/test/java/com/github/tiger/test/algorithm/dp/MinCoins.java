@@ -1,7 +1,6 @@
 package com.github.tiger.test.algorithm.dp;
 
 /**
- * @author liuhongming
  *
  * 动态规划背后的基本思想非常简单。
  * 大致上，若要解一个给定问题，我们需要解其不同部分（即子问题），再根据子问题的解以得出原问题的解。
@@ -25,6 +24,8 @@ package com.github.tiger.test.algorithm.dp;
  * d(3)=d(3-1)+1=d(2)+1=2+1=3
  *
  * d(3)=min{ d(3-1)+1, d(3-3)+1 }
+ *
+ * @author liuhongming
  *
  */
 public class MinCoins {

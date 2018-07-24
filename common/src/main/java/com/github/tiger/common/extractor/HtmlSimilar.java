@@ -168,10 +168,9 @@ public class HtmlSimilar {
 
 
     /**
-     * 回溯寻找最大编辑路径
+     * 回溯法，深度优先搜索
      *
-     * @param m
-     * @param w
+     * 寻找最大编辑路径
      */
     public List<Station> backTrace(int[][] m, int[][] w) {
         List<Station> stationList = new LinkedList<>();

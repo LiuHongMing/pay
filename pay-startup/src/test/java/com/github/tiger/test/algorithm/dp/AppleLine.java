@@ -1,7 +1,6 @@
 package com.github.tiger.test.algorithm.dp;
 
 /**
- * @author liuhongming
  *
  * 动态规划（中级）：
  *
@@ -14,6 +13,8 @@ package com.github.tiger.test.algorithm.dp;
  * 1. 对于每一行，从左向右计算，然后从上到下逐行处理。
  * 2. 对于每一列，从上到下计算，然后从左向右逐列处理。
  * 这样做的目的是为了在计算S[i][j]时，S[i-1][j]和S[i][j-1]都已经计算出来了。
+ *
+ * @author liuhongming
  */
 public class AppleLine {
 
