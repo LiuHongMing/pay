@@ -7,7 +7,7 @@ export JAVA_HOME=/data/jdk
 # 设置项目代码路径
 export CODE_HOME="/data/webserver/pay-startup-package"
 # 日志路径
-export LOG_PATH="/data/webserver/logs/pay.senyint.local"
+export LOG_PATH="/data/webserver/logs/pay.tiger.local"
 mkdir -p $LOG_PATH
 # 设置依赖路径
 export CLASSPATH="$CODE_HOME/classes:$CODE_HOME/lib/*"

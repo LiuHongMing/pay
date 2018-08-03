@@ -1,6 +1,5 @@
 package com.github.tiger.test.java.lang;
 
-import com.github.tiger.common.util.Dom4jUtil;
 import com.github.tiger.common.util.RandomStringUtil;
 import com.github.tiger.pay.constant.PayWayEnum;
 import com.github.tiger.pay.dto.factory.OutTradeNoFactory;

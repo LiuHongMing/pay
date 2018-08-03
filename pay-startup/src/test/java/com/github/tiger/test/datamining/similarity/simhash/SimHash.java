@@ -1,5 +1,7 @@
 package com.github.tiger.test.datamining.similarity.simhash;
 
+import org.nlpcn.commons.lang.finger.SimHashService;
+
 import java.util.List;
 
 /**
@@ -12,32 +14,56 @@ import java.util.List;
  * 4、合并
  * 5、降维
  */
-public interface SimHash {
+public class SimHash {
+
+    private int bithash = 64;
 
     /**
      * 分词
-     *
-     * 赋予权重
      */
-    List lexicon(String content);
+    List tokenizer(String content) {
+        return null;
+    }
 
     /**
      * hash
      */
-    long hash(String word);
+    long hash(String word) {
+        return 0;
+    }
 
     /**
      * 加权
      */
-    void weighting(int[] vectors);
+    void weight(int[] vectors) {
+
+    }
 
     /**
-     * 合并
+     * 累加
      */
-    void merge(int[] v1, int[] v2);
+    void accumulate(int[] v1, int[] v2) {
+
+    }
 
     /**
      * 降维
      */
-    void reduceDimension();
+    void reduceDimension() {
+
+    }
+
+    /**
+     * 指纹
+     */
+    void fingerprint() {
+
+    }
+
+    public static void main(String[] args) {
+        SimHashService shs = new SimHashService();
+        System.out.println(shs.fingerprint("北京大学"));
+        System.out.println(shs.fingerprint("北大"));
+    }
+
 }

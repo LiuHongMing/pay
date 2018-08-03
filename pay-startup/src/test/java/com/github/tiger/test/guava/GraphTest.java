@@ -8,6 +8,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
+ * DFS 深度优先搜索（Depth-First-Search）
+ *
+ * BFS 广度优先搜索（Breadth-First-Search）
+ *
  * @author liuhongming
  */
 public class GraphTest {

@@ -41,6 +41,36 @@ public class Analysis {
     }
 
     /**
+     * 获取当前词
+     */
+    public static List<String> getDicAnalysisNames(List<Term> terms) {
+        List<String> ret = new ArrayList<>();
+        for (Term term : terms) {
+            ret.add(term.getName());
+        }
+        return ret;
+    }
+
+    /**
+     * 获取词性
+     */
+    public static List<String> getDicAnalysisNatures(String content) {
+        Result result = DicAnalysis.parse(content);
+        return getDicAnalysisNatures(result.getTerms());
+    }
+
+    /**
+     * 获取词性
+     */
+    public static List<String> getDicAnalysisNatures(List<Term> terms) {
+        List<String> ret = new ArrayList<>();
+        for (Term term : terms) {
+            ret.add(term.getNatureStr());
+        }
+        return ret;
+    }
+
+    /**
      * 过滤词性
      */
     public static Result filter(final String content, final String regex) {
