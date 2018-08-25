@@ -33,12 +33,9 @@ public class FutureTest {
 
     public static void main(String[] args) {
         Promise<String> promise = new DefaultPromise<>(GlobalEventExecutor.INSTANCE);
-        promise.addListener(new GenericFutureListener<Future<? super String>>() {
-            @Override
-            public void operationComplete(Future<? super String> future) throws Exception {
-                if (future.isDone()) {
-                    System.out.println("");
-                }
+        promise.addListener(future -> {
+            if (future.isDone()) {
+                System.out.println("");
             }
         });
     }

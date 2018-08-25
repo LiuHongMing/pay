@@ -57,7 +57,8 @@ public class ChatClient {
         // Configure SSL.
         final SslContext sslCtx;
         if (SSL) {
-            sslCtx = SslContextBuilder.forClient().trustManager(InsecureTrustManagerFactory.INSTANCE).build();
+            sslCtx = SslContextBuilder.forClient()
+                    .trustManager(InsecureTrustManagerFactory.INSTANCE).build();
         } else {
             sslCtx = null;
         }
@@ -93,14 +94,11 @@ public class ChatClient {
         System.setProperty("ssl", "true");
         Integer port = 8080;
         final ChatClient client = new ChatClient("127.0.0.1", port);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    client.connction();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        new Thread(() -> {
+            try {
+                client.connction();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }).start();
 

@@ -6,16 +6,13 @@ public class ThreadDeathWatcherTest {
 
     public static void main(String[] args) throws InterruptedException {
 
-        Runnable mainTask = new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                System.out.println("main thread done");
+        Runnable mainTask = () -> {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+            System.out.println("main thread done");
         };
 
         Thread main = new Thread(mainTask);

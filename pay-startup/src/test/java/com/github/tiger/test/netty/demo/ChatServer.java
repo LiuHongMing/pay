@@ -55,7 +55,8 @@ public class ChatServer {
         final SslContext sslCtx;
         if (SSL) {
             SelfSignedCertificate ssc = new SelfSignedCertificate();
-            sslCtx = SslContextBuilder.forServer(ssc.certificate(), ssc.privateKey()).build();
+            sslCtx = SslContextBuilder
+                    .forServer(ssc.certificate(), ssc.privateKey()).build();
         } else {
             sslCtx = null;
         }

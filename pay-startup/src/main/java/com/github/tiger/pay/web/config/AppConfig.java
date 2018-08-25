@@ -4,6 +4,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 
+/**
+ * @author liuhongming
+ */
 @Configuration
 @Import(DefaultConfig.class)
 @ImportResource({"classpath:/applicationContext.xml"})

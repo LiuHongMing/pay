@@ -11,20 +11,20 @@ public class ByteBufAllocatorTest {
     final PooledByteBufAllocator pooled = new PooledByteBufAllocator(false);
 
     @Test
-    public void testPooled() throws Exception {
+    public void testPooled() {
         ByteBuf buf = pooled.heapBuffer(4096);
         System.out.println(buf);
     }
 
     @Test
-    public void testPoolChunk() throws Exception {
+    public void testPoolChunk() {
         System.out.println(1 << maxOrder);
         int chunkSize = (1 << maxOrder) * pageSize;
         System.out.println(chunkSize);
     }
 
     @Test
-    public void testPoolSubpage() throws Exception {
+    public void testPoolSubpage() {
     }
 
 }

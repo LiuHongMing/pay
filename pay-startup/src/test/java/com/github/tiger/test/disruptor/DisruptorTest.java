@@ -33,28 +33,14 @@ public class DisruptorTest {
         }
 
         // 生产者的线程工厂
-        ThreadFactory threadFactory = new ThreadFactory() {
-            @Override
-            public Thread newThread(Runnable r) {
-                return new Thread(r, "simpleThread");
-            }
-        };
+        ThreadFactory threadFactory = r -> new Thread(r, "simpleThread");
 
         // RingBuffer生产工厂,初始化RingBuffer的时候使用
-        EventFactory<Element> factory = new EventFactory<Element>() {
-            @Override
-            public Element newInstance() {
-                return new Element();
-            }
-        };
+        EventFactory<Element> factory = () -> new Element();
 
         // 处理Event的handler
-        EventHandler<Element> handler = new EventHandler<Element>() {
-            @Override
-            public void onEvent(Element element, long sequence, boolean endOfBatch) throws Exception {
-                System.out.println("Element:" + element.get());
-            }
-        };
+        EventHandler<Element> handler =
+                (element, sequence, endOfBatch) -> System.out.println("Element:" + element.get());
 
         // 阻塞策略
         BlockingWaitStrategy strategy = new BlockingWaitStrategy();
