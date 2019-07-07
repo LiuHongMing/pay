@@ -3,6 +3,7 @@ package com.github.tiger.test.aio.client;
 import java.util.Scanner;
 
 public class Client {
+
     private static String DEFAULT_HOST = "0.0.0.0";
     private static int DEFAULT_PORT = 12345;
     private static AsyncClientHandler clientHandle;
@@ -18,7 +19,7 @@ public class Client {
         new Thread(clientHandle, "Client").start();
     }
 
-    //向服务器发送消息
+    // 向服务器发送消息
     public static boolean sendMsg(String msg) throws Exception {
         if (msg.equals("q")) return false;
         clientHandle.sendMsg(msg);
