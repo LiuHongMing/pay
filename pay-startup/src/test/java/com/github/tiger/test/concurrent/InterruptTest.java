@@ -26,18 +26,25 @@ public class InterruptTest extends Thread {
         for(;;) {
             // 中断后调用，第一次会返回true，并清除中断标志位。再次调用会返回false
             if (interrupted()) {
+                System.out.println("interrupted ...");
                 break;
             }
             count++;
             if (count % 1000 == 0) {
-                LockSupport.park(); // 不会抛出InterruptedException，会受到线程中断影响，继续执行
-                System.out.println("count=" + count);
-                // 中断后被阻塞，会清除中断标志位，抛出InterruptedException
-//                try {
-//                    Thread.sleep(100);
-//                } catch (InterruptedException e) {
-//                    break;
-//                }
+                /**
+                 * 不会抛出InterruptedException，会受到线程中断影响，继续执行
+                 */
+//                LockSupport.park();
+//                System.out.println("count=" + count);
+                /**
+                 * 中断后被阻塞，会清除中断标志位，抛出InterruptedException
+                 */
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    System.out.println("throw InterruptedException");
+                    break;
+                }
             }
         }
 

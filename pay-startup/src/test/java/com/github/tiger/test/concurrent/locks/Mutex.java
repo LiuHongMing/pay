@@ -86,24 +86,18 @@ public class Mutex implements Lock {
     public static void main(String[] args) {
         Mutex mutex = new Mutex();
 
-        Thread threadA = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                mutex.lock();
-                System.out.println("ThreadA locked");
-                mutex.unlock();
-                System.out.println("ThreadA unlock");
-            }
+        Thread threadA = new Thread(() -> {
+            mutex.lock();
+            System.out.println("ThreadA locked");
+            mutex.unlock();
+            System.out.println("ThreadA unlock");
         });
 
-        Thread threadB = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                mutex.lock();
-                System.out.println("ThreadB locked");
-                mutex.unlock();
-                System.out.println("ThreadB unlock");
-            }
+        Thread threadB = new Thread(() -> {
+            mutex.lock();
+            System.out.println("ThreadB locked");
+            mutex.unlock();
+            System.out.println("ThreadB unlock");
         });
 
         threadA.start();

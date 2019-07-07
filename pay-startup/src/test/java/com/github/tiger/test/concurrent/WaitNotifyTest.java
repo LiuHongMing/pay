@@ -1,7 +1,9 @@
 package com.github.tiger.test.concurrent;
 
+/**
+ * @author liuhongming
+ */
 public class WaitNotifyTest {
-
 
     public static void main(String[] args) throws InterruptedException {
         ThreadA ta = new ThreadA("ta");

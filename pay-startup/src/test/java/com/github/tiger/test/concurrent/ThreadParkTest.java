@@ -10,16 +10,13 @@ public class ThreadParkTest {
     public static void main(String[] args) {
         Thread main = Thread.currentThread();
 
-        Thread go = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(6 * 1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                LockSupport.unpark(main);
+        Thread go = new Thread(() -> {
+            try {
+                Thread.sleep(6 * 1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+            LockSupport.unpark(main);
         });
         go.start();
 

@@ -63,11 +63,19 @@ PERFORMANCE_OPTS="-XX:-UseBiasedLocking -XX:-UseCounterDecay -XX:AutoBoxCacheMax
 #   并行的处理Reference对象
 CMS_GC_OPTS="-XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiatingOccupancyOnly -XX:MaxTenuringThreshold=6 -XX:+ExplicitGCInvokesConcurrent -XX:+ParallelRefProcEnabled"
 # GC 日志参数
+# -verbose:gc
+#   显示有关每个垃圾回收（GC）事件的信息
 # -Xloggc
+#   设置记录GC事件信息的日志文件
+# -XX:+PrintGCApplicationConcurrentTime
+#   允许打印自上次暂停以来经过的时间（例如，GC暂停）。默认情况下，禁用此选项。
 # -XX:+PrintGCApplicationStoppedTime
+#   允许打印暂停（例如，GC暂停）持续多长时间。默认情况下，禁用此选项。
 # -XX:+PrintGCDateStamps
+#   允许在每个GC上打印日期戳。默认情况下，禁用此选项。
 # -XX:+PrintGCDetails
-GC_OPTS="-Xloggc:/dev/shm/pay-gc.log -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCDateStamps -XX:+PrintGCDetails"
+#   允许在每个GC上打印详细消息。默认情况下，禁用此选项。
+GC_OPTS="-verbose:gc -Xloggc:/data/logs/gc/pay-gc.log -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCDateStamps -XX:+PrintGCDetails"
 # 异常 日志参数
 # -XX:-OmitStackTraceInFastThrow
 # -XX:ErrorFile
@@ -83,7 +91,7 @@ JMX_OPTS="-Dcom.sun.management.jmxremote -Djava.rmi.server.hostname=192.168.20.1
 SYS_OPTS="-Djava.net.preferIPv4Stack=true"
 export JAVA_OPTS="-server $SYS_OPTS $FLAG_OPTS $MEMORY_OPTS $JIT_OPTS $PERFORMANCE_OPTS $CMS_GC_OPTS $GC_OPTS $ERROR_OPTS $JMX_OPTS"
 # 启动类
-export MAIN_CLASS="com.senyint.startup.Bootstrap"
+export MAIN_CLASS="com.github.tiger.pay.startup.Bootstrap"
 
 nohup $_EXECJAVA $JAVA_OPTS -classpath $CLASSPATH $MAIN_CLASS >/dev/null 2>&1 &
 

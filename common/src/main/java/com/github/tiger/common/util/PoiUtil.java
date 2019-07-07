@@ -15,7 +15,7 @@ import java.io.IOException;
 
 /**
  * 功能：MS-Office文件操作
- * <p>
+ *
  * 描述：涵盖Word文档内容提取
  *
  * @author liuhongming

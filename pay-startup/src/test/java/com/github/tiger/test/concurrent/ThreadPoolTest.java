@@ -29,18 +29,16 @@ public class ThreadPoolTest {
     }
 
     public static void main(String[] args) {
+        /**
+         * keepAliveTime: 当线程数大于核心时，这是多余空闲线程在终止之前等待新任务的最长时间。
+         */
         ThreadPoolExecutor tpe = new ThreadPoolWithHook(3, 5,
                 10, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(3),
                 new ThreadPoolExecutor.CallerRunsPolicy());
 
         for (int i = 0; i < 10 ; i++) {
             final int j = i;
-            tpe.execute(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println(Thread.currentThread().getName() + ", i=" + j);
-                }
-            });
+            tpe.execute(() -> System.out.println(Thread.currentThread().getName() + ", i=" + j));
         }
 
     }

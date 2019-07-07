@@ -17,12 +17,9 @@ public class VolatileTest {
         final VolatileTest test = new VolatileTest();
 
         for (int i = 0; i < THREAD_COUNT; i++) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    for (int j = 0; j < 1000; j++) {
-                        test.increase();
-                    }
+            new Thread(() -> {
+                for (int j = 0; j < 1000; j++) {
+                    test.increase();
                 }
             }).start();
         }

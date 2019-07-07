@@ -1,7 +1,7 @@
 package com.github.tiger.test.concurrent;
 
 /**
- * 将变量声明成 volatile，解决doublecheck的操作不一致问题
+ * 将变量声明成 volatile，解决 doublecheck 的操作不一致问题
  */
 public class VolatileDoubleCheckLockingTest {
 

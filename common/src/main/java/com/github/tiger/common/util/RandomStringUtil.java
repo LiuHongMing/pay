@@ -4,6 +4,8 @@ import org.apache.commons.lang3.RandomStringUtils;
 
 /**
  * 随机字符串生成工具类
+ *
+ * @author liuhongming
  */
 public class RandomStringUtil {
 

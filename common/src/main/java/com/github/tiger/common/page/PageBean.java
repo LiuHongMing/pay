@@ -38,15 +38,30 @@ public class PageBean<T> implements Serializable {
     private int numPerPage;
 
     // 查询数据库
-    private int totalCount; // 总记录数
-    private List<T> recordList = new ArrayList<T>(0); // 本页的数据列表
+
+    // 总记录数
+    private int totalCount;
+    // 本页的数据列表
+    private List<T> recordList = new ArrayList<T>(0);
 
     // 计算
-    private int totalPage; // 总页数
-    private int beginPageIndex; // 页码列表的开始索引（包含）
-    private int endPageIndex; // 页码列表的结束索引（包含）
 
-    private Map<String, Object> countResultMap; // 当前分页条件下的统计结果
+    /**
+     * 总页数
+     */
+    private int totalPage;
+    /**
+     * 页码列表的开始索引（包含）
+     */
+    private int beginPageIndex;
+    /**
+     * 页码列表的结束索引（包含）
+     */
+    private int endPageIndex;
+    /**
+     * 当前分页条件下的统计结果
+     */
+    private Map<String, Object> countResultMap;
 
     public PageBean() {
     }
@@ -82,7 +97,8 @@ public class PageBean<T> implements Serializable {
      */
     public static int checkCurrentPage(int totalCount, int numPerPage,
                                        int currentPage) {
-        int totalPage = PageBean.countTotalPage(totalCount, numPerPage); // 最大页数
+        // 最大页数
+        int totalPage = PageBean.countTotalPage(totalCount, numPerPage);
         if (currentPage > totalPage) {
             // 如果页面提交过来的页数大于总页数，则将当前页设为总页数
             // 此时要求totalPage要大于获等于1
@@ -91,7 +107,8 @@ public class PageBean<T> implements Serializable {
             }
             return totalPage;
         } else if (currentPage < 1) {
-            return 1; // 当前页不能小于1（避免页面输入不正确值）
+            // 当前页不能小于1（避免页面输入不正确值）
+            return 1;
         } else {
             return currentPage;
         }

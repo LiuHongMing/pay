@@ -16,8 +16,6 @@ public class SessionTest {
 
     static SqlSessionFactory sessionFactory;
 
-    String environment = "dev";
-
     static {
 
         InputStream configInStream = Thread.currentThread()
@@ -26,6 +24,8 @@ public class SessionTest {
         sessionFactory = new SqlSessionFactoryBuilder()
                 .build(configInStream);
     }
+
+    String env = "dev";
 
     @Test
     public void testMapper() {

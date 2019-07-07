@@ -24,6 +24,11 @@ public class DataRegion {
 
     /**
      * 广义节点
+     *
+     * 1. 所有广义节点都有相同的父节点
+     * 2. 所有广义节点都有相同的长度
+     * 3. 所有广义节点都是相邻的
+     * 4. 所有相邻广义节点间的相似度大于一个固定的阈值
      */
     SimilarNeighbors generalized;
 

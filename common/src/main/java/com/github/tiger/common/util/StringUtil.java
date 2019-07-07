@@ -1,5 +1,8 @@
 package com.github.tiger.common.util;
 
+/**
+ * @author liuhongming
+ */
 public class StringUtil {
 
     /**

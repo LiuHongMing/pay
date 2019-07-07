@@ -25,6 +25,5 @@ public class ConstantPoolTest {
 
         List list = new ArrayList();
 
-
     }
 }
