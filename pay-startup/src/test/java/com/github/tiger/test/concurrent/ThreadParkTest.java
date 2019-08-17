@@ -3,7 +3,7 @@ package com.github.tiger.test.concurrent;
 import java.util.concurrent.locks.LockSupport;
 
 /**
- * 测试LockSupport
+ * 测试 LockSupport
  */
 public class ThreadParkTest {
 

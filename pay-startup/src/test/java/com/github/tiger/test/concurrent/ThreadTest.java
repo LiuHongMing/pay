@@ -11,12 +11,15 @@ public class ThreadTest {
 
     public static void main(String[] args) {
         MyThread t = new MyThread();
-        t.run();
+        t.start();
         System.out.println("ping");
 
         Thread.currentThread().interrupt();
-        System.out.println(Thread.interrupted());
-        System.out.println(Thread.interrupted());
+
+        String threadName = Thread.currentThread().getName();
+        System.out.println(threadName + " interrupt ...");
+        System.out.println(threadName + " interrupted is " + Thread.interrupted());
+        System.out.println(threadName + " interrupted is " + Thread.interrupted());
     }
 
 }

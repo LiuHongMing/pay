@@ -1,7 +1,9 @@
-package com.github.tiger.test.concurrent;
+package com.github.tiger.test.concurrent.synchronize;
 
 /**
- * synchronized 方法或语句的使用提供了对与每个对象相关的隐式监视器锁的访问
+ * synchronized 方法或语句 提供了对与每个对象相关的隐式监视器锁的访问
+ *
+ * 使用 yield() 等待所有线程执行完毕
  */
 public class SynchronizedTest {
 
@@ -28,16 +30,13 @@ public class SynchronizedTest {
     public static void main(String[] args) {
         final SynchronizedTest test = new SynchronizedTest();
         for (int i = 0; i < 5; i++) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        for (int j = 0; j < 10; j++) {
-                            test.counter();
-                        }
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+            new Thread(() -> {
+                try {
+                    for (int j = 0; j < 10; j++) {
+                        test.counter();
                     }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }).start();
         }

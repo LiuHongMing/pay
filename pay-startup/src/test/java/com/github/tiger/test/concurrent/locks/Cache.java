@@ -6,6 +6,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class Cache {
+
     static Map<String, Object> map = new HashMap<>();
     static ReentrantReadWriteLock rwl = new ReentrantReadWriteLock();
     static Lock r = rwl.readLock();

@@ -5,17 +5,25 @@ package com.github.tiger.common.context;
  */
 public class PlainClassLoader extends ClassLoader {
 
+    /**
+     * 重写 loadClass
+     */
     @Override
-    public Class<?> loadClass(String name) throws ClassNotFoundException {
-        return super.loadClass(name);
+    public Class<?> loadClass(String name) {
+        return findClass(name);
     }
 
+    /**
+     * 重写 findClass
+     */
     @Override
-    protected Class<?> findClass(String name) throws ClassNotFoundException {
-        /**
-         * 重写findClass
-         */
-        return super.findClass(name);
+    protected Class<?> findClass(String name) {
+
+        final String myClass = "MyClass";
+
+        byte[] bytes = new byte[0];
+
+        return defineClass(myClass, bytes, 0, bytes.length);
     }
 
 }

@@ -2,6 +2,8 @@ package com.github.tiger.common.context;
 
 /**
  * 交换器枚举类
+ *
+ * @author liuhongming
  */
 public enum Switches {
 

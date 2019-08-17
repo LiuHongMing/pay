@@ -6,7 +6,7 @@ public class LockSupportTest2 {
 
     static Thread mainThread;
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
         mainThread = Thread.currentThread();
 
@@ -40,7 +40,8 @@ public class LockSupportTest2 {
             System.out.println(Thread.currentThread().getName() + " synchronized ...");
             synchronized (this) {
                 System.out.println(Thread.currentThread().getName() + " wake up others ...");
-                LockSupport.unpark(mainThread); // 唤醒"当前对象上的等待线程"
+                // 唤醒"当前对象上的等待线程"
+                LockSupport.unpark(mainThread);
             }
         }
     }

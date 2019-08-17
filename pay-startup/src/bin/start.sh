@@ -13,10 +13,12 @@ mkdir -p $LOG_PATH
 export CLASSPATH="$CODE_HOME/classes:$CODE_HOME/lib/*"
 # java可执行文件位置
 export _EXECJAVA="$JAVA_HOME/bin/java"
-# JVM启动参数
+
+# JVM 启动参数
 # -XX:+PrintCommandLineFlags
 #   打印参数
 FLAG_OPTS="-XX:+PrintCommandLineFlags"
+
 # 内存参数
 # -Xms -Xmx
 #   堆内存大小
@@ -26,10 +28,22 @@ FLAG_OPTS="-XX:+PrintCommandLineFlags"
 #   直接内存最大值
 # -XX:PermSize -XX:MaxPermSize
 #   永久代大小
-MEMORY_OPTS="-Xms4096m -Xmx4096m -Xmn2048m -XX:MaxDirectMemorySize=4096m -XX:PermSize=256m -XX:MaxPermSize=512m -XX:ReservedCodeCacheSize=240m"
+MEMORY_OPTS="-Xms4096m -Xmx4096m -Xmn2048m -XX:MaxDirectMemorySize=4096m -XX:PermSize=256m -XX:MaxPermSize=512m"
+
+# JIT 参数
 # -XX:ReservedCodeCacheSize
-#   即时编译器编译的代码缓冲的最大值
-JIT_OPTS="-XX:ReservedCodeCacheSize"
+#   设置JIT编译代码的最大代码缓存大小（以字节为单位）。
+#   附加字母k或K表示千字节，m或M表示兆字节，g或G表示千兆字节。
+#   默认的最大代码缓存大小为240MB; 如果使用-XX:-TieredCompilation选项禁用分层编译，则默认大小为48MB。
+#   此选项的限制为2GB; 否则，会产生错误。
+#   最大代码缓存大小不应小于初始代码缓存大小；请参阅选项-XX:InitialCodeCacheSize。
+#   此选项等效于-Xmaxjitcodesize。
+# -XX:+TieredCompilation
+#   默认情况下，启用此选项。只有Java HotSpot Server VM支持此选项。
+# -XX:-TieredCompilation
+#   禁用分层编译。
+JIT_OPTS="-XX:ReservedCodeCacheSize=240m"
+
 # 性能参数
 # -XX:-UseBiasedLocking
 #   关闭偏向锁
@@ -43,6 +57,7 @@ JIT_OPTS="-XX:ReservedCodeCacheSize"
 # -XX:+AlwaysPreTouch
 #   启动应用时访问并置零所有的内存页面
 PERFORMANCE_OPTS="-XX:-UseBiasedLocking -XX:-UseCounterDecay -XX:AutoBoxCacheMax=20000 -XX:+AlwaysPreTouch"
+
 # GC CMS参数
 # -XX:+UseConcMarkSweepGC
 #   默认开启:
@@ -62,6 +77,15 @@ PERFORMANCE_OPTS="-XX:-UseBiasedLocking -XX:-UseCounterDecay -XX:AutoBoxCacheMax
 # -XX:+ParallelRefProcEnabled
 #   并行的处理Reference对象
 CMS_GC_OPTS="-XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiatingOccupancyOnly -XX:MaxTenuringThreshold=6 -XX:+ExplicitGCInvokesConcurrent -XX:+ParallelRefProcEnabled"
+
+# GC G1参数
+# -XX:+UseG1GC
+#   允许使用垃圾优先（G1）垃圾收集器。
+#   它是一个服务器式垃圾收集器，针对具有大量RAM的多处理器计算机。
+#   它以高概率满足GC暂停时间目标，同时保持良好的吞吐量。
+#   G1收集器推荐用于需要大堆（大小约为6GB或更大）且GC延迟要求有限的应用（稳定且可预测的暂停时间低于0.5秒）。
+G1_GC_OPTS="-XX:+UseG1GC"
+
 # GC 日志参数
 # -verbose:gc
 #   显示有关每个垃圾回收（GC）事件的信息
@@ -76,20 +100,25 @@ CMS_GC_OPTS="-XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75 -XX:+
 # -XX:+PrintGCDetails
 #   允许在每个GC上打印详细消息。默认情况下，禁用此选项。
 GC_OPTS="-verbose:gc -Xloggc:/data/logs/gc/pay-gc.log -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCDateStamps -XX:+PrintGCDetails"
+
 # 异常 日志参数
 # -XX:-OmitStackTraceInFastThrow
 # -XX:ErrorFile
 # -XX:+HeapDumpOnOutOfMemoryError
 # -XX:HeapDumpPath
 ERROR_OPTS="-XX:+HeapDumpOnOutOfMemoryError -XX:-OmitStackTraceInFastThrow -XX:ErrorFile=${LOG_PATH}/hs_err_%p.log -XX:HeapDumpPath=${LOG_PATH}/hs_err.hprof"
+
 # JMX 参数
 JMX_PORT="18888"
 JMX_OPTS="-Dcom.sun.management.jmxremote -Djava.rmi.server.hostname=192.168.20.132 -Dcom.sun.management.jmxremote.port=${JMX_PORT} -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false"
+
 # 系统属性
 # -Djava.net.preferIPv4Stack=true
 #   优先使用IPV4，禁用IPV6
 SYS_OPTS="-Djava.net.preferIPv4Stack=true"
+
 export JAVA_OPTS="-server $SYS_OPTS $FLAG_OPTS $MEMORY_OPTS $JIT_OPTS $PERFORMANCE_OPTS $CMS_GC_OPTS $GC_OPTS $ERROR_OPTS $JMX_OPTS"
+
 # 启动类
 export MAIN_CLASS="com.github.tiger.pay.startup.Bootstrap"
 

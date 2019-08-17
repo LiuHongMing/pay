@@ -1,6 +1,6 @@
 package com.github.tiger.test;
 
-import com.github.tiger.common.context.JarClassLoader;
+import com.github.tiger.common.context.CustomClassLoader;
 import com.github.tiger.common.context.PatchContext;
 import org.apache.commons.vfs2.*;
 import org.apache.commons.vfs2.impl.DefaultFileMonitor;
@@ -13,14 +13,14 @@ import java.util.Scanner;
  */
 public class HotspotTest {
 
-    private JarClassLoader jarClassLoader;
+    private CustomClassLoader customClassLoader;
 
-    public JarClassLoader getJarClassLoader() {
-        return jarClassLoader;
+    public CustomClassLoader getCustomClassLoader() {
+        return customClassLoader;
     }
 
-    public void setJarClassLoader(JarClassLoader jarClassLoader) {
-        this.jarClassLoader = jarClassLoader;
+    public void setCustomClassLoader(CustomClassLoader customClassLoader) {
+        this.customClassLoader = customClassLoader;
     }
 
     public void doListen(String dir) throws FileSystemException {
@@ -32,7 +32,7 @@ public class HotspotTest {
                 String extension = event.getFile().getName().getExtension();
                 if ("jar".equals(extension)) {
                     URL url = event.getFile().getURL();
-                    jarClassLoader = new JarClassLoader(new URL[]{url});
+                    customClassLoader = new CustomClassLoader(new URL[]{url});
                 }
             }
 
@@ -79,7 +79,7 @@ public class HotspotTest {
                 e.printStackTrace();
             }
 
-            classLoader = vfs.getJarClassLoader();
+            classLoader = vfs.getCustomClassLoader();
             if (classLoader != null) {
                 try {
                     // 通过自定义类加载器加载类

@@ -1,4 +1,4 @@
-package com.github.tiger.test.concurrent;
+package com.github.tiger.test.concurrent.volatiles;
 
 /**
  * volatile对变量的操作非原子性，不能保证一致性

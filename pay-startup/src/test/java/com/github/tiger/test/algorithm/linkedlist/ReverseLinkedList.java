@@ -43,6 +43,12 @@ public class ReverseLinkedList {
         }
     }
 
+    /**
+     * 递归
+     *
+     * @param head
+     * @return
+     */
     public static Node reverse(Node head) {
         if (head == null || head.getNextNode() == null) {
             return head;
@@ -54,26 +60,17 @@ public class ReverseLinkedList {
         return next;
     }
 
+    /**
+     * 非递归
+     *
+     * @param head
+     * @return
+     */
     public static Node reverse2(Node head) {
 
         if (head == null) {
             return head;
         }
-
-//        Node curr = head;
-//        while (true) {
-//            Node pre = curr.getNextNode();
-//            if (pre == null) {
-//                curr.setNextNode(null);
-//                break;
-//            }
-//
-//            Node next = pre.getNextNode();
-//            pre.setNextNode(head);
-//            curr.setNextNode(next);
-//
-//            head = pre;
-//        }
 
         Node pre = head;
         Node curr = head.getNextNode();
@@ -110,11 +107,13 @@ public class ReverseLinkedList {
             tail = tail.getNextNode();
         } while (tail != null);
         System.out.print(",");
-        tail = ReverseLinkedList.reverse2(head);
+        tail = ReverseLinkedList.reverse(head);
         do {
             System.out.print((char) tail.getValue());
             tail = tail.getNextNode();
         } while (tail != null);
+        tail = ReverseLinkedList.reverse(head);
+
     }
 
 }

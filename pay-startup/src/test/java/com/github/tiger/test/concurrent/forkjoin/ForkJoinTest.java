@@ -1,4 +1,4 @@
-package com.github.tiger.test.concurrent;
+package com.github.tiger.test.concurrent.forkjoin;
 
 import java.util.concurrent.*;
 
