@@ -59,7 +59,7 @@
         <!-- joda -->
         <joda.version>2.3</joda.version>
         <!-- jackson -->
-        <jackson.version>2.8.4</jackson.version>
+        <jackson.version>2.10.0</jackson.version>
         <!-- servlet -->
         <servlet-api.version>3.0.1</servlet-api.version>
         <!-- spring -->
