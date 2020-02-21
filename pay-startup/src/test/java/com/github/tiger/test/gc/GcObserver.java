@@ -6,7 +6,7 @@ public class GcObserver {
 
     private static void grow() {
         String name = ManagementFactory.getRuntimeMXBean().getName();
-        // et pid
+        // pid
         String pid = name.split("@")[0];
         System.out.println("Pid is:" + pid);
 

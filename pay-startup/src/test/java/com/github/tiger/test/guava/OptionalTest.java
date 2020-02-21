@@ -9,7 +9,7 @@ import org.junit.Test;
 public class OptionalTest {
 
     @Test
-    public void testOptional() {
+    public void testFromNullable() {
         Integer i = null;
 
         Optional<Integer> nullOptional = Optional.fromNullable(i);

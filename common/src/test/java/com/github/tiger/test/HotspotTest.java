@@ -1,7 +1,7 @@
 package com.github.tiger.test;
 
-import com.github.tiger.common.context.CustomClassLoader;
 import com.github.tiger.common.context.PatchContext;
+import com.github.tiger.common.context.PlainClassLoader;
 import org.apache.commons.vfs2.*;
 import org.apache.commons.vfs2.impl.DefaultFileMonitor;
 
@@ -13,13 +13,13 @@ import java.util.Scanner;
  */
 public class HotspotTest {
 
-    private CustomClassLoader customClassLoader;
+    private PlainClassLoader customClassLoader;
 
-    public CustomClassLoader getCustomClassLoader() {
+    public PlainClassLoader getCustomClassLoader() {
         return customClassLoader;
     }
 
-    public void setCustomClassLoader(CustomClassLoader customClassLoader) {
+    public void setCustomClassLoader(PlainClassLoader customClassLoader) {
         this.customClassLoader = customClassLoader;
     }
 
@@ -32,7 +32,7 @@ public class HotspotTest {
                 String extension = event.getFile().getName().getExtension();
                 if ("jar".equals(extension)) {
                     URL url = event.getFile().getURL();
-                    customClassLoader = new CustomClassLoader(new URL[]{url});
+//                    customClassLoader = new PlainClassLoader(new URL[]{url});
                 }
             }
 

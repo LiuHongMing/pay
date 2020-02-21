@@ -6,9 +6,9 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
 /**
- * 互斥锁，通过Lock接口提供的加锁原语，实现互斥锁
+ * 互斥锁，通过 Lock 接口提供的加锁原语，实现互斥锁
  *
- * 内部类Sync继承AbstractQueuedSynchronizer
+ * 内部类 Sync 继承 AbstractQueuedSynchronizer
  */
 public class Mutex implements Lock {
 

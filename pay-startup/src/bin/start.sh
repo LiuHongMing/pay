@@ -99,7 +99,8 @@ G1_GC_OPTS="-XX:+UseG1GC"
 #   允许在每个GC上打印日期戳。默认情况下，禁用此选项。
 # -XX:+PrintGCDetails
 #   允许在每个GC上打印详细消息。默认情况下，禁用此选项。
-GC_OPTS="-verbose:gc -Xloggc:/data/logs/gc/pay-gc.log -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCDateStamps -XX:+PrintGCDetails"
+GC_LOG_PATH="/data/logs/gc"
+GC_OPTS="-verbose:gc -Xloggc:$GC_LOG_PATH/pay-gc.log -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCDateStamps -XX:+PrintGCDetails"
 
 # 异常 日志参数
 # -XX:-OmitStackTraceInFastThrow

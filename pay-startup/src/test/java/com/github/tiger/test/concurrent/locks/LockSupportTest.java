@@ -3,11 +3,11 @@ package com.github.tiger.test.concurrent.locks;
 import java.util.concurrent.locks.LockSupport;
 
 /**
- * LockSupport 提供park()和unpark()方法实现阻塞线程和解除线程阻塞，
- * LockSupport和每个使用它的线程都与一个许可(permit)关联。permit相当于1，0的开关，默认是0，
- * 调用一次unpark就加1变成1，调用一次park会消费permit, 也就是将1变成0，同时park立即返回。
- * 再次调用park会变成block（因为permit为0了，会阻塞在这里，直到permit变为1）, 这时调用unpark会把permit置为1。
- * 每个线程都有一个相关的permit, permit最多只有一个，重复调用unpark也不会积累。
+ * LockSupport 提供 park() 和 unpark() 方法实现阻塞线程和解除线程阻塞，
+ * LockSupport 和每个使用它的线程都与一个许可(permit)关联。permit 相当于 1，0 的开关，默认是 0，
+ * 调用一次 unpark 就加 1 变成 1，调用一次 park 会消费 permit, 也就是将 1 变成 0，同时 park 立即返回。
+ * 再次调用 park 会变成 block（因为 permit 为 0 了，会阻塞在这里，直到 permit 变为 1）, 这时调用 unpark 会把 permit 置为1。
+ * 每个线程都有一个相关的 permit, permit 最多只有一个，重复调用 unpark 也不会积累。
  */
 public class LockSupportTest {
 
