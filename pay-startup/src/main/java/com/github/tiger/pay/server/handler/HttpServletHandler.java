@@ -1,5 +1,6 @@
 package com.github.tiger.pay.server.handler;
 
+import com.github.tiger.common.util.HttpRequestUtil;
 import com.github.tiger.pay.server.http.HttpServletRequestBuilder;
 import com.github.tiger.pay.server.http.HttpServletResponseBuilder;
 import io.netty.buffer.ByteBuf;
@@ -64,11 +65,11 @@ public class HttpServletHandler extends SimpleChannelInboundHandler<FullHttpRequ
         long startTime = System.currentTimeMillis();
         servlet.service(httpServletRequest, httpServletResponse);
         long elapsedTime = System.currentTimeMillis() - startTime;
-//        if (logger.isInfoEnabled()) {
-//            String requestURI = HttpRequestUtil.getUriString(httpServletRequest);
-//            logger.info("{} - RequestURI {}: completed in {} ms",
-//                    remoteAddress, requestURI, elapsedTime);
-//        }
+        if (logger.isDebugEnabled()) {
+            String requestURI = HttpRequestUtil.getUriString(httpServletRequest);
+            logger.info("{} - RequestURI {}: completed in {} ms",
+                    remoteAddress, requestURI, elapsedTime);
+        }
 
         HttpResponseStatus responseStatus = HttpResponseStatus.valueOf(httpServletResponse.getStatus());
         DefaultHttpResponse response = new DefaultHttpResponse(HttpVersion.HTTP_1_1, responseStatus);

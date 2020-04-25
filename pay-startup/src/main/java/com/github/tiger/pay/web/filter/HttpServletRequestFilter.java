@@ -4,6 +4,10 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+/**
+ * @author liuhongming
+ * @date 2017-12-15
+ */
 public class HttpServletRequestFilter implements Filter {
 
     @Override

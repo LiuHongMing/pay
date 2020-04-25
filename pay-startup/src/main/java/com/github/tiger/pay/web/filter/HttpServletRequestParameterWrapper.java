@@ -9,6 +9,10 @@ import java.util.Enumeration;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * @author liuhongming
+ * @date 2018-05-26
+ */
 public class HttpServletRequestParameterWrapper extends HttpServletRequestWrapper {
 
     private final Map<String, String[]> parameters = new LinkedHashMap<>(16);

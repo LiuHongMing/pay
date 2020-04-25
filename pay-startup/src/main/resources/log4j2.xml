@@ -7,7 +7,7 @@
 <Configuration status="WARN" monitorInterval="600">
     <Properties>
         <property name="APP_NAME" value="pay"/>
-        <property name="COMPANY_NAME" value="senyint"/>
+        <property name="COMPANY_NAME" value="tiger"/>
         <Property name="LOG_HOME" value="logs/${APP_NAME}.${COMPANY_NAME}.local"/>
         <Property name="PATTERN" value="%d [%t] [%-5level] %logger{64} -> %m%n%ex"/>
     </Properties>

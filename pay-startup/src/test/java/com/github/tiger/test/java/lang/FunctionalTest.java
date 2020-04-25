@@ -38,6 +38,11 @@ public class FunctionalTest {
 
         IConvert<String, Something> constructor = Something::new;
         Something something1 = constructor.convert("constructors");
+
+        IConvert<String, String> lambdaMethod = str -> {
+            return "lambda: " + str;
+        };
+        System.out.println(lambdaMethod.convert("use lambda"));
     }
 
 }

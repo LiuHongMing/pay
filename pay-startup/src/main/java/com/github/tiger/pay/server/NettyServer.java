@@ -1,5 +1,6 @@
 package com.github.tiger.pay.server;
 
+import com.github.tiger.common.util.SystemUtil;
 import com.github.tiger.pay.server.channel.DefaultChannelInitializer;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Range;
@@ -11,6 +12,7 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.ServerChannel;
 import io.netty.channel.ChannelOption;
+import io.netty.channel.epoll.Epoll;
 import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.epoll.EpollServerSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -61,36 +63,47 @@ public class NettyServer extends ServerConfig implements Server {
     @Override
     public void start() {
         serverBootstrap = new ServerBootstrap();
-        // init groups and channelClass
-        if (isUseLinuxEpoll()) {
+
+        /**
+         * init groups and channelClass
+         */
+        if (SystemUtil.isLinux() && Epoll.isAvailable()) {
             bossGroup   = new EpollEventLoopGroup(getBossThreads(), new DefaultThreadFactory("epollServer-boss"));
             workerGroup = new EpollEventLoopGroup(getWorkThreads(), new DefaultThreadFactory("epollServer-worker"));
-            serverBootstrap.group(bossGroup, workerGroup);
             channelClass = EpollServerSocketChannel.class;
-            serverBootstrap.channel(channelClass);
         } else {
             bossGroup   = new NioEventLoopGroup(getBossThreads(), new DefaultThreadFactory("nioServer-boss"));
             workerGroup = new NioEventLoopGroup(getWorkThreads(), new DefaultThreadFactory("nioServer-worker"));
-            serverBootstrap.group(bossGroup, workerGroup);
             channelClass = NioServerSocketChannel.class;
-            serverBootstrap.channel(channelClass);
         }
 
-//        serverBootstrap.handler(new LoggingHandler(LogLevel.INFO));
-        // parent options
+        /**
+         * parent options
+         */
+        serverBootstrap.group(bossGroup, workerGroup);
+        serverBootstrap.channel(channelClass);
+        serverBootstrap.handler(new LoggingHandler(LogLevel.INFO));
         serverBootstrap.option(ChannelOption.SO_BACKLOG, 128);
         serverBootstrap.option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
-        // child options
+
+        /**
+         * child options
+         */
+        // 设置 keep-alive
         serverBootstrap.childOption(ChannelOption.SO_KEEPALIVE, true);
         serverBootstrap.childOption(ChannelOption.TCP_NODELAY, true);
+        // 分配缓存池
         serverBootstrap.childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
+
         // init channelHandler
         try {
             this.channelInitializer = channelInitializer();
         } catch (Exception e) {
             logger.error("ChannelInitializer failed : " + e.getMessage(), e);
         }
+
         serverBootstrap.childHandler(channelInitializer);
+
         try {
             channelFuture = serverBootstrap.bind(port).addListeners(new FutureListener<Void>() {
                 @Override

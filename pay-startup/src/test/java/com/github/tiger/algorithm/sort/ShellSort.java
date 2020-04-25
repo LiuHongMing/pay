@@ -1,7 +1,7 @@
 package com.github.tiger.algorithm.sort;
 
 /**
- * 希尔排序
+ * 希尔排序（比较排序）
  * <p>
  * 时间复杂度：O(nlogn)（线性对数阶）
  * <p>

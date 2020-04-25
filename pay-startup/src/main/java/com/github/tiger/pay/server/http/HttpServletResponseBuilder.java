@@ -5,8 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.mock.web.MockHttpServletResponse;
 
 /**
- * @ClassName: HttpServletResponseBuilder
- * @Description: 构造HttpServletResponse
+ * 构造 HttpServletResponse
+ *
+ * @author liuhongming
+ * @date 2017-12-15
  */
 public class HttpServletResponseBuilder {
 

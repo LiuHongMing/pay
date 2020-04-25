@@ -1,4 +1,4 @@
-package com.github.tiger.leetcode.cache.example;
+package com.github.tiger.leetcode.cache.lru;
 
 public class DoubleList {
 

@@ -38,4 +38,18 @@ public class StringUtil {
         return len <= 0;
     }
 
+    /**
+     * 判断字符序列为空（""）或者 null
+     */
+    public static boolean isEmpty(final CharSequence cs) {
+        return cs == null || cs.length() == 0;
+    }
+
+    /**
+     * 判断字符序列不为空（""）或者 null
+     */
+    public static boolean isNotEmpty(final CharSequence cs) {
+        return !isEmpty(cs);
+    }
+
 }

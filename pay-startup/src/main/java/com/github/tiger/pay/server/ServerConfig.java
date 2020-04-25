@@ -3,6 +3,7 @@ package com.github.tiger.pay.server;
 import com.github.tiger.common.util.NettyUtil;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.SelfSignedCertificate;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,8 +26,6 @@ public class ServerConfig extends SslConfig {
      */
     private int workThreads = NettyUtil.nThread();
 
-    private boolean useLinuxEpoll;
-
     public int getBossThreads() {
         return bossThreads;
     }
@@ -41,14 +40,6 @@ public class ServerConfig extends SslConfig {
 
     public void setWorkThreads(int workThreads) {
         this.workThreads = workThreads;
-    }
-
-    public boolean isUseLinuxEpoll() {
-        return useLinuxEpoll;
-    }
-
-    public void setUseLinuxEpoll(boolean useLinuxEpoll) {
-        this.useLinuxEpoll = useLinuxEpoll;
     }
 
     @Override

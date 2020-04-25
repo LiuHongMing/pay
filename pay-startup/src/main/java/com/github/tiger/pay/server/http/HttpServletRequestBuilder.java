@@ -17,8 +17,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @ClassName: HttpServletRequestBuilder
- * @Description: 构造HttpServletRequest
+ * HttpServletRequestBuilder
+ *
+ * 构造HttpServletRequest
+ *
+ * @author liuhongming
  */
 public class HttpServletRequestBuilder {
 
@@ -69,7 +72,8 @@ public class HttpServletRequestBuilder {
             List<String> values = queryParams.get(key);
             httpServletRequest.addParameter(StringUtil.hump(key, PARAMETER_DELIMITER), values.toArray(new String[values.size()]));
         }
-        if (httpMethod == HttpMethod.POST) { // POST
+        // POST
+        if (httpMethod == HttpMethod.POST) {
             // body
             HttpPostRequestDecoder postRequestDecoder = new HttpPostRequestDecoder(request);
             List<InterfaceHttpData> httpDatas = postRequestDecoder.getBodyHttpDatas();

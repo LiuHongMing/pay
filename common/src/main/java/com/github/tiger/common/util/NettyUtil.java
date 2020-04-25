@@ -9,7 +9,7 @@ public class NettyUtil {
 
     public static int nThread() {
         return Math.max(1, SystemPropertyUtil.getInt(
-                "io.netty.eventLoopThreads", Runtime.getRuntime().availableProcessors() * 2));
+                "io.netty.eventLoopThreads", SystemUtil.availableProcessors() * 2));
     }
 
     public static ThreadFactory threadFactory(String poolName) {

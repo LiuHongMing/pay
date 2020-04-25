@@ -1,7 +1,7 @@
 package com.github.tiger.algorithm.sort;
 
 /**
- * 归并排序
+ * 归并排序（比较排序）
  * <p>
  * 时间复杂度：O(nlogn)（线性对数阶）
  * <p>
@@ -13,7 +13,7 @@ package com.github.tiger.algorithm.sort;
  * 稳定性：稳定
  *
  * @author liuhongming
- * @date 07/30/2019
+ * @date 2019-07-30
  */
 public class MergeSort {
 

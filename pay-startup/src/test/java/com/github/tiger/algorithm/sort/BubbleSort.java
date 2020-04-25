@@ -1,7 +1,7 @@
 package com.github.tiger.algorithm.sort;
 
 /**
- * 冒泡排序
+ * 冒泡排序（比较排序）
  * <p>
  * 时间复杂度：O(n^2)（平方阶）
  * <p>
