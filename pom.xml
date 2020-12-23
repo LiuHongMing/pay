@@ -98,7 +98,7 @@
         <!-- dom4j -->
         <dom4j.version>2.0.0</dom4j.version>
         <!-- quartz -->
-        <quartz.version>2.2.1</quartz.version>
+        <quartz.version>2.3.2</quartz.version>
         <!-- mongo-java-driver -->
         <mongo-java-driver.version>3.3.0</mongo-java-driver.version>
         <!-- spring-data-mongodb -->
