@@ -73,7 +73,7 @@
         <google.gson.version>2.3</google.gson.version>
         <google.protobuf.version>2.6.1</google.protobuf.version>
         <!-- mysql -->
-        <mysql.version>5.1.35</mysql.version>
+        <mysql.version>8.0.16</mysql.version>
         <!-- druid -->
         <druid.version>1.0.28</druid.version>
         <!-- mybatis -->
