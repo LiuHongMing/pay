@@ -96,7 +96,7 @@
         <!-- kafka -->
         <kafka.version>0.10.0.1</kafka.version>
         <!-- dom4j -->
-        <dom4j.version>2.0.0</dom4j.version>
+        <dom4j.version>2.0.3</dom4j.version>
         <!-- quartz -->
         <quartz.version>2.2.1</quartz.version>
         <!-- mongo-java-driver -->
