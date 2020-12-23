@@ -1,4 +1,4 @@
-package com.github.tiger.test.java.lang;
+package com.github.tiger.test.java;
 
 import com.github.tiger.common.util.RandomStringUtil;
 import com.github.tiger.pay.constant.PayWayEnum;

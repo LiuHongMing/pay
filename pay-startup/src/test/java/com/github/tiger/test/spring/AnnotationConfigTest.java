@@ -1,5 +1,6 @@
 package com.github.tiger.test.spring;
 
+import com.github.tiger.pay.web.config.AppConfig;
 import com.github.tiger.pay.web.config.DefaultConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,12 +11,10 @@ import javax.annotation.Resource;
 import java.util.Properties;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {DefaultConfig.class})
+@ContextConfiguration(classes = {AppConfig.class})
 public class AnnotationConfigTest {
 
     @Resource
-//    @Autowired
-//    @Qualifier("systemProperties")
     public Properties systemProperties;
 
     public AnnotationConfigTest() {

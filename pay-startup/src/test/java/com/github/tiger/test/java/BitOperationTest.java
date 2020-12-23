@@ -1,4 +1,4 @@
-package com.github.tiger.test.java.lang;
+package com.github.tiger.test.java;
 
 import org.junit.Test;
 

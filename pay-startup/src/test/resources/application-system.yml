@@ -1,0 +1,6 @@
+application:
+  system:
+    version: 1
+    name: mofang
+    core: linux
+

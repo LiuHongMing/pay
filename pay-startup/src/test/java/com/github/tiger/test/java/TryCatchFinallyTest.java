@@ -1,4 +1,4 @@
-package com.github.tiger.test.java.lang;
+package com.github.tiger.test.java;
 
 public class TryCatchFinallyTest {
 
@@ -11,17 +11,16 @@ public class TryCatchFinallyTest {
         try {
             k = k + 1;
             System.out.println("try" + k);
+            String s = null;
+            s.toString();
             return k;
         } catch (Exception e) {
             k = k + 2;
             System.out.println("catch" + k);
-            return k;
         } finally {
             k = k + 3;
             System.out.println("finally" + k);
-            return k;
         }
-
-
+        return k;
     }
 }

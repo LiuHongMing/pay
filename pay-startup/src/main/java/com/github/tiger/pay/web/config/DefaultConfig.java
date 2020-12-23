@@ -10,7 +10,7 @@ import java.util.Properties;
  *
  * @author liuhongming
  */
-@Configuration
+//@Configuration
 public class DefaultConfig {
 
     @Bean("systemProperties")

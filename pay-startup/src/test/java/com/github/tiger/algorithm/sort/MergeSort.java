@@ -22,6 +22,14 @@ public class MergeSort {
         mergeSort(arr, tempArr, 0, arr.length - 1);
     }
 
+    /**
+     * 归并排序
+     *
+     * @param arr 排序数组
+     * @param tempArr 临时存储数组
+     * @param startIdx 排序起始位置
+     * @param endIdx 排序终止位置
+     */
     public static void mergeSort(int[] arr, int[] tempArr, int startIdx, int endIdx) {
         if (endIdx <= startIdx) {
             return;
@@ -38,13 +46,13 @@ public class MergeSort {
     }
 
     /**
-     * 归并排序
+     * 归并
      *
-     * @param arr       排序数组
-     * @param tempArr   临时存储数组
-     * @param startIdx
-     * @param middleIdx
-     * @param endIdx
+     * @param arr 排序数组
+     * @param tempArr 临时存储数组
+     * @param startIdx 归并起始位置
+     * @param middleIdx 归并中间位置
+     * @param endIdx 归并终止位置
      */
     public static void merge(int[] arr, int[] tempArr,
                              int startIdx, int middleIdx, int endIdx) {

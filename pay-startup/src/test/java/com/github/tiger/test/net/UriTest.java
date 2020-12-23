@@ -8,6 +8,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 /**
+ * 表示一个统一资源标识符 (URI) 引用。
+ *
  * https://download.oracle.com/technetwork/java/javase/6/docs/zh/api/java/net/URI.html
  * <p>
  * 参考：
@@ -17,27 +19,41 @@ import java.net.URISyntaxException;
 public class UriTest {
 
     /**
-     * URI 的各个获取方法
+     * 分层 URI 的各个获取方法
      */
     @Test
-    public void testUriGetter() {
+    public void testHierarchicalUri() {
         try {
-            URI uri = new URI("zsx://shixinzhang.top:8080/categories/android?page=3#3");
-
+            // 分层 url
+            URI uri = new URI("zsx://lhm:888@liuhongming.top:8080/categories/android?page=3#3");
             System.out.println(uri + " isOpaque : " + uri.isOpaque());
 
             print("scheme: " + uri.getScheme());
             print("fragment ID is: " + uri.getFragment());
-            if (uri.isOpaque()) { // 不透明（不是以 / 开始）
-                print("scheme specific part is: " + uri.getSchemeSpecificPart());
-            } else { // 不是透明的，就是分层的
-                uri = uri.parseServerAuthority();
-                print("host is: " + uri.getHost());
-                print("user info is: " + uri.getUserInfo());
-                print("port is: " + uri.getPort());
-                print("path is: " + uri.getPath());
-                print("query string is: " + uri.getQuery());
-            }
+            uri = uri.parseServerAuthority();
+            print("host is: " + uri.getHost());
+            print("user info is: " + uri.getUserInfo());
+            print("port is: " + uri.getPort());
+            print("path is: " + uri.getPath());
+            print("query string is: " + uri.getQuery());
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * 不透明 URI 的各个获取方法
+     */
+    @Test
+    public void testOpaqueUri() {
+        try {
+            // 不透明 uri
+            URI uri = new URI("mailto:java-net@java.sun.com");
+            System.out.println(uri + " isOpaque : " + uri.isOpaque());
+
+            print("scheme: " + uri.getScheme());
+            print("scheme specific part is: " + uri.getSchemeSpecificPart());
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }

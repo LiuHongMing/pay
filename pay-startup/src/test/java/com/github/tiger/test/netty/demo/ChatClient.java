@@ -52,8 +52,8 @@ public class ChatClient {
 
     private ChatClientHandler chatClientHandler;
 
-    public void connction() throws Exception {
-        boolean SSL = System.getProperty("ssl") != null;
+    public void connection() throws Exception {
+        boolean SSL = Boolean.valueOf(System.getProperty("ssl", "false"));
         // Configure SSL.
         final SslContext sslCtx;
         if (SSL) {
@@ -96,7 +96,7 @@ public class ChatClient {
         final ChatClient client = new ChatClient("127.0.0.1", port);
         new Thread(() -> {
             try {
-                client.connction();
+                client.connection();
             } catch (Exception e) {
                 e.printStackTrace();
             }

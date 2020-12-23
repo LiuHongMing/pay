@@ -9,7 +9,7 @@ import org.apache.zookeeper.data.Stat;
 
 import java.util.List;
 
-public class CuratorClient {
+public class CuratorDemo {
 
     public static void main(String[] args) throws Exception {
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);

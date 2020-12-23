@@ -1,0 +1,7 @@
+# 配置文件入口
+spring:
+  profiles:
+    # 引用的其它配置，文件命名规则：application-${profile}.yml
+    active: database,thrift,redis,custom,apollo,system
+  main:
+    web-application-type: none

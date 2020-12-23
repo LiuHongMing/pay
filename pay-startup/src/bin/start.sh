@@ -22,6 +22,8 @@ FLAG_OPTS="-XX:+PrintCommandLineFlags"
 # 内存参数
 # -Xms -Xmx
 #   堆内存大小
+#   -Xms 初始堆内存
+#   -Xmx 最大堆内存
 # -Xmn or -XX:NewSize and -XX:MaxNewSize or -XX:NewRatio
 #   新生代大小
 # -XX:MaxDirectMemorySize

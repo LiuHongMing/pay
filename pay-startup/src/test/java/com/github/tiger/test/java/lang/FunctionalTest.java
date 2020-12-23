@@ -1,5 +1,7 @@
 package com.github.tiger.test.java.lang;
 
+import java.util.function.Function;
+
 public class FunctionalTest {
 
     @FunctionalInterface
@@ -28,6 +30,17 @@ public class FunctionalTest {
         }
     }
 
+    public static <T extends FunctionImpl> T newFunction(
+            Function<String, T> factory, String val) {
+        return factory.apply(val);
+    }
+
+    public static class FunctionImpl {
+        public FunctionImpl(String s) {
+            System.out.println(s);
+        }
+    }
+
     public static void main(String[] args) {
         IConvert<String, String> staticMethod = Something::startWith;
         System.out.println(staticMethod.convert("123"));
@@ -38,11 +51,14 @@ public class FunctionalTest {
 
         IConvert<String, Something> constructor = Something::new;
         Something something1 = constructor.convert("constructors");
+        System.out.println(something1.endWith("456"));
 
-        IConvert<String, String> lambdaMethod = str -> {
+        IConvert<String, String> lambdaMethod = (String str) -> {
             return "lambda: " + str;
         };
         System.out.println(lambdaMethod.convert("use lambda"));
+
+        FunctionImpl functionImpl = newFunction(FunctionImpl::new, "Hello world !!!");
     }
 
 }

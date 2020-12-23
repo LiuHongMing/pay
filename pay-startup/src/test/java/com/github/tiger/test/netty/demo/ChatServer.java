@@ -50,7 +50,7 @@ public class ChatServer {
     }
 
     public void start() throws Exception {
-        boolean SSL = System.getProperty("ssl") != null;
+        boolean SSL = Boolean.valueOf(System.getProperty("ssl", "false"));
         // Configure SSL.
         final SslContext sslCtx;
         if (SSL) {

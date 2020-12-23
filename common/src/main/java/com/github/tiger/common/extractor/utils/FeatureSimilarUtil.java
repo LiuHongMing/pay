@@ -84,7 +84,7 @@ public class FeatureSimilarUtil {
      * 词性组成规则比率计算
      *
      * @param list 数据源Map<属性标识，数据>
-     * @return Map<属性标识   ，   Map   <   词性   ，   词性占比>>
+     * @return Map<属性标识 ， Map < 词性 ， 词性占比>>
      */
     public Map<String, Map<String, Double>> getCombinationNaturesProbabiliMap(
             List<Map<String, String>> list) {
@@ -122,8 +122,9 @@ public class FeatureSimilarUtil {
                             / list.size())
                             .setScale(4, BigDecimal.ROUND_HALF_UP)
                             .doubleValue();
-                    if (result > limit)
+                    if (result > limit) {
                         featureMap.get(attr).put(key, result);
+                    }
                 }
             }
         }
