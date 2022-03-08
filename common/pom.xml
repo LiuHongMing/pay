@@ -22,7 +22,7 @@
     </build>
 
     <properties>
-        <poi.version>3.17</poi.version>
+        <poi.version>5.2.1</poi.version>
     </properties>
 
     <repositories>
