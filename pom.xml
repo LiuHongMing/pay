@@ -102,7 +102,7 @@
         <!-- mongo-java-driver -->
         <mongo-java-driver.version>3.3.0</mongo-java-driver.version>
         <!-- spring-data-mongodb -->
-        <spring-data-mongodb.version>1.9.4.RELEASE</spring-data-mongodb.version>
+        <spring-data-mongodb.version>3.3.5</spring-data-mongodb.version>
         <!-- 数据库分页 -->
         <pagehelper.version>4.1.6</pagehelper.version>
         <!-- yaml -->
